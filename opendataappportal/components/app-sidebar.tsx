@@ -24,7 +24,7 @@ const data = {
       items: [
         {
           title: "Dresden Apps",
-          url: "#",
+          url: "/dashboard/appview",
           isActive: true,
         },
         {

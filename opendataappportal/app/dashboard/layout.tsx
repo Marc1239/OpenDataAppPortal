@@ -17,7 +17,7 @@ import {
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { Fragment } from "react";
 
-export default function Page() {
+export default function DashbaordLayout() {
 
   const segments = useSelectedLayoutSegments();
 
@@ -37,41 +37,40 @@ export default function Page() {
             className="mr-2 data-[orientation=vertical]:h-4"
           />
           <Breadcrumb>
-      <BreadcrumbList>
-        {/* Home immer vorne */}
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
+            <BreadcrumbList>
+                <BreadcrumbItem>
+                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
 
-        {segments.map((segment, idx) => {
-          const isLast = idx === segments.length - 1
-          const path = '/' + segments.slice(0, idx + 1).join('/')
-          const label = formatLabel(segment)
+                {segments.map((segment, idx) => {
+                const isLast = idx === segments.length - 1
+                const path = '/' + segments.slice(0, idx + 1).join('/')
+                const label = formatLabel(segment)
 
-          return (
-            <Fragment key={path}>
-              <BreadcrumbItem>
-                {isLast ? (
-                  <BreadcrumbPage>{label}</BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink href={path}>{label}</BreadcrumbLink>
+                return (
+                    <Fragment key={path}>
+                    <BreadcrumbItem>
+                        {isLast ? (
+                        <BreadcrumbPage>{label}</BreadcrumbPage>
+                        ) : (
+                        <BreadcrumbLink href={path}>{label}</BreadcrumbLink>
+                        )}
+                    </BreadcrumbItem>
+                    {/* Separator nur zwischen den Items */}
+                    {!isLast && <BreadcrumbSeparator />}
+                    </Fragment>
+                )
+                })}
+
+                {/* Falls keine Segmente, zeigen wir nur "Home" als current page */}
+                {segments.length === 0 && (
+                <BreadcrumbItem>
+                    
+                </BreadcrumbItem>
                 )}
-              </BreadcrumbItem>
-              {/* Separator nur zwischen den Items */}
-              {!isLast && <BreadcrumbSeparator />}
-            </Fragment>
-          )
-        })}
-
-        {/* Falls keine Segmente, zeigen wir nur "Home" als current page */}
-        {segments.length === 0 && (
-          <BreadcrumbItem>
-            <BreadcrumbPage>Home</BreadcrumbPage>
-          </BreadcrumbItem>
-        )}
-      </BreadcrumbList>
-    </Breadcrumb>
+            </BreadcrumbList>
+        </Breadcrumb>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
           <div className="grid auto-rows-min gap-4 md:grid-cols-3">
