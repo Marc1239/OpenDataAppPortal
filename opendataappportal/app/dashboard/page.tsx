@@ -1,87 +1,25 @@
-"use client";
-import { AppSidebar } from "@/components/app-sidebar"
+import React from 'react'
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { useSelectedLayoutSegments } from 'next/navigation';
-import { Fragment } from "react";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Hero45 } from '@/components/hero45'
+import { Gallery6 } from '@/components/gallery6'
 
-export default function Page() {
 
-  const segments = useSelectedLayoutSegments();
-
-  const formatLabel = (seg: string) =>
-    seg
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, char => char.toUpperCase())
-
+const Dashboard = () => {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1" />
-          <Separator
-            orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
-          />
-          <Breadcrumb>
-      <BreadcrumbList>
-        {/* Home immer vorne */}
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-
-        {segments.map((segment, idx) => {
-          const isLast = idx === segments.length - 1
-          const path = '/' + segments.slice(0, idx + 1).join('/')
-          const label = formatLabel(segment)
-
-          return (
-            <Fragment key={path}>
-              <BreadcrumbItem>
-                {isLast ? (
-                  <BreadcrumbPage>{label}</BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink href={path}>{label}</BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-              {/* Separator nur zwischen den Items */}
-              {!isLast && <BreadcrumbSeparator />}
-            </Fragment>
-          )
-        })}
-
-        {/* Falls keine Segmente, zeigen wir nur "Home" als current page */}
-        {segments.length === 0 && (
-          <BreadcrumbItem>
-            <BreadcrumbPage>Home</BreadcrumbPage>
-          </BreadcrumbItem>
-        )}
-      </BreadcrumbList>
-    </Breadcrumb>
-        </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <>
+      <Hero45 
+        heading='Open Data App Portal'
+      />
+      <Gallery6 />
+    </>
   )
 }
+
+export default Dashboard
