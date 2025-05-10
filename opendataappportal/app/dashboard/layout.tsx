@@ -15,9 +15,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { useSelectedLayoutSegments } from 'next/navigation';
-import { Fragment } from "react";
+import { Fragment,ReactNode } from "react";
 
-export default function DashbaordLayout() {
+interface DashboardLayoutProps {
+    children: ReactNode
+  }
+
+export default function DashbaordLayout({children}: DashboardLayoutProps) {
 
   const segments = useSelectedLayoutSegments();
 
@@ -44,23 +48,24 @@ export default function DashbaordLayout() {
                 <BreadcrumbSeparator />
 
                 {segments.map((segment, idx) => {
-                const isLast = idx === segments.length - 1
-                const path = '/' + segments.slice(0, idx + 1).join('/')
-                const label = formatLabel(segment)
+                    
+                    const isLast = idx === segments.length - 1
+                    const path = '/' + segments.slice(0, idx + 1).join('/')
+                    const label = formatLabel(segment)
 
-                return (
-                    <Fragment key={path}>
-                    <BreadcrumbItem>
-                        {isLast ? (
-                        <BreadcrumbPage>{label}</BreadcrumbPage>
-                        ) : (
-                        <BreadcrumbLink href={path}>{label}</BreadcrumbLink>
-                        )}
-                    </BreadcrumbItem>
-                    {/* Separator nur zwischen den Items */}
-                    {!isLast && <BreadcrumbSeparator />}
-                    </Fragment>
-                )
+                    return (
+                        <Fragment key={path}>
+                        <BreadcrumbItem>
+                            {isLast ? (
+                            <BreadcrumbPage>{label}</BreadcrumbPage>
+                            ) : (
+                            <BreadcrumbLink href={path}>{label}</BreadcrumbLink>
+                            )}
+                        </BreadcrumbItem>
+                        {/* Separator nur zwischen den Items */}
+                        {!isLast && <BreadcrumbSeparator />}
+                        </Fragment>
+                    )
                 })}
 
                 {/* Falls keine Segmente, zeigen wir nur "Home" als current page */}
@@ -72,14 +77,9 @@ export default function DashbaordLayout() {
             </BreadcrumbList>
         </Breadcrumb>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
-        </div>
+        <main className="flex flex-1 flex-col gap-4 p-4">
+            {children}
+        </main>
       </SidebarInset>
     </SidebarProvider>
   )
