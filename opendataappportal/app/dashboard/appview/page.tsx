@@ -1,3 +1,4 @@
+"use client";
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle  } from '@/components/ui/card'
@@ -5,31 +6,71 @@ import { CardCurtain, CardCurtainReveal, CardCurtainRevealBody, CardCurtainRevea
 import { ArrowUpRight } from 'lucide-react'
 import React from 'react'
 import appsDresdenData from "../../data/apps_dresden.json"
+import { ComboboxCity } from '@/components/combobox'
+import { Checkbox } from '@/components/ui/checkbox'
 
 export interface AppData {
     title: string
     city: string
+    barrierFree: boolean
     description: string
     image: string
   }
 
-const AppView = () => {
 
-  const apps = Object.entries(appsDresdenData) as [string, AppData][]
+export interface AppEntry {
+    key: string
+    data: AppData
+  }
+
+
+  const AppView: React.FC = () => {
+
+  const [selectedCity, setSelectedCity] = React.useState<string>("")
+  const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(true)
+  
+  const apps = React.useMemo<AppEntry[]>(() => {
+    return Object.entries(appsDresdenData).map(([key, data]) => ({
+      key,
+      data: data as AppData ,
+    }))
+  }, [])
+
+
+  const filteredApps = React.useMemo(() => {
+    return apps.filter(({ data }) => {
+      if (selectedCity && data.city !== selectedCity) return false
+      if (accessibleOnly && !data.barrierFree) return false
+      return true
+    })
+  }, [apps, selectedCity, accessibleOnly])
   
   return (
     <div className='w-full flex flex-col justify-center items-center'>
         {/*<Badge className='w-fit text-xl'>Unsere Apps</Badge>*/}
-        <h1 className='text-9xl text-center'>Modern solutions. Timeless design.</h1>
-        <h2 className='text-center my-12 text-2xl'>Residential, commercial, and urban planning. Transform spaces into experiences with our comprehensive architectural solutions.</h2>
+        {/*<h1 className='text-9xl text-center'>Modern solutions. Timeless design.</h1>*/}
+        <div className='w-full h-24 flex gap-4 items-center'>
+            <ComboboxCity 
+                value={selectedCity}
+                onValueChange={setSelectedCity}
+            />
+            <div className='flex items-center gap-2'>
+                <Checkbox 
+                    checked={accessibleOnly}
+                    onCheckedChange={(val) => setAccessibleOnly(!!val)}
+                />
+                <p>Barrierefrei</p>
+            </div>
+        </div>
         <div className="my-4 flex justify-center flex-wrap gap-4">
-            {apps.map(([key, { title, city, description, image }], i) => (
+            {filteredApps.map(({ key, data }) => (
                 <Boxes
                     key={key}
-                    title={title}
-                    city={city}
-                    description={description}
-                    image={image}
+                    title={data.title}
+                    city={data.city}
+                    barrierFree={data.barrierFree}
+                    description={data.description}
+                    image={data.image}
                 />
             ))}
         </div>
