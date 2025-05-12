@@ -19,32 +19,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-]
+import appsData from "@/app/data/apps_dresden.json";
 
-export function ComboboxDemo() {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+interface ComboboxCityProps {
+    value: string
+    onValueChange: (city: string) => void
+  }
+
+export function ComboboxCity({ value, onValueChange }: ComboboxCityProps) {
+    const [open, setOpen] = React.useState(false)
+
+    const cities = React.useMemo(() => {
+        const set = new Set<string>()
+        Object.values(appsData).forEach((app) => set.add(app.city))
+        return Array.from(set)
+    }, [])
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -55,9 +44,7 @@ export function ComboboxDemo() {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+          {value || "Stadt wählen ..." }
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -67,20 +54,20 @@ export function ComboboxDemo() {
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {cities.map((city) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                  key={city}
+                  value={city}
+                  onSelect={(current) => {
+                    onValueChange(current === value ? "" : current)
                     setOpen(false)
                   }}
                 >
-                  {framework.label}
+                  {city}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === city ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
