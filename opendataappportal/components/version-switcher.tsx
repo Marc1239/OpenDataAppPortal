@@ -14,6 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Image from "next/image"
 
 export function VersionSwitcher() {
 
@@ -22,14 +23,9 @@ export function VersionSwitcher() {
       <SidebarMenuItem>
         <DropdownMenu>
             <SidebarMenu
-              className="flex flex-row items-center p-2"
+              className="flex flex-col gap-4 items-center justify-start p-2 h-16"
             >
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                <GalleryVerticalEnd className="size-4" />
-              </div>
-              <div className="flex flex-col gap-0.5 leading-none">
-                <span className="font-medium">Open Data App Portal</span>
-              </div>
+              <Image alt="Dresden Logo" fill src="https://www.dresden.de/konfiguration/ressourcen/logos/logo_header_wo_bg_min.svg"/>
             </SidebarMenu>
         </DropdownMenu>
       </SidebarMenuItem>
