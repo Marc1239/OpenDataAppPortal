@@ -25,10 +25,20 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
 
   const segments = useSelectedLayoutSegments();
 
-  const formatLabel = (seg: string) =>
+  const segmentTitles: Record<string, string> ={
+    dashboard: "Übersicht",
+    appview: "Apps"
+  }
+
+  /*const formatLabel = (seg: string) =>
     seg
       .replace(/-/g, ' ')
-      .replace(/\b\w/g, char => char.toUpperCase())
+      .replace(/\b\w/g, char => char.toUpperCase())*/
+
+  const getLabel = (seg: string) =>
+    segmentTitles[seg] ?? seg.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+
+    
 
   return (
     <SidebarProvider>
@@ -51,7 +61,7 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
                     
                     const isLast = idx === segments.length - 1
                     const path = '/' + segments.slice(0, idx + 1).join('/')
-                    const label = formatLabel(segment)
+                    const label = getLabel(segment)
 
                     return (
                         <Fragment key={path}>
