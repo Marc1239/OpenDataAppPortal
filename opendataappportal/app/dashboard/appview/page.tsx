@@ -30,9 +30,32 @@ export interface AppEntry {
 
   const AppView: React.FC = () => {
 
-  const [selectedCity, setSelectedCity] = React.useState<string>("")
-  const [selectedCategory, setSelectedCategory] = React.useState<string>("")
-  const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(false)
+    const [selectedCity, setSelectedCity] = React.useState<string>("");
+    const [selectedCategory, setSelectedCategory] = React.useState<string>("");
+    const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(false);
+
+    React.useEffect(() => {
+      const sc = localStorage.getItem("selectedCity");
+      if (sc) setSelectedCity(sc);
+  
+      const cat = localStorage.getItem("selectedCategory");
+      if (cat) setSelectedCategory(cat);
+  
+      const ao = localStorage.getItem("accessibleOnly");
+      if (ao !== null) setAccessibleOnly(ao === "true");
+    }, []);
+
+    React.useEffect(() => {
+      localStorage.setItem("selectedCity", selectedCity);
+    }, [selectedCity]);
+  
+    React.useEffect(() => {
+      localStorage.setItem("selectedCategory", selectedCategory);
+    }, [selectedCategory]);
+  
+    React.useEffect(() => {
+      localStorage.setItem("accessibleOnly", String(accessibleOnly));
+    }, [accessibleOnly]);
   
   const apps = React.useMemo<AppEntry[]>(() => {
     return Object.entries(appsDresdenData).map(([key, data]) => ({
@@ -79,6 +102,9 @@ export interface AppEntry {
                 setSelectedCity("")
                 setSelectedCategory("")
                 setAccessibleOnly(false)  
+                localStorage.removeItem("selectedCity");
+                localStorage.removeItem("selectedCategory");
+                localStorage.setItem("accessibleOnly", "false");
               }}
             >
               <Trash />
