@@ -6,12 +6,16 @@ import { CardCurtain, CardCurtainReveal, CardCurtainRevealBody, CardCurtainRevea
 import { ArrowUpRight } from 'lucide-react'
 import React from 'react'
 import appsDresdenData from "../../data/apps_dresden.json"
-import { ComboboxCity } from '@/components/combobox'
+import { ComboboxCity } from '@/components/comboboxCity'
+import { ComboboxCategory } from '@/components/comboboxCategory';
 import { Checkbox } from '@/components/ui/checkbox'
+import { Trash } from 'lucide-react'
+
 
 export interface AppData {
     title: string
     city: string
+    category: string
     barrierFree: boolean
     description: string
     image: string
@@ -27,7 +31,8 @@ export interface AppEntry {
   const AppView: React.FC = () => {
 
   const [selectedCity, setSelectedCity] = React.useState<string>("")
-  const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(true)
+  const [selectedCategory, setSelectedCategory] = React.useState<string>("")
+  const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(false)
   
   const apps = React.useMemo<AppEntry[]>(() => {
     return Object.entries(appsDresdenData).map(([key, data]) => ({
@@ -40,10 +45,11 @@ export interface AppEntry {
   const filteredApps = React.useMemo(() => {
     return apps.filter(({ data }) => {
       if (selectedCity && data.city !== selectedCity) return false
+      if (selectedCategory && data.category !== selectedCategory) return false
       if (accessibleOnly && !data.barrierFree) return false
       return true
     })
-  }, [apps, selectedCity, accessibleOnly])
+  }, [apps, selectedCity, selectedCategory, accessibleOnly])
   
   return (
     <div className='w-full flex flex-col justify-center items-center'>
@@ -54,6 +60,10 @@ export interface AppEntry {
                 value={selectedCity}
                 onValueChange={setSelectedCity}
             />
+            <ComboboxCategory
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+            />
             <div className='flex items-center gap-2'>
                 <Checkbox 
                     checked={accessibleOnly}
@@ -61,6 +71,18 @@ export interface AppEntry {
                 />
                 <p>Barrierefrei</p>
             </div>
+            <Button
+              className="ml-auto"
+              variant="ghost"
+              size="icon"
+              onClick={() => {
+                setSelectedCity("")
+                setSelectedCategory("")
+                setAccessibleOnly(false)  
+              }}
+            >
+              <Trash />
+            </Button>
         </div>
         <div className="my-4 flex justify-center flex-wrap gap-4">
             {filteredApps.map(({ key, data }) => (
@@ -71,6 +93,7 @@ export interface AppEntry {
                     barrierFree={data.barrierFree}
                     description={data.description}
                     image={data.image}
+                    category={data.category}
                 />
             ))}
         </div>
