@@ -19,17 +19,13 @@ import {
 const data = {
   navMain: [
     {
-      title: "Getting Started",
+      title: "Menü",
       url: "#",
       items: [
         {
-          title: "Dresden Apps",
+          title: "Apps",
           url: "/dashboard/appview",
           isActive: true,
-        },
-        {
-          title: "Apps",
-          url: "#",
         },
       ],
     },
