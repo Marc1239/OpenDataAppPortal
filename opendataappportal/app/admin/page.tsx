@@ -1,4 +1,3 @@
-// app/admin/page.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,6 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
+import { toast } from "sonner"
 import {
   Form,
   FormControl,
@@ -25,6 +25,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Plus } from 'lucide-react';
+import { Textarea } from '@/components/ui/textarea';
 
 interface AppEntry {
   key: string;
@@ -40,6 +41,7 @@ const loginSchema = z.object({
   username: z.string().min(1, 'Benutzername ist erforderlich'),
   password: z.string().min(1, 'Passwort ist erforderlich'),
 });
+
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function AdminPage() {
@@ -127,16 +129,14 @@ export default function AdminPage() {
     const newKey = `new-${Date.now()}`;
     setApps([
       ...apps,
-      {
-        key: newKey,
-        title: '',
-        city: '',
-        category: '',
-        barrierFree: false,
-        description: '',
-        image: '',
-      },
+      { key: newKey, title: '', city: '', category: '', barrierFree: false, description: '', image: '' },
     ]);
+  };
+
+  // App löschen
+  const deleteApp = (idx: number) => {
+    setApps(apps.filter((_, i) => i !== idx));
+    toast.success("App wurde gelöscht");
   };
 
   // Alles speichern
@@ -144,7 +144,7 @@ export default function AdminPage() {
     // Pflichtfelder prüfen
     for (const app of apps) {
       if (!app.title.trim() || !app.city.trim() || !app.category.trim()) {
-        alert('Bitte fülle bei allen Apps Titel, Stadt und Kategorie aus.');
+        toast.warning('Bitte fülle bei allen Apps Titel, Stadt und Kategorie aus.');
         return;
       }
     }
@@ -168,9 +168,9 @@ export default function AdminPage() {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error();
-      alert('Änderungen gespeichert!');
+      toast.success('Änderungen gespeichert!');
     } catch {
-      alert('Fehler beim Speichern.');
+      toast.error('Fehler beim Speichern.');
     }
   };
 
@@ -230,8 +230,8 @@ export default function AdminPage() {
             <AccordionContent>
               <div className="grid grid-cols-1 gap-4">
                 {/* Title */}
-                <div>
-                  <Label>Title</Label>
+                <div className='gap-2 flex flex-col'>
+                  <Label>Name der App</Label>
                   <Input
                     value={app.title}
                     onChange={e => updateApp(idx, 'title', e.target.value)}
@@ -239,12 +239,12 @@ export default function AdminPage() {
                     className={!app.title.trim() ? 'border-red-500' : ''}
                   />
                   {!app.title.trim() && (
-                    <p className="text-red-600 text-sm">Title ist erforderlich</p>
+                    <p className="text-red-600 text-sm">Name der App ist erforderlich</p>
                   )}
                 </div>
                 {/* City */}
-                <div>
-                  <Label>City</Label>
+                <div className='gap-2 flex flex-col'>
+                  <Label>Stadt</Label>
                   <Input
                     value={app.city}
                     onChange={e => updateApp(idx, 'city', e.target.value)}
@@ -252,12 +252,12 @@ export default function AdminPage() {
                     className={!app.city.trim() ? 'border-red-500' : ''}
                   />
                   {!app.city.trim() && (
-                    <p className="text-red-600 text-sm">City ist erforderlich</p>
+                    <p className="text-red-600 text-sm">Stadt ist erforderlich</p>
                   )}
                 </div>
                 {/* Category */}
-                <div>
-                  <Label>Category</Label>
+                <div className='gap-2 flex flex-col'>
+                  <Label>Kategorie</Label>
                   <Input
                     value={app.category}
                     onChange={e => updateApp(idx, 'category', e.target.value)}
@@ -265,7 +265,7 @@ export default function AdminPage() {
                     className={!app.category.trim() ? 'border-red-500' : ''}
                   />
                   {!app.category.trim() && (
-                    <p className="text-red-600 text-sm">Category ist erforderlich</p>
+                    <p className="text-red-600 text-sm">Kategorie ist erforderlich</p>
                   )}
                 </div>
                 {/* BarrierFree */}
@@ -275,25 +275,30 @@ export default function AdminPage() {
                     onCheckedChange={val => updateApp(idx, 'barrierFree', val as boolean)}
                     id={`barrier-${app.key}`}
                   />
-                  <Label htmlFor={`barrier-${app.key}`}>Barrier Free</Label>
+                  <Label htmlFor={`barrier-${app.key}`}>Barrierefrei</Label>
                 </div>
                 {/* Description */}
-                <div>
-                  <Label>Description</Label>
-                  <textarea
+                <div className='gap-2 flex flex-col'>
+                  <Label>Beschreibung</Label>
+                  <Textarea
                     className="w-full border rounded p-2"
                     value={app.description}
                     onChange={e => updateApp(idx, 'description', e.target.value)}
                   />
                 </div>
                 {/* Image URL */}
-                <div>
-                  <Label>Image URL</Label>
+                <div className='gap-2 flex flex-col'>
+                  <Label>Bild URL</Label>
                   <Input
                     value={app.image}
                     onChange={e => updateApp(idx, 'image', e.target.value)}
                   />
                 </div>
+              </div>
+              <div className="flex justify-end mt-4">
+                <Button variant="destructive" onClick={() => deleteApp(idx)}>
+                  Löschen
+                </Button>
               </div>
             </AccordionContent>
           </AccordionItem>

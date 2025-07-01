@@ -1,0 +1,30 @@
+{
+  "navAdmin": [
+    {
+      "title": "Menü",
+      "url": "#",
+      "items": [
+        {
+          "title": "Apps",
+          "url": "/admin/apps",
+          "isActive": true
+        },
+        {
+          "title": "Neuste Veröffentlichungen",
+          "url": "/admin/neuste-veroeffentlichungen",
+          "isActive": false
+        },
+        {
+          "title": "Startbeitrag",
+          "url": "/admin/start-beitrag",
+          "isActive": false
+        },
+        {
+          "title": "Einstellungen",
+          "url": "/admin/einstellungen",
+          "isActive": false
+        }
+      ]
+    }
+  ]
+}

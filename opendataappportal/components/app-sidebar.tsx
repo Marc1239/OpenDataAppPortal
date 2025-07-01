@@ -1,7 +1,8 @@
-import * as React from "react"
+'use client';
 
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+import * as React from 'react';
+import { SearchForm } from '@/components/search-form';
+import { VersionSwitcher } from '@/components/version-switcher';
 import {
   Sidebar,
   SidebarContent,
@@ -13,42 +14,52 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { LockClosedIcon } from "@radix-ui/react-icons"
-import { Button } from "./ui/button"
+} from '@/components/ui/sidebar';
+import { LockClosedIcon } from '@radix-ui/react-icons';
+import { Button } from './ui/button';
+import { usePathname, useRouter } from 'next/navigation';
 
-const data = {
-  navMain: [
-    {
-      title: "Menü",
-      url: "#",
-      items: [
-        {
-          title: "Apps",
-          url: "/dashboard/appview",
-          isActive: true,
-        },
-      ],
-    },
-  ],
+export interface NavGroup {
+  title: string;
+  items: Array<{ title: string; url: string; isActive: boolean }>;
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export interface AppSidebarProps {
+  navMain: NavGroup[];
+}
+
+export function AppSidebar(
+  { navMain, ...props }: AppSidebarProps & React.ComponentProps<typeof Sidebar>
+) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const isAdminPage = pathname === '/admin';
+
+  const handleAdminClick = async () => {
+    if (isAdminPage) {
+      await fetch('/api/logout', { method: 'POST' });
+      router.push('/dashboard');
+    } else {
+      router.push('/admin');
+    }
+  };
+
   return (
     <Sidebar {...props}>
       <SidebarHeader>
         <VersionSwitcher />
         <SearchForm />
       </SidebarHeader>
+
       <SidebarContent>
-        {data.navMain.map((item) => (
-          <SidebarGroup key={item.title}>
-            <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+        {navMain.map((group) => (
+          <SidebarGroup key={group.title}>
+            <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {item.items.map((item) => (
+                {group.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
+                    <SidebarMenuButton asChild isActive={pathname === item.url}>
                       <a href={item.url}>{item.title}</a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -57,12 +68,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
-      <Button variant="link" onClick={() => window.location.href="/admin"} className="!mt-auto cursor-pointer p-2 m-2 rounded-md flex w-full flex-row justify-center gap-2 items-center">
-        <LockClosedIcon />
-        <p>Admin</p>
-      </Button>
+
+        <Button
+          variant="link"
+          onClick={handleAdminClick}
+          className="!mt-auto cursor-pointer p-2 m-2 rounded-md flex w-full justify-center items-center gap-2"
+        >
+          <LockClosedIcon />
+          {isAdminPage ? 'Logout' : 'Admin'}
+        </Button>
       </SidebarContent>
+
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
