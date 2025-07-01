@@ -14,8 +14,9 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { LockClosedIcon } from "@radix-ui/react-icons"
+import { Button } from "./ui/button"
 
-// This is sample data.
 const data = {
   navMain: [
     {
@@ -40,7 +41,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SearchForm />
       </SidebarHeader>
       <SidebarContent>
-        {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>
             <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
@@ -57,6 +57,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
+      <Button variant="link" onClick={() => window.location.href="/admin"} className="!mt-auto cursor-pointer p-2 m-2 rounded-md flex w-full flex-row justify-center gap-2 items-center">
+        <LockClosedIcon />
+        <p>Admin</p>
+      </Button>
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
