@@ -1,0 +1,15 @@
+{
+  "navMain": [
+    {
+      "title": "Menü",
+      "url": "#",
+      "items": [
+        {
+          "title": "Apps",
+          "url": "/dashboard/appview",
+          "isActive": true
+        }
+      ]
+    }
+  ]
+}

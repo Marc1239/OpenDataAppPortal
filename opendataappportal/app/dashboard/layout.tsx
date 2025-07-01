@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { Fragment,ReactNode } from "react";
+import dashboardMenu from "@/app/data/dashboard_menu.json"
 
 interface DashboardLayoutProps {
     children: ReactNode
@@ -30,11 +31,6 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
     appview: "Apps"
   }
 
-  /*const formatLabel = (seg: string) =>
-    seg
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, char => char.toUpperCase())*/
-
   const getLabel = (seg: string) =>
     segmentTitles[seg] ?? seg.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
 
@@ -42,7 +38,7 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
 
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar navMain={dashboardMenu.navMain} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
