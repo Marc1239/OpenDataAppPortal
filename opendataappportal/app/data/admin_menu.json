@@ -10,11 +10,6 @@
           "isActive": true
         },
         {
-          "title": "Neuste Veröffentlichungen",
-          "url": "/admin/neuste-veroeffentlichungen",
-          "isActive": false
-        },
-        {
           "title": "Startbeitrag",
           "url": "/admin/start-beitrag",
           "isActive": false
