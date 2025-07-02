@@ -10,6 +10,7 @@ import { ComboboxCity } from '@/components/comboboxCity'
 import { ComboboxCategory } from '@/components/comboboxCategory';
 import { Checkbox } from '@/components/ui/checkbox'
 import { Trash } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 
 export interface AppData {
@@ -24,11 +25,14 @@ export interface AppData {
 
 export interface AppEntry {
     key: string
+    slug: string
     data: AppData
   }
 
 
   const AppView: React.FC = () => {
+
+    const router = useRouter()
 
     const [selectedCity, setSelectedCity] = React.useState<string>("");
     const [selectedCategory, setSelectedCategory] = React.useState<string>("");
@@ -58,10 +62,13 @@ export interface AppEntry {
     }, [accessibleOnly]);
   
   const apps = React.useMemo<AppEntry[]>(() => {
-    return Object.entries(appsDresdenData).map(([key, data]) => ({
-      key,
-      data: data as AppData ,
-    }))
+    return Object.entries(appsDresdenData).map(([key, data]) => {
+      const slug = key
+       .toLowerCase()
+       .replace(/\s+/g, '-')      
+       .replace(/[^a-z0-9\-]/g, '')
+      return { key, slug, data: data as AppData }
+    })
   }, [])
 
 
@@ -76,8 +83,6 @@ export interface AppEntry {
   
   return (
     <div className='w-full flex flex-col justify-center items-center'>
-        {/*<Badge className='w-fit text-xl'>Unsere Apps</Badge>*/}
-        {/*<h1 className='text-9xl text-center'>Modern solutions. Timeless design.</h1>*/}
         <div className='w-full h-24 flex gap-4 items-center'>
             <ComboboxCity 
                 value={selectedCity}
@@ -111,8 +116,9 @@ export interface AppEntry {
             </Button>
         </div>
         <div className="my-4 flex justify-center flex-wrap gap-4">
-            {filteredApps.map(({ key, data }) => (
+            {filteredApps.map(({ key, slug, data }) => (
                 <Boxes
+                    id={slug} 
                     key={key}
                     title={data.title}
                     city={data.city}
@@ -130,11 +136,16 @@ export interface AppEntry {
 export default AppView
 
 
-interface BoxesProps extends AppData {}
+interface BoxesProps extends AppData {
+  id: string;
+}
 
-const Boxes: React.FC<BoxesProps> = ({ title, description, image }) => {
+const Boxes: React.FC<BoxesProps> = ({ id, title, description, image }) => {
+    
+    const router = useRouter()
+    
     return (
-        <CardCurtainReveal className="h-[560px] w-auto max-w-[400px] border rounded-md border-zinc-100 bg-gradient-to-br from-primary to-stone-50 text-zinc-950 shadow">
+        <CardCurtainReveal onClick={() => router.push(`/dashboard/appview/${(id)}`)} className="h-[560px] cursor-pointer w-auto max-w-[400px] border rounded-md border-zinc-100 bg-gradient-to-br from-primary to-stone-50 text-zinc-950 shadow">
         <CardCurtainRevealBody className="">
           <CardCurtainRevealTitle className="text-3xl font-medium tracking-tight">
             {title}
@@ -156,7 +167,6 @@ const Boxes: React.FC<BoxesProps> = ({ title, description, image }) => {
         </CardCurtainRevealBody>
 
         <CardCurtainRevealFooter className="mt-auto">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             width="100%"
             height="100%"
