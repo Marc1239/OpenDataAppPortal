@@ -5,6 +5,11 @@
       "url": "#",
       "items": [
         {
+          "title": "Zurück zum Dashboard",
+          "url": "/dashboard",
+          "isActive": false
+        },
+        {
           "title": "Apps",
           "url": "/admin/apps",
           "isActive": true
