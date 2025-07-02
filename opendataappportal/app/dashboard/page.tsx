@@ -39,7 +39,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Hero45 heading="Open Data App Portal" />
+      <Hero45 />
 
       {loading ? (
         <p className="text-center py-16">Lade neuste Veröffentlichungen…</p>
