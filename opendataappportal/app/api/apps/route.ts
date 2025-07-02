@@ -1,7 +1,10 @@
+// app/api/apps/route.ts
 import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { cookies } from 'next/headers';
+
+const DATA_PATH = path.join(process.cwd(), 'app', 'data', 'apps_dresden.json');
 
 async function checkAuth() {
   const cookieStore = await cookies();
@@ -14,18 +17,13 @@ async function checkAuth() {
   );
 }
 
-const DATA_PATH = path.join(process.cwd(), 'app', 'data', 'apps_dresden.json');
-
 export async function GET() {
-  if (!(await checkAuth())) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
   const json = await fs.readFile(DATA_PATH, 'utf8');
   return NextResponse.json(JSON.parse(json));
 }
 
 export async function POST(req: Request) {
-  if (!(await checkAuth())) {
+  if (!checkAuth()) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
   const body = await req.json();
