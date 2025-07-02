@@ -14,7 +14,6 @@ interface Feature {
 }
 
 interface HeroConfig {
-  badge: string;
   heading: string;
   imageSrc: string;
   imageAlt: string;
@@ -23,7 +22,6 @@ interface HeroConfig {
 
 export default function AdminStartBeitragPage() {
   const [config, setConfig] = useState<HeroConfig>({
-    badge: '',
     heading: '',
     imageSrc: '',
     imageAlt: '',
@@ -58,15 +56,6 @@ export default function AdminStartBeitragPage() {
   return (
     <div className="max-w-2xl mx-auto space-y-6 p-6">
       <h1 className="text-2xl font-semibold">Start-Beitrag bearbeiten</h1>
-
-      <div className="flex flex-col gap-2">
-        <Label>Badge</Label>
-        <Input
-          value={config.badge}
-          onChange={e => setConfig(c => ({ ...c, badge: e.target.value }))}
-        />
-      </div>
-
       <div className="flex flex-col gap-2">
         <Label>Heading</Label>
         <Input
@@ -95,7 +84,7 @@ export default function AdminStartBeitragPage() {
       {config.features.map((f, i) => (
         <div key={i} className="border p-4 rounded space-y-2">
           <div className="flex flex-col gap-2">
-            <Label>Icon Name</Label>
+            <Label>Icon Data URL</Label>
             <Input
               value={f.icon}
               onChange={e => {

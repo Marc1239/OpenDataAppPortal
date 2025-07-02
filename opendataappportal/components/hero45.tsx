@@ -19,13 +19,6 @@ interface HeroConfig {
   features: FeatureConfig[];
 }
 
-// Mapping von Icon-Namen zu React-Komponenten
-const iconMapping: Record<string, React.ReactNode> = {
-  HandHelping: <HandHelping className="h-auto w-5" />,
-  Users: <Users className="h-auto w-5" />,
-  Zap: <Zap className="h-auto w-5" />,
-};
-
 export function Hero45() {
   const [config, setConfig] = useState<HeroConfig | null>(null);
   const [loading, setLoading] = useState(true);
@@ -52,9 +45,6 @@ export function Hero45() {
   return (
     <section className="py-32">
       <div className="container overflow-hidden">
-        <div className="mb-6 text-center">
-          <Badge>{config.badge}</Badge>
-        </div>
         <div className="mb-20 flex flex-col items-center gap-6 text-center">
           <h1 className="text-4xl font-semibold lg:text-5xl">
             {config.heading}
@@ -81,9 +71,11 @@ export function Hero45() {
               )}
               <div className="flex grow basis-0 flex-col rounded-md bg-background p-4">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-background drop-shadow-lg">
-                  {iconMapping[feat.icon] || (
-                    <span className="text-muted-foreground">?</span>
-                  )}
+                  <img
+                    src={feat.icon}
+                    alt={feat.title}
+                    className="h-auto w-5"
+                  />
                 </div>
                 <h3 className="mb-2 font-semibold">{feat.title}</h3>
                 <p className="text-sm text-muted-foreground">
