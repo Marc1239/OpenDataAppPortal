@@ -56,7 +56,7 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
                 {segments.map((segment, idx) => {
                     
                     const isLast = idx === segments.length - 1
-                    const path = '/' + segments.slice(0, idx + 1).join('/')
+                    const path = '/dashboard/' + segments.slice(0, idx + 1).join('/')
                     const label = getLabel(segment)
 
                     return (
