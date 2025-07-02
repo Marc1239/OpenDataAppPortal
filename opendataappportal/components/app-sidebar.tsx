@@ -33,10 +33,11 @@ export function AppSidebar(
 ) {
   const pathname = usePathname();
   const router = useRouter();
-  const isAdminPage = pathname === '/admin';
+  const isAdminPath = pathname.startsWith('/admin') && !pathname.startsWith('/admin/login');
+
 
   const handleAdminClick = async () => {
-    if (isAdminPage) {
+    if (isAdminPath) {
       await fetch('/api/logout', { method: 'POST' });
       router.push('/dashboard');
     } else {
@@ -75,7 +76,7 @@ export function AppSidebar(
           className="!mt-auto cursor-pointer p-2 m-2 rounded-md flex w-full justify-center items-center gap-2"
         >
           <LockClosedIcon />
-          {isAdminPage ? 'Logout' : 'Admin'}
+          {isAdminPath ? 'Logout' : 'Admin'}
         </Button>
       </SidebarContent>
 
