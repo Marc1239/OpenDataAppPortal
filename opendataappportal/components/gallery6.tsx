@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -11,7 +11,10 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-interface GalleryItem {
+/**
+ * Ein Item für die Gallery6-Komponente
+ */
+export interface GalleryItem {
   id: string;
   title: string;
   summary: string;
@@ -19,65 +22,29 @@ interface GalleryItem {
   image: string;
 }
 
-interface Gallery6Props {
+/**
+ * Props für die Gallery6-Komponente
+ */
+export interface Gallery6Props {
   heading?: string;
   demoUrl?: string;
   items?: GalleryItem[];
 }
 
-const Gallery6 = ({
+/**
+ * Gallery6 zeigt eine Karussell-Übersicht von Items
+ */
+export const Gallery6 = ({
   heading = "Neuste Veröffentlichungen",
-  demoUrl = "/dashbaord/appview",
-  items = [
-    {
-      id: "item-1",
-      title: "Build Modern UIs",
-      summary:
-        "Create stunning user interfaces with our comprehensive design system.",
-      url: "#",
-      image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-    },
-    {
-      id: "item-2",
-      title: "Computer Vision Technology",
-      summary:
-        "Powerful image recognition and processing capabilities that allow AI systems to analyze, understand, and interpret visual information from the world.",
-      url: "#",
-      image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-    },
-    {
-      id: "item-3",
-      title: "Machine Learning Automation",
-      summary:
-        "Self-improving algorithms that learn from data patterns to automate complex tasks and make intelligent decisions with minimal human intervention.",
-      url: "#",
-      image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-    },
-    {
-      id: "item-4",
-      title: "Predictive Analytics",
-      summary:
-        "Advanced forecasting capabilities that analyze historical data to predict future trends and outcomes, helping businesses make data-driven decisions.",
-      url: "#",
-      image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-    },
-    {
-      id: "item-5",
-      title: "Neural Network Architecture",
-      summary:
-        "Sophisticated AI models inspired by human brain structure, capable of solving complex problems through deep learning and pattern recognition.",
-      url: "#",
-      image: "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-    },
-  ],
+  demoUrl = "/dashboard/appview",
+  items = [],
 }: Gallery6Props) => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+
   useEffect(() => {
-    if (!carouselApi) {
-      return;
-    }
+    if (!carouselApi) return;
     const updateSelection = () => {
       setCanScrollPrev(carouselApi.canScrollPrev());
       setCanScrollNext(carouselApi.canScrollNext());
@@ -88,6 +55,7 @@ const Gallery6 = ({
       carouselApi.off("select", updateSelection);
     };
   }, [carouselApi]);
+
   return (
     <section className="py-32">
       <div className="container">
@@ -108,9 +76,7 @@ const Gallery6 = ({
             <Button
               size="icon"
               variant="outline"
-              onClick={() => {
-                carouselApi?.scrollPrev();
-              }}
+              onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
               className="disabled:pointer-events-auto"
             >
@@ -119,9 +85,7 @@ const Gallery6 = ({
             <Button
               size="icon"
               variant="outline"
-              onClick={() => {
-                carouselApi?.scrollNext();
-              }}
+              onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
               className="disabled:pointer-events-auto"
             >
@@ -135,9 +99,7 @@ const Gallery6 = ({
           setApi={setCarouselApi}
           opts={{
             breakpoints: {
-              "(max-width: 768px)": {
-                dragFree: true,
-              },
+              "(max-width: 768px)": { dragFree: true },
             },
           }}
           className="relative left-[-1rem]"
@@ -145,10 +107,7 @@ const Gallery6 = ({
           <CarouselContent className="-mr-4 ml-8 2xl:mr-[max(0rem,calc(50vw-700px-1rem))] 2xl:ml-[max(8rem,calc(50vw-700px+1rem))]">
             {items.map((item) => (
               <CarouselItem key={item.id} className="pl-4 md:max-w-[452px]">
-                <a
-                  href={item.url}
-                  className="group flex flex-col justify-between"
-                >
+                <a href={item.url} className="group flex flex-col justify-between">
                   <div>
                     <div className="flex aspect-[3/2] overflow-clip rounded-xl">
                       <div className="flex-1">
@@ -169,7 +128,7 @@ const Gallery6 = ({
                     {item.summary}
                   </div>
                   <div className="flex items-center text-sm">
-                    Read more{" "}
+                    Mehr Erfahren{" "}
                     <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                   </div>
                 </a>
@@ -181,5 +140,3 @@ const Gallery6 = ({
     </section>
   );
 };
-
-export { Gallery6 };

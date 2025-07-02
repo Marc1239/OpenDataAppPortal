@@ -21,6 +21,7 @@ interface AppEntry {
   city: string;
   category: string;
   barrierFree: boolean;
+  isLatest: boolean;           
   description: string;
   image: string;
 }
@@ -39,6 +40,7 @@ export default function AdminAppsPage() {
           city: val.city,
           category: val.category,
           barrierFree: val.barrierFree,
+          isLatest: val.isLatest ?? false,
           description: val.description,
           image: val.image,
         }));
@@ -61,6 +63,7 @@ export default function AdminAppsPage() {
         city: '',
         category: '',
         barrierFree: false,
+        isLatest: false,
         description: '',
         image: '',
       },
@@ -84,6 +87,7 @@ export default function AdminAppsPage() {
         city: a.city,
         category: a.category,
         barrierFree: a.barrierFree,
+        isLatest: a.isLatest,
         description: a.description,
         image: a.image,
       };
@@ -139,6 +143,18 @@ export default function AdminAppsPage() {
                     id={`barrier-${app.key}`}
                   />
                   <Label htmlFor={`barrier-${app.key}`}>Barrierefrei</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    checked={app.isLatest}
+                    onCheckedChange={val =>
+                      updateApp(idx, 'isLatest', val as boolean)
+                    }
+                    id={`latest-${app.key}`}
+                  />
+                  <Label htmlFor={`latest-${app.key}`}>
+                    Als neuste Veröffentlichung markieren
+                  </Label>
                 </div>
                 <div className="flex flex-col gap-2">
                   <Label>Beschreibung</Label>
