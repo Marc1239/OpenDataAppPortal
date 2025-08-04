@@ -12,7 +12,19 @@ import { useParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import { Button } from '@/components/ui/button';
 import appsDresdenData from '@/app/data/apps_dresden.json';
+import { Textarea } from '@/components/ui/textarea';
 
 interface AppData {
   title: string;
@@ -127,12 +139,44 @@ const AppDetailPage: React.FC = () => {
               <h2>Kategorie</h2>
               <p>{data.category}</p>
             </section>
+
+            {/** TODO */}
+
+            <div className='flex gap-4'>
+              <div className='p-4 bg-primary rounded-md cursor-pointer'>
+                <Drawer>
+                  <DrawerTrigger>Feedback an Entwickler</DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Was möhchtest du mitteilen?</DrawerTitle>
+                      <Textarea></Textarea>
+                    </DrawerHeader>
+                    <DrawerFooter className='flex flex-row flex-nowrap items-stretch w-full'>
+                      <Button className='w-1/2'>Senden</Button>
+                      <DrawerClose className='w-1/2'>Abbrechen</DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              </div>
+              <div className='p-4 bg-primary rounded-md cursor-pointer'>
+                <Drawer>
+                  <DrawerTrigger>Feedback an App-Portal</DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Was möhchtest du uns mitteilen?</DrawerTitle>
+                      <Textarea></Textarea>
+                    </DrawerHeader>
+                    <DrawerFooter className='flex flex-row flex-nowrap items-stretch w-full'>
+                      <Button className='w-1/2'>Senden</Button>
+                      <DrawerClose className='w-1/2'>Abbrechen</DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              </div>
+            </div>
           </div>
 
-          {/** TODO */}
-
-          <div>Feedback an Publisher</div>
-          <div>Feedback an App-Portal</div>
+         
 
           {/* Sticky Navigation */}
           <div className="sticky top-8 hidden h-fit lg:block">
