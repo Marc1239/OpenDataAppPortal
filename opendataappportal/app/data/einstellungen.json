@@ -1,0 +1,20 @@
+{
+  "einstellungen": [
+    {
+      "bugs": [
+        {
+          "title": "System-Fehler"
+        },
+        {
+          "title": "Inhalts-Fehler"
+        },
+        {
+          "title": "Link abgelaufen"
+        },
+        {
+          "title": "Sonstiges"
+        }
+      ]
+    }
+  ]
+}

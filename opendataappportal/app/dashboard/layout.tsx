@@ -14,17 +14,31 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
 import { useSelectedLayoutSegments } from 'next/navigation';
-import { Fragment,ReactNode } from "react";
+import { Fragment,ReactNode, useState } from "react";
 import { BugIcon} from "lucide-react";
 import dashboardMenu from "@/app/data/dashboard_menu.json"
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { ComboboxBugCategory } from "@/components/comboboxBugCategory";
 
 interface DashboardLayoutProps {
     children: ReactNode
   }
 
 export default function DashbaordLayout({children}: DashboardLayoutProps) {
+
+  const [selectedBugCategory, setSelectedBugCategory] = useState<string>("");
 
   const segments = useSelectedLayoutSegments();
 
@@ -84,12 +98,25 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
                 )}
             </BreadcrumbList>
         </Breadcrumb>
-        <Button
-          className="ml-auto"
-          variant={"ghost"}
-        >
-          <BugIcon />
-        </Button>
+        <div className="ml-auto cursor-pointer flex items-center justify-center w-12 h-12">
+          <Drawer>
+            <DrawerTrigger className=""><BugIcon /></DrawerTrigger>
+            <DrawerContent>
+              <DrawerHeader>
+                <DrawerTitle>Möchtest du einen Fehler melden?</DrawerTitle>
+                <ComboboxBugCategory 
+                  value={selectedBugCategory}
+                  onValueChange={setSelectedBugCategory}
+                />
+                <Textarea className="min-h-36" />
+              </DrawerHeader>
+              <DrawerFooter className='flex flex-row flex-nowrap py-2'>
+                <Button className='w-1/2'>Senden</Button>
+                <DrawerClose className='w-1/2'>Abbrechen</DrawerClose>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
+        </div>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4">
             {children}

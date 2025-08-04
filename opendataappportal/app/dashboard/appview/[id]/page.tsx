@@ -176,8 +176,7 @@ const AppDetailPage: React.FC = () => {
             </div>
           </div>
 
-         
-
+          
           {/* Sticky Navigation */}
           <div className="sticky top-8 hidden h-fit lg:block">
             <span className="flex items-center gap-2 text-sm">
