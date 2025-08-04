@@ -1,0 +1,114 @@
+{
+  "@context": {
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@type": "dcat:Catalog",
+  "dct:title": "Open Data App Katalog",
+  "dct:description": "Katalog von Open-Data-basierten Apps aus verschiedenen Städten.",
+  "dct:publisher": {
+    "@type": "foaf:Organization",
+    "foaf:name": "ByteWave Solutions"
+  },
+  "dcat:dataset": [
+    {
+      "@type": "dcat:Dataset",
+      "dct:title": "Cleema App Test",
+      "dct:description": "Cleema ist der Kanal für ein nachhaltigeres Dresden. Die App bietet jeden Tag interessante News im Magazin, lädt zum Entdecken lokaler Projekte ein und bietet Challenges für einen Wettstreit mit Familie oder Freunden. Im täglichen Quiz kann das eigene Wissen unter Beweis gestellt und im Marktplatz faire und regionale Angebote durchstöbert werden.",
+      "dct:spatial": { "@type": "dct:Location", "rdfs:label": "Dresden" },
+      "dcat:theme": "Nachhaltigkeit",
+      "dcat:keyword": ["Nachhaltigkeit", "Dresden", "App"],
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dcat:accessURL": "https://docs.openmensa.org/api/v2/overview/",
+          "dcat:mediaType": "application/json"
+        }
+      ],
+      "dcat:landingPage": "https://smartcity.dresden.de/",
+      "dct:identifier": "cleema-app-test"
+    },
+    {
+      "@type": "dcat:Dataset",
+      "dct:title": "Digitaler Sportpark",
+      "dct:description": "Im August 2024 eröffnete die Landeshauptstadt Dresden das Heinz-Steyer-Stadion als moderne, multifunktionale Sportanlage. Dieser Ausbau und die Weiterentwicklung des Sportpark Ostra bieten die Chance, das Stadion und den umliegenden Sportpark Ostra nicht nur städtebaulich, sondern auch digital und nachhaltig zu gestalten.",
+      "dct:spatial": { "@type": "dct:Location", "rdfs:label": "Dresden" },
+      "dcat:theme": "Sport",
+      "dcat:keyword": ["Sport", "Dresden", "Smart City"],
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dcat:accessURL": "https://docs.openmensa.org/api/v2/overview/",
+          "dcat:mediaType": "application/json"
+        }
+      ],
+      "dct:identifier": "digitaler-sportpark"
+    },
+    {
+      "@type": "dcat:Dataset",
+      "dct:title": "Mensa Dresden",
+      "dct:description": "Need to know how much money is still left on your Emeal? Just scan it. Additionally you can enter your Autoload credentials and have the app show you a list of your recent transactions. Be sure to check the settings to note any allergies or unwanted ingredients so as to find your favorite meal even quicker.",
+      "dct:spatial": { "@type": "dct:Location", "rdfs:label": "Dresden" },
+      "dcat:theme": "Essen",
+      "dcat:keyword": ["Mensa", "Essen", "Dresden"],
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dcat:accessURL": "https://docs.openmensa.org/api/v2/overview/",
+          "dcat:mediaType": "application/json"
+        }
+      ],
+      "dct:identifier": "mensa-dresden"
+    },
+    {
+      "@type": "dcat:Dataset",
+      "dct:title": "ParkenDD",
+      "dct:description": "ParkenDD zeigt Dir die aktuelle Parksituation in verschiedenen europäischen Städten. Abhängig von den Daten erhältst Du die aktuelle Anzahl freier öffentlicher Parkplätze sowie deren Standorte. Für einige Parkplätze stehen auch experimentelle Vorhersagen zur Verfügung. Momentan werden die Städte Dresden, Ingolstadt, Zürich, Basel und Hamburg unterstützt, weitere sind zur Zeit nur experimentell verfügbar.",
+      "dct:spatial": { "@type": "dct:Location", "rdfs:label": "Dresden" },
+      "dcat:theme": "Verkehr",
+      "dcat:keyword": ["Parken", "Verkehr", "Dresden"],
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dcat:accessURL": "https://opendatazurich.github.io/parkendd-api/",
+          "dcat:mediaType": "application/json"
+        }
+      ],
+      "dct:identifier": "parkendd"
+    },
+    {
+      "@type": "dcat:Dataset",
+      "dct:title": "Berlin Wahlkarte",
+      "dct:description": "ParkenDD zeigt Dir die aktuelle Parksituation in verschiedenen europäischen Städten. Abhängig von den Daten erhältst Du die aktuelle Anzahl freier öffentlicher Parkplätze sowie deren Standorte. Für einige Parkplätze stehen auch experimentelle Vorhersagen zur Verfügung. Momentan werden die Städte Dresden, Ingolstadt, Zürich, Basel und Hamburg unterstützt, weitere sind zur Zeit nur experimentell verfügbar.",
+      "dct:spatial": { "@type": "dct:Location", "rdfs:label": "Berlin" },
+      "dcat:theme": "Politik",
+      "dcat:keyword": ["Politik", "Berlin", "Wahl"],
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dcat:accessURL": "https://docs.openmensa.org/api/v2/overview/",
+          "dcat:mediaType": "application/json"
+        }
+      ],
+      "dct:identifier": "berlin-wahlkarte"
+    },
+    {
+      "@type": "dcat:Dataset",
+      "dct:title": "„Mensch, Solingen!“-App",
+      "dct:description": "Eine Smart City-App, die regionale Einzelhändler, Veranstaltungen, Services und lokale Informationen bündelt. Sie basiert auf Open Data und wird gemeinsam mit anderen Städten als Open-Source-Lösung weiterentwickelt. Bereits elf Städte (u.a. Dortmund, Kassel, Mönchengladbach, Oberhausen) sind beteiligt.",
+      "dct:spatial": { "@type": "dct:Location", "rdfs:label": "Solingen" },
+      "dcat:theme": "Freizeit",
+      "dcat:keyword": ["Freizeit", "Solingen", "Smart City"],
+      "dcat:distribution": [
+        {
+          "@type": "dcat:Distribution",
+          "dcat:accessURL": "https://docs.openmensa.org/api/v2/overview/",
+          "dcat:mediaType": "application/json"
+        }
+      ],
+      "dct:identifier": "mensch-solingen-app"
+    }
+  ]
+}

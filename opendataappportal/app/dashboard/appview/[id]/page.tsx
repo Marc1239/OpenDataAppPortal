@@ -129,6 +129,11 @@ const AppDetailPage: React.FC = () => {
             </section>
           </div>
 
+          {/** TODO */}
+
+          <div>Feedback an Publisher</div>
+          <div>Feedback an App-Portal</div>
+
           {/* Sticky Navigation */}
           <div className="sticky top-8 hidden h-fit lg:block">
             <span className="flex items-center gap-2 text-sm">

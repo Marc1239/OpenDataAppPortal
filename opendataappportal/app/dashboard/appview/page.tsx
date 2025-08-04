@@ -11,6 +11,7 @@ import { ComboboxCategory } from '@/components/comboboxCategory';
 import { Checkbox } from '@/components/ui/checkbox'
 import { Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { ComboboxMetaData } from '@/components/comboboxMetaData';
 
 
 export interface AppData {
@@ -19,6 +20,9 @@ export interface AppData {
     category: string
     barrierFree: boolean
     description: string
+    //api: string
+    //github: boolean
+    metaDataQuality: string
     image: string
   }
 
@@ -36,6 +40,7 @@ export interface AppEntry {
 
     const [selectedCity, setSelectedCity] = React.useState<string>("");
     const [selectedCategory, setSelectedCategory] = React.useState<string>("");
+    const [selectedMetaDataQuality, setMetaDataQuality] = React.useState<string>("");
     const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(false);
 
     React.useEffect(() => {
@@ -44,6 +49,9 @@ export interface AppEntry {
   
       const cat = localStorage.getItem("selectedCategory");
       if (cat) setSelectedCategory(cat);
+
+      const meta = localStorage.getItem("selectedMetaDataQuality");
+      if (meta) setMetaDataQuality(meta);
   
       const ao = localStorage.getItem("accessibleOnly");
       if (ao !== null) setAccessibleOnly(ao === "true");
@@ -56,6 +64,10 @@ export interface AppEntry {
     React.useEffect(() => {
       localStorage.setItem("selectedCategory", selectedCategory);
     }, [selectedCategory]);
+
+    React.useEffect(() => {
+      localStorage.setItem("selectedMetaDataQuality", selectedMetaDataQuality);
+    }, [selectedMetaDataQuality]);
   
     React.useEffect(() => {
       localStorage.setItem("accessibleOnly", String(accessibleOnly));
@@ -76,14 +88,15 @@ export interface AppEntry {
     return apps.filter(({ data }) => {
       if (selectedCity && data.city !== selectedCity) return false
       if (selectedCategory && data.category !== selectedCategory) return false
+      if (selectedMetaDataQuality && data.metaDataQuality !== selectedCategory) return false
       if (accessibleOnly && !data.barrierFree) return false
       return true
     })
   }, [apps, selectedCity, selectedCategory, accessibleOnly])
   
   return (
-    <div className='w-full flex flex-col justify-center items-center'>
-        <div className='w-full h-24 flex gap-4 items-center'>
+    <div className='w-full flex flex-col justify-center items-center '>
+        <div className='w-full h-auto flex flex-wrap gap-4 items-center'>
             <ComboboxCity 
                 value={selectedCity}
                 onValueChange={setSelectedCity}
@@ -91,6 +104,10 @@ export interface AppEntry {
             <ComboboxCategory
                 value={selectedCategory}
                 onValueChange={setSelectedCategory}
+            />
+            <ComboboxMetaData
+                value={selectedMetaDataQuality}
+                onValueChange={setMetaDataQuality}
             />
             <div className='flex items-center gap-2'>
                 <Checkbox 
@@ -106,9 +123,11 @@ export interface AppEntry {
               onClick={() => {
                 setSelectedCity("")
                 setSelectedCategory("")
+                setMetaDataQuality("")
                 setAccessibleOnly(false)  
                 localStorage.removeItem("selectedCity");
                 localStorage.removeItem("selectedCategory");
+                localStorage.removeItem("selectedMetaDataQuality");
                 localStorage.setItem("accessibleOnly", "false");
               }}
             >
@@ -124,6 +143,7 @@ export interface AppEntry {
                     city={data.city}
                     barrierFree={data.barrierFree}
                     description={data.description}
+                    metaDataQuality={data.metaDataQuality}
                     image={data.image}
                     category={data.category}
                 />

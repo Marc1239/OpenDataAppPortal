@@ -16,7 +16,9 @@ import {
 } from "@/components/ui/sidebar"
 import { useSelectedLayoutSegments } from 'next/navigation';
 import { Fragment,ReactNode } from "react";
+import { BugIcon} from "lucide-react";
 import dashboardMenu from "@/app/data/dashboard_menu.json"
+import { Button } from "@/components/ui/button";
 
 interface DashboardLayoutProps {
     children: ReactNode
@@ -82,6 +84,12 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
                 )}
             </BreadcrumbList>
         </Breadcrumb>
+        <Button
+          className="ml-auto"
+          variant={"ghost"}
+        >
+          <BugIcon />
+        </Button>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4">
             {children}
