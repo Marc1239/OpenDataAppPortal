@@ -21,17 +21,17 @@ import {
 
 import appsData from "@/app/data/apps_dresden.json";
 
-interface ComboboxCategoryProps {
+interface ComboboxCityProps {
     value: string
-    onValueChange: (category: string) => void
+    onValueChange: (metaDataQuality: string) => void
   }
 
-export function ComboboxCategory({ value, onValueChange }: ComboboxCategoryProps) {
+export function ComboboxMetaData({ value, onValueChange }: ComboboxCityProps) {
     const [open, setOpen] = React.useState(false)
 
     const cities = React.useMemo(() => {
         const set = new Set<string>()
-        Object.values(appsData).forEach((app) => set.add(app.category))
+        Object.values(appsData).forEach((app) => set.add(app.metaDataQuality))
         return Array.from(set)
     }, [])
 
@@ -44,30 +44,30 @@ export function ComboboxCategory({ value, onValueChange }: ComboboxCategoryProps
           aria-expanded={open}
           className="w-[300px] justify-between"
         >
-          {value || "Kategorie wählen ..." }
+          {value || "Metadaten-Qualität wählen ..." }
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[300px] p-0">
         <Command>
-          <CommandInput placeholder="Suche Kategorie..." className="h-9" />
+          <CommandInput placeholder="Suche Quality-Score..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>Keine Metadaten-Scores gefunden.</CommandEmpty>
             <CommandGroup>
-              {cities.map((city) => (
+              {cities.map((metaDataQuality) => (
                 <CommandItem
-                  key={city}
-                  value={city}
+                  key={metaDataQuality}
+                  value={metaDataQuality}
                   onSelect={(current) => {
                     onValueChange(current === value ? "" : current)
                     setOpen(false)
                   }}
                 >
-                  {city}
+                  {metaDataQuality}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === city ? "opacity-100" : "opacity-0"
+                      value === metaDataQuality ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
