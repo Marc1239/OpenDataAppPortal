@@ -140,12 +140,10 @@ const AppDetailPage: React.FC = () => {
               <p>{data.category}</p>
             </section>
 
-            {/** TODO */}
-
             <div className='flex gap-4'>
               <div className='p-4 bg-primary rounded-md cursor-pointer'>
                 <Drawer>
-                  <DrawerTrigger>Feedback an Entwickler</DrawerTrigger>
+                  <DrawerTrigger className='cursor-pointer'>Feedback an Entwickler</DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>Was möhchtest du mitteilen?</DrawerTitle>
@@ -160,7 +158,7 @@ const AppDetailPage: React.FC = () => {
               </div>
               <div className='p-4 bg-primary rounded-md cursor-pointer'>
                 <Drawer>
-                  <DrawerTrigger>Feedback an App-Portal</DrawerTrigger>
+                  <DrawerTrigger className='cursor-pointer'>Feedback an App-Portal</DrawerTrigger>
                   <DrawerContent>
                     <DrawerHeader>
                       <DrawerTitle>Was möhchtest du uns mitteilen?</DrawerTitle>
