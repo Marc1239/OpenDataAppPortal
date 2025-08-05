@@ -40,8 +40,7 @@ export function ComboboxBugCategory({ value, onValueChange }: ComboboxCategoryPr
     }, [])
 
   return (
-    <div className="relative w-full">
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal={true}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
@@ -55,9 +54,9 @@ export function ComboboxBugCategory({ value, onValueChange }: ComboboxCategoryPr
       </PopoverTrigger>
       <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
         <Command>
-          <CommandInput placeholder="Suche Kategorie..." className="h-9" />
+          <CommandInput placeholder="Suche Fehler-Kategorie..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No framework found.</CommandEmpty>
+            <CommandEmpty>Keine Fehler-Kategorie gefunden.</CommandEmpty>
             <CommandGroup>
               {bugs.map((bug) => (
                 <CommandItem
@@ -82,6 +81,5 @@ export function ComboboxBugCategory({ value, onValueChange }: ComboboxCategoryPr
         </Command>
       </PopoverContent>
     </Popover>
-    </div>
   )
 }

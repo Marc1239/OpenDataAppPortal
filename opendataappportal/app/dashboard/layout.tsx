@@ -39,6 +39,7 @@ interface DashboardLayoutProps {
 export default function DashbaordLayout({children}: DashboardLayoutProps) {
 
   const [selectedBugCategory, setSelectedBugCategory] = useState<string>("");
+  const [isOpen, setIsOpen] = useState(false);
 
   const segments = useSelectedLayoutSegments();
 
@@ -99,20 +100,28 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
             </BreadcrumbList>
         </Breadcrumb>
         <div className="ml-auto cursor-pointer flex items-center justify-center w-12 h-12">
-          <Drawer>
+          <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger className=""><BugIcon /></DrawerTrigger>
             <DrawerContent>
               <DrawerHeader>
                 <DrawerTitle>Möchtest du einen Fehler melden?</DrawerTitle>
-                <ComboboxBugCategory 
-                  value={selectedBugCategory}
-                  onValueChange={setSelectedBugCategory}
-                />
+                  <ComboboxBugCategory 
+                    value={selectedBugCategory}
+                    onValueChange={setSelectedBugCategory}
+                  />
                 <Textarea className="min-h-36" />
               </DrawerHeader>
               <DrawerFooter className='flex flex-row flex-nowrap py-2'>
-                <Button className='w-1/2'>Senden</Button>
-                <DrawerClose className='w-1/2'>Abbrechen</DrawerClose>
+                <Button className='w-1/2' onClick={() => setIsOpen(false)}>Senden</Button>
+                <Button 
+                  variant={"outline"} 
+                  className='w-1/2' 
+                  onClick={() => {
+                    setIsOpen(false)
+                    setSelectedBugCategory("")
+                  }}>
+                    Abbrechen
+                </Button>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>
