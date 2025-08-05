@@ -88,7 +88,7 @@ export interface AppEntry {
     return apps.filter(({ data }) => {
       if (selectedCity && data.city !== selectedCity) return false
       if (selectedCategory && data.category !== selectedCategory) return false
-      if (selectedMetaDataQuality && data.metaDataQuality !== selectedCategory) return false
+      if (selectedMetaDataQuality && data.metaDataQuality !== selectedMetaDataQuality) return false
       if (accessibleOnly && !data.barrierFree) return false
       return true
     })

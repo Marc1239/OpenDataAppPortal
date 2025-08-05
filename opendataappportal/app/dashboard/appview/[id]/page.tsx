@@ -2,15 +2,10 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  AlignLeft,
-  GalleryVerticalEnd,
-  Lightbulb,
-  ListChecks,
-  RefreshCcw,
+  AlignLeft
 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import {
   Drawer,
@@ -24,6 +19,7 @@ import {
 } from "@/components/ui/drawer"
 import { Button } from '@/components/ui/button';
 import appsDresdenData from '@/app/data/apps_dresden.json';
+import { calcMetaQuality } from "@/utils/metadata-quality";
 import { Textarea } from '@/components/ui/textarea';
 
 interface AppData {
@@ -33,6 +29,7 @@ interface AppData {
   barrierFree: boolean;
   description: string;
   image: string;
+  metaDataQuality: string;
 }
 
 // Internes Interface mit Slug
@@ -76,7 +73,13 @@ const AppDetailPage: React.FC = () => {
         .toLowerCase()
         .replace(/\s+/g, '-')      // Leerzeichen → Bindestrich
         .replace(/[^a-z0-9\-]/g, ''); // nur a–z, 0–9 und -
-      return { key, slug, data: data as AppData };
+
+      const metaQuality = calcMetaQuality(data as Record<string, unknown>);
+      return {
+        key,
+        slug,
+        data: { ...(data as AppData), metaDataQuality: metaQuality }
+      };
     });
   }, []);
 
@@ -139,6 +142,11 @@ const AppDetailPage: React.FC = () => {
               <h2>Kategorie</h2>
               <p>{data.category}</p>
             </section>
+            
+            <div className='py-4'>
+              <p>Metadaten-Qualität</p>
+              <Badge variant="secondary">{data.metaDataQuality}</Badge>
+            </div>
 
             <div className='flex gap-4'>
               <div className='p-4 bg-primary rounded-md cursor-pointer'>
