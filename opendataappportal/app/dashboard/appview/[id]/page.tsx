@@ -22,6 +22,7 @@ import appsDresdenData from '@/app/data/apps_dresden.json';
 import { calcMetaQuality } from "@/utils/metadata-quality";
 import { Textarea } from '@/components/ui/textarea';
 import MetaDataQualityPieChart from '@/components/metaDataQualityPieChart';
+import BentoGrid from '@/components/bento-grid';
 
 interface AppData {
   title: string;
@@ -93,6 +94,11 @@ const AppDetailPage: React.FC = () => {
 
   const { data } = entry;
 
+  const metaPercent = useMemo(
+    () => parseInt(String(data.metaDataQuality).replace("%", ""), 10) || 0,
+    [data.metaDataQuality]
+  );
+
   return (
     <section className="py-32">
       <div className="container max-w-7xl">
@@ -109,6 +115,8 @@ const AppDetailPage: React.FC = () => {
               alt={data.title}
               className="my-8 aspect-video w-full rounded-md object-cover"
             />
+
+            <BentoGrid metaPercent={metaPercent}/>
 
             {/* Section 1 */}
             <section
