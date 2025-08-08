@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/button';
 import appsDresdenData from '@/app/data/apps_dresden.json';
 import { calcMetaQuality } from "@/utils/metadata-quality";
 import { Textarea } from '@/components/ui/textarea';
+import MetaDataQualityPieChart from '@/components/metaDataQualityPieChart';
 
 interface AppData {
   title: string;
@@ -145,7 +146,9 @@ const AppDetailPage: React.FC = () => {
             
             <div className='py-4'>
               <p>Metadaten-Qualität</p>
-              <Badge variant="secondary">{data.metaDataQuality}</Badge>
+              <MetaDataQualityPieChart 
+                percent={parseInt(data.metaDataQuality.replace("%",""))}
+              />
             </div>
 
             <div className='flex gap-4'>
