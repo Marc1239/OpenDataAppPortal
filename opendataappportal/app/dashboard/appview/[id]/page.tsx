@@ -32,6 +32,7 @@ interface AppData {
   description: string;
   image: string;
   metaDataQuality: string;
+  tags: string[];
 }
 
 // Internes Interface mit Slug
@@ -116,7 +117,7 @@ const AppDetailPage: React.FC = () => {
               className="my-8 aspect-video w-full rounded-md object-cover"
             />
 
-            <BentoGrid metaPercent={metaPercent}/>
+            <BentoGrid metaPercent={metaPercent} tags={data.tags ?? []} />
 
             {/* Section 1 */}
             <section
@@ -151,46 +152,7 @@ const AppDetailPage: React.FC = () => {
               <h2>Kategorie</h2>
               <p>{data.category}</p>
             </section>
-            
-            <div className='py-4'>
-              <p>Metadaten-Qualität</p>
-              <MetaDataQualityPieChart 
-                percent={parseInt(data.metaDataQuality.replace("%",""))}
-              />
-            </div>
-
-            <div className='flex gap-4'>
-              <div className='p-4 bg-primary rounded-md cursor-pointer'>
-                <Drawer>
-                  <DrawerTrigger className='cursor-pointer'>Feedback an Entwickler</DrawerTrigger>
-                  <DrawerContent>
-                    <DrawerHeader>
-                      <DrawerTitle>Was möhchtest du mitteilen?</DrawerTitle>
-                      <Textarea></Textarea>
-                    </DrawerHeader>
-                    <DrawerFooter className='flex flex-row flex-nowrap items-stretch w-full'>
-                      <Button className='w-1/2'>Senden</Button>
-                      <DrawerClose className='w-1/2'>Abbrechen</DrawerClose>
-                    </DrawerFooter>
-                  </DrawerContent>
-                </Drawer>
-              </div>
-              <div className='p-4 bg-primary rounded-md cursor-pointer'>
-                <Drawer>
-                  <DrawerTrigger className='cursor-pointer'>Feedback an App-Portal</DrawerTrigger>
-                  <DrawerContent>
-                    <DrawerHeader>
-                      <DrawerTitle>Was möhchtest du uns mitteilen?</DrawerTitle>
-                      <Textarea></Textarea>
-                    </DrawerHeader>
-                    <DrawerFooter className='flex flex-row flex-nowrap items-stretch w-full'>
-                      <Button className='w-1/2'>Senden</Button>
-                      <DrawerClose className='w-1/2'>Abbrechen</DrawerClose>
-                    </DrawerFooter>
-                  </DrawerContent>
-                </Drawer>
-              </div>
-            </div>
+          
           </div>
 
           

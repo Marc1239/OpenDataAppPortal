@@ -1,17 +1,21 @@
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter, DrawerClose } from "@/components/ui/drawer";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, CuboidIcon as Cube, Zap } from 'lucide-react'
+import { Clock, Tags, Zap, Mails } from 'lucide-react'
 import MetaDataQualityPieChart from "./metaDataQualityPieChart"
 import ModernToggle from "./ui/modern-toggle"
 import { useState } from "react"
+import IntegrationPills from "./ui/integration-pills";
 
 type BentoGridProps = {
-  metaPercent: number; 
+  metaPercent: number;
+  tags: string[];
 };
 
-export default function BentoGrid({ metaPercent }: BentoGridProps) {
+export default function BentoGrid({ metaPercent, tags }: BentoGridProps) {
 const [compact, setCompact] = useState(false)
   return (
     <main className="min-h-dvh bg-background">
@@ -21,6 +25,7 @@ const [compact, setCompact] = useState(false)
             grid gap-6
             grid-cols-4
             grid-rows-8
+            
           "
         >
           {/* A — Tall photo with badge */}
@@ -61,39 +66,74 @@ const [compact, setCompact] = useState(false)
 
           <Card className="rounded-3xl border bg-muted/40">
             <CardContent className="flex h-full items-center justify-center p-6">
-              <div className="flex size-14 items-center justify-center rounded-xl border bg-background shadow-sm">
-                <p>Stadt</p>
-              </div>
+                <p>Dresden</p>
             </CardContent>
           </Card>
 
-          {/* C — 95% stat */}
-          <Card className="rounded-3xl border bg-muted/40">
-            <CardContent className="flex h-full flex-col justify-between p-6">
-              <div>
-                <div className="text-4xl font-semibold tracking-tight">95%</div>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Developers choose us for our exceptional quality
-                </p>
-              </div>
-              <div className="mt-3 h-10 w-10 rounded-xl bg-background/70 ring-1 ring-border flex items-center justify-center">
-                <Cube className="h-5 w-5" />
-              </div>
-            </CardContent>
-          </Card>
+          {/* C — Feedback */}
+            <Card className="relative col-span-3 row-span-1 flex flex-col justify-center items-center rounded-3xl border bg-muted/40">
+            <CardContent className="flex h-3/4 flex-col justify-between p-6">
+                <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <Mails className="h-5 w-5" />
+                </div>
+                <p>Hinterlasse Uns oder dem Entwickler gerne ein Feedback.</p>
+                <div className="mt-8 flex justify-center flex-wrap gap-2">
+                {/* Feedback an Entwickler */}
+                <Drawer>
+                    <DrawerTrigger asChild>
+                    <Button className="rounded-md w-full" variant="default2">
+                        Feedback an Entwickler
+                    </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                    <DrawerHeader>
+                        <DrawerTitle>Was möchtest du mitteilen?</DrawerTitle>
+                    </DrawerHeader>
+                    <div className="px-4">
+                        <Textarea placeholder="Dein Feedback…" className="min-h-32" />
+                    </div>
+                    <DrawerFooter className="flex flex-row gap-3 px-4">
+                        <Button className="w-1/2">Senden</Button>
+                        <DrawerClose asChild>
+                        <Button className="w-1/2" variant="outline">Abbrechen</Button>
+                        </DrawerClose>
+                    </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
 
-          
+                {/* Feedback an App-Portal */}
+                <Drawer>
+                    <DrawerTrigger asChild>
+                    <Button className="rounded-md w-full" variant="default2">
+                        Feedback an App-Portal
+                    </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                    <DrawerHeader>
+                        <DrawerTitle>Was möchtest du uns mitteilen?</DrawerTitle>
+                    </DrawerHeader>
+                    <div className="px-4">
+                        <Textarea placeholder="Dein Feedback…" className="min-h-32" />
+                    </div>
+                    <DrawerFooter className="flex flex-row gap-3 px-4">
+                        <Button className="w-1/2">Senden</Button>
+                        <DrawerClose asChild>
+                        <Button className="w-1/2" variant="outline">Abbrechen</Button>
+                        </DrawerClose>
+                    </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
+                </div>
+            </CardContent>
+            </Card>
 
           {/* E — Price */}
-          <Card className="rounded-3xl border bg-muted/40 ">
+          <Card className="relative rounded-3xl border bg-muted/40 ">
+            <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <Tags className="h-5 w-5" />
+            </div>
             <CardContent className="flex h-full flex-col justify-between p-6 md:p-8">
-              <div>
-                <div className="text-5xl font-semibold tracking-tight">$299</div>
-                <p className="mt-2 text-sm text-muted-foreground">Premium Component Library</p>
-              </div>
-              <div className="pt-4">
-                <Button className="rounded-full">Buy Now</Button>
-              </div>
+              <IntegrationPills tags={tags} />
             </CardContent>
           </Card>
         </div>
