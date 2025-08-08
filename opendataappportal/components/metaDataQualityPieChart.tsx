@@ -17,7 +17,7 @@ export default function MetaDataQualityPieChart({ percent, size = 160 }: Props) 
     [percent]
   )
 
-  const COLORS = ["var(--chart-1)", "var(--muted)"]
+  const COLORS = ["var(--primary)", "var(--muted)"]
 
   return (
     <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>

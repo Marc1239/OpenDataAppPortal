@@ -12,6 +12,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ComboboxMetaData } from '@/components/comboboxMetaData';
+import Image from 'next/image';
 
 
 export interface AppData {
@@ -165,8 +166,8 @@ const Boxes: React.FC<BoxesProps> = ({ id, title, description, image }) => {
     const router = useRouter()
     
     return (
-        <CardCurtainReveal onClick={() => router.push(`/dashboard/appview/${(id)}`)} className="h-[560px] cursor-pointer w-auto max-w-[400px] border rounded-md border-zinc-100 bg-gradient-to-br from-primary to-stone-50 text-zinc-950 shadow">
-        <CardCurtainRevealBody className="">
+        <CardCurtainReveal onClick={() => router.push(`/dashboard/appview/${(id)}`)} className="h-[560px] cursor-pointer w-auto max-w-[400px] border-0 rounded-md hover:shadow-primary/50 hover:shadow-md transition-all duration-200 bg-gradient-to-br from-primary/50 to-stone-50 text-zinc-950">
+        <CardCurtainRevealBody className="h-1/2">
           <CardCurtainRevealTitle className="text-3xl font-medium tracking-tight">
             {title}
           </CardCurtainRevealTitle>
@@ -186,12 +187,11 @@ const Boxes: React.FC<BoxesProps> = ({ id, title, description, image }) => {
           <CardCurtain className=" bg-slate-50" />
         </CardCurtainRevealBody>
 
-        <CardCurtainRevealFooter className="mt-auto">
-          <img
-            width="100%"
-            height="100%"
+        <CardCurtainRevealFooter className="h-1/2 relative">
+          <Image
+            fill
             alt={title}
-            className=""
+            className="object-cover"
             src={image}
           />
         </CardCurtainRevealFooter>

@@ -76,8 +76,8 @@ const CardCurtainRevealFooter = React.forwardRef<
     <motion.div
       ref={ref}
       className={className}
-      variants={curtainVriants}
-      animate={isMouseIn ? "visible" : "hidden"}
+      //variants={curtainVriants}
+      //animate={isMouseIn ? "visible" : "hidden"}
       {...props}
     />
   )
@@ -102,7 +102,7 @@ const CardCurtainRevealTitle = React.forwardRef<
     <motion.h2
       ref={ref}
       className={className}
-      animate={isMouseIn ? { y: 0 } : { y: 170 }}
+      //animate={isMouseIn ? { y: 0 } : { y: 170 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       {...props}
     />
@@ -121,8 +121,8 @@ const CardCurtain = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
           "pointer-events-none absolute inset-0 size-full mix-blend-multiply",
           className
         )}
-        variants={curtainVriants}
-        animate={isMouseIn ? "visible" : "hidden"}
+        //variants={curtainVriants}
+        //animate={isMouseIn ? "visible" : "hidden"}
         {...props}
       />
     )
@@ -140,8 +140,8 @@ const CardCurtainRevealDescription = React.forwardRef<
     <motion.div
       ref={ref}
       className={className}
-      variants={curtainVriants}
-      animate={isMouseIn ? "visible" : "hidden"}
+      //variants={curtainVriants}
+      //animate={isMouseIn ? "visible" : "hidden"}
       {...props}
     />
   )
