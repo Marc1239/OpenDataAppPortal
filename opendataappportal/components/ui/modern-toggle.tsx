@@ -35,7 +35,7 @@ export function ModernToggle({
   const isOn = isControlled ? (checked as boolean) : internal
 
   const handleChange = (next: boolean) => {
-    return false;
+    return false; // rausnehmen, damit toggle wieder funktioniert
     if (!isControlled) setInternal(next)
     onCheckedChange?.(next)
   }
