@@ -5,10 +5,16 @@ import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, Drawer
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card"
 import { Clock, Tags, Zap, Mails } from 'lucide-react'
-import MetaDataQualityPieChart from "./metaDataQualityPieChart"
+//import MetaDataQualityPieChart from "./metaDataQualityPieChart"
 import ModernToggle from "./ui/modern-toggle"
 import { useState, useEffect } from "react"
 import IntegrationPills from "./ui/integration-pills";
+import dynamic from "next/dynamic";
+
+const MetaDataQualityPieChart = dynamic(
+  () => import("@/components/metaDataQualityPieChart"),
+  { ssr: false, loading: () => <div style={{ width: 160, height: 160 }} /> }
+);
 
 type BentoGridProps = {
   metaPercent: number;
@@ -23,14 +29,13 @@ const [isAccessible, setIsAccessible] = useState(barrierFree);
 useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
 
   return (
-    <main className="min-h-dvh bg-background">
+    <main className="h-auto bg-background">
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-6 lg:py-14">
         <div
           className="
             grid gap-6
             grid-cols-4
-            grid-rows-8
-            
+            grid-rows-2
           "
         >
           {/* A — Tall photo with badge */}

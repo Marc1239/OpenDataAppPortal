@@ -119,7 +119,6 @@
     "publishDate": "16.05.2019",
     "publishInformation": "Erstveröffentlichung 2019. Aktuelle iOS-Version 3.4.2 (Mär 2025) erweitert das Abfall-Modul (Grünschnitt & Altkleider, Kalender-Export) und behebt Push-Bug. Android-Update 3.4.0 (Jul 2025) erneuert Google-Maps-API-Key und verbessert Wetter-Widget.",
     "github": "https://github.com/solingen/app",
-    "metaDataQuality": "90%",
     "image": "https://solingen.de/api/files?file=/uploads/xlarge_Solingen_App_1_0d880c56df.png"
   },
   "OpenFoodFacts": {
