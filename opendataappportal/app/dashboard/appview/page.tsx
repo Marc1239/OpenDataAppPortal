@@ -13,6 +13,7 @@ import { Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ComboboxMetaData } from '@/components/comboboxMetaData';
 import Image from 'next/image';
+import { calcMetaQuality } from "@/utils/metadata-quality"
 
 
 export interface AppData {
@@ -21,8 +22,6 @@ export interface AppData {
     category: string
     barrierFree: boolean
     description: string
-    //api: string
-    //github: boolean
     metaDataQuality: string
     image: string
   }
@@ -76,11 +75,9 @@ export interface AppEntry {
   
   const apps = React.useMemo<AppEntry[]>(() => {
     return Object.entries(appsDresdenData).map(([key, data]) => {
-      const slug = key
-       .toLowerCase()
-       .replace(/\s+/g, '-')      
-       .replace(/[^a-z0-9\-]/g, '')
-      return { key, slug, data: data as AppData }
+      const slug = key.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "")
+      const meta = calcMetaQuality(data as Record<string, unknown>) // "87%"
+      return { key, slug, data: { ...(data as Omit<AppData, "metaDataQuality">), metaDataQuality: meta } }
     })
   }, [])
 
@@ -89,12 +86,18 @@ export interface AppEntry {
     return apps.filter(({ data }) => {
       if (selectedCity && data.city !== selectedCity) return false
       if (selectedCategory && data.category !== selectedCategory) return false
-      if (selectedMetaDataQuality && data.metaDataQuality !== selectedMetaDataQuality) return false
+
+      if (selectedMetaDataQuality) {
+        const n = parseInt(String(data.metaDataQuality).replace("%",""), 10)
+        const rounded = `${Math.min(100, Math.max(0, Math.round(n/10)*10))}%`
+        if (rounded !== selectedMetaDataQuality) return false
+      }
+
       if (accessibleOnly && !data.barrierFree) return false
       return true
     })
-  }, [apps, selectedCity, selectedCategory, accessibleOnly])
-  
+  }, [apps, selectedCity, selectedCategory, selectedMetaDataQuality, accessibleOnly])
+    
   return (
     <div className='w-full flex flex-col justify-center items-center '>
         <div className='w-full h-auto flex flex-wrap gap-4 items-center'>

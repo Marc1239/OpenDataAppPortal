@@ -7,21 +7,9 @@ import {
 import { useParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
 import { Button } from '@/components/ui/button';
 import appsDresdenData from '@/app/data/apps_dresden.json';
 import { calcMetaQuality } from "@/utils/metadata-quality";
-import { Textarea } from '@/components/ui/textarea';
-import MetaDataQualityPieChart from '@/components/metaDataQualityPieChart';
 import BentoGrid from '@/components/bento-grid';
 
 interface AppData {
@@ -35,7 +23,6 @@ interface AppData {
   tags: string[];
 }
 
-// Internes Interface mit Slug
 interface AppEntry {
   key: string;
   slug: string;
@@ -74,8 +61,8 @@ const AppDetailPage: React.FC = () => {
     return Object.entries(appsDresdenData).map(([key, data]) => {
       const slug = key
         .toLowerCase()
-        .replace(/\s+/g, '-')      // Leerzeichen → Bindestrich
-        .replace(/[^a-z0-9\-]/g, ''); // nur a–z, 0–9 und -
+        .replace(/\s+/g, '-')      
+        .replace(/[^a-z0-9\-]/g, ''); 
 
       const metaQuality = calcMetaQuality(data as Record<string, unknown>);
       return {
@@ -116,7 +103,6 @@ const AppDetailPage: React.FC = () => {
               alt={data.title}
               className="my-8 aspect-video w-full rounded-md object-cover"
             />
-
             <BentoGrid 
               metaPercent={metaPercent} 
               tags={data.tags ?? []} 
