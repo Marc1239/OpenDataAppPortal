@@ -43,10 +43,10 @@ export function Hero45() {
   }
 
   return (
-    <section className="py-32">
+    <section className="py-32 flex justify-center items-center">
       <div className="container overflow-hidden">
         <div className="mb-20 flex flex-col items-center gap-6 text-center">
-          <h1 className="text-4xl font-semibold lg:text-5xl">
+          <h1 className="text-4xl font-semibold max-w-3xl lg:text-5xl">
             {config.heading}
           </h1>
         </div>

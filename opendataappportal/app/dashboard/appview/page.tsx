@@ -1,7 +1,6 @@
 "use client";
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle  } from '@/components/ui/card'
 import { CardCurtain, CardCurtainReveal, CardCurtainRevealBody, CardCurtainRevealDescription, CardCurtainRevealFooter, CardCurtainRevealTitle } from '@/components/ui/card-curtain-reveal'
 import { ArrowUpRight } from 'lucide-react'
 import React from 'react'
@@ -14,6 +13,7 @@ import { useRouter } from 'next/navigation'
 import { ComboboxMetaData } from '@/components/comboboxMetaData';
 import Image from 'next/image';
 import { calcMetaQuality } from "@/utils/metadata-quality"
+import { TagsFilter, UITag } from '@/components/tags-filter'
 
 
 export interface AppData {
@@ -24,6 +24,7 @@ export interface AppData {
     description: string
     metaDataQuality: string
     image: string
+    tags: string[]
   }
 
 
@@ -42,6 +43,7 @@ export interface AppEntry {
     const [selectedCategory, setSelectedCategory] = React.useState<string>("");
     const [selectedMetaDataQuality, setMetaDataQuality] = React.useState<string>("");
     const [accessibleOnly, setAccessibleOnly] = React.useState<boolean>(false);
+    const [selectedTags, setSelectedTags] = React.useState<UITag[]>([]);
 
     React.useEffect(() => {
       const sc = localStorage.getItem("selectedCity");
@@ -72,14 +74,42 @@ export interface AppEntry {
     React.useEffect(() => {
       localStorage.setItem("accessibleOnly", String(accessibleOnly));
     }, [accessibleOnly]);
+
+    React.useEffect(() => {
+      const st = localStorage.getItem("selectedTags");
+      if (st) {
+        try { setSelectedTags(JSON.parse(st)); } catch {}
+      }
+    }, []);
+    React.useEffect(() => {
+      localStorage.setItem("selectedTags", JSON.stringify(selectedTags));
+    }, [selectedTags]);
   
   const apps = React.useMemo<AppEntry[]>(() => {
     return Object.entries(appsDresdenData).map(([key, data]) => {
       const slug = key.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "")
-      const meta = calcMetaQuality(data as Record<string, unknown>) // "87%"
-      return { key, slug, data: { ...(data as Omit<AppData, "metaDataQuality">), metaDataQuality: meta } }
+      const meta = calcMetaQuality(data as Record<string, unknown>)
+      const d = data as Omit<AppData, "metaDataQuality" | "tags"> & { tags?: string[] }
+      return {
+        key,
+        slug,
+        data: {
+          ...d,
+          tags: Array.isArray(d.tags) ? d.tags : [],  
+          metaDataQuality: meta,
+        }
+      }
     })
   }, [])
+
+  const tagSuggestions = React.useMemo(() => {
+    const uniq = new Set<string>();
+    apps.forEach(a => (a.data.tags || []).forEach(t => uniq.add(t)));
+    return Array.from(uniq).sort((a,b)=>a.localeCompare(b)).map(t => ({
+      id: t.toLowerCase(),
+      label: t,
+    }));
+  }, [apps]);
 
 
   const filteredApps = React.useMemo(() => {
@@ -94,9 +124,21 @@ export interface AppEntry {
       }
 
       if (accessibleOnly && !data.barrierFree) return false
+
+      // Tags-Filter (OR-Logik)
+      if (selectedTags.length > 0) {
+        const wanted = new Set(selectedTags.map(t => t.id.toLowerCase()));
+        const appTags = (data.tags || []).map(t => t.toLowerCase());
+        const hasAny = appTags.some(t => wanted.has(t));
+        if (!hasAny) return false;
+        // Für AND-Logik stattdessen:
+        // const hasAll = Array.from(wanted).every(w => appTags.includes(w));
+        // if (!hasAll) return false;
+      }
+
       return true
     })
-  }, [apps, selectedCity, selectedCategory, selectedMetaDataQuality, accessibleOnly])
+  }, [apps, selectedCity, selectedCategory, selectedMetaDataQuality, accessibleOnly, selectedTags])
     
   return (
     <div className='w-full flex flex-col justify-center items-center '>
@@ -113,6 +155,12 @@ export interface AppEntry {
                 value={selectedMetaDataQuality}
                 onValueChange={setMetaDataQuality}
             />
+            <TagsFilter
+              value={selectedTags}
+              onChange={setSelectedTags}
+              suggestions={tagSuggestions}   
+              maxTags={5}
+            />
             <div className='flex items-center gap-2'>
                 <Checkbox 
                     checked={accessibleOnly}
@@ -120,6 +168,7 @@ export interface AppEntry {
                 />
                 <p>Barrierefrei</p>
             </div>
+
             <Button
               className="ml-auto"
               variant="ghost"
@@ -129,10 +178,12 @@ export interface AppEntry {
                 setSelectedCategory("")
                 setMetaDataQuality("")
                 setAccessibleOnly(false)  
+                setSelectedTags([])
                 localStorage.removeItem("selectedCity");
                 localStorage.removeItem("selectedCategory");
                 localStorage.removeItem("selectedMetaDataQuality");
                 localStorage.setItem("accessibleOnly", "false");
+                localStorage.removeItem("selectedTags");
               }}
             >
               <Trash />
@@ -150,6 +201,7 @@ export interface AppEntry {
                     metaDataQuality={data.metaDataQuality}
                     image={data.image}
                     category={data.category}
+                    tags={data.tags ?? []}
                 />
             ))}
         </div>
