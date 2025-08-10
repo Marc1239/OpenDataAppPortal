@@ -19,7 +19,7 @@ export default function IntegrationPills({ tags = [], className }: IntegrationPi
           <div
             key={name}
             className={cn(
-              "m-1 transform cursor-pointer rounded-full border-2 border-gray-400 bg-white px-6 py-2 text-sm md:text-base text-black transition-transform duration-300 ease-in-out",
+              "m-1 transform text-nowrap cursor-pointer rounded-full border-2 border-gray-400 bg-white px-6 py-2 text-sm md:text-base text-black transition-transform duration-300 ease-in-out",
               "group-hover:border-primary group-hover:scale-75 group-hover:text-primary group-hover:bg-white group-hover:border-2"
             )}
           >

@@ -7,16 +7,21 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Clock, Tags, Zap, Mails } from 'lucide-react'
 import MetaDataQualityPieChart from "./metaDataQualityPieChart"
 import ModernToggle from "./ui/modern-toggle"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import IntegrationPills from "./ui/integration-pills";
 
 type BentoGridProps = {
   metaPercent: number;
   tags: string[];
+  barrierFree: boolean;  
+  city: string;          
 };
 
-export default function BentoGrid({ metaPercent, tags }: BentoGridProps) {
+export default function BentoGrid({ metaPercent, tags, barrierFree, city }: BentoGridProps) {
 const [compact, setCompact] = useState(false)
+const [isAccessible, setIsAccessible] = useState(barrierFree);
+useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
+
   return (
     <main className="min-h-dvh bg-background">
       <section className="mx-auto max-w-7xl px-4 py-10 md:px-6 lg:py-14">
@@ -54,24 +59,24 @@ const [compact, setCompact] = useState(false)
             <CardContent className="flex h-full flex-col justify-between p-6 md:p-8">
               <div className="flex flex-1 items-center justify-center">
                 <ModernToggle
-                  checked={compact}
+                  checked={isAccessible}
                   onCheckedChange={setCompact}
                 />
               </div>
               <p className="mt-6 max-w-[38ch] text-center text-sm leading-6 text-muted-foreground">
-                Nicht barrierefrei
+                {barrierFree ? "Barrierefrei" : "Nicht barrierefrei"}
               </p>
             </CardContent>
           </Card>
 
           <Card className="rounded-3xl border bg-muted/40">
             <CardContent className="flex h-full items-center justify-center p-6">
-                <p>Dresden</p>
+                <p>{city}</p>
             </CardContent>
           </Card>
 
           {/* C — Feedback */}
-            <Card className="relative col-span-3 row-span-1 flex flex-col justify-center items-center rounded-3xl border bg-muted/40">
+            <Card className="relative col-span-2 row-span-1 flex flex-col justify-center items-center rounded-3xl border bg-muted/40">
             <CardContent className="flex h-3/4 flex-col justify-between p-6">
                 <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Mails className="h-5 w-5" />
@@ -128,7 +133,7 @@ const [compact, setCompact] = useState(false)
             </Card>
 
           {/* E — Price */}
-          <Card className="relative rounded-3xl border bg-muted/40 ">
+          <Card className="relative rounded-3xl col-span-2 row-span-1 border bg-muted/40 ">
             <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Tags className="h-5 w-5" />
             </div>

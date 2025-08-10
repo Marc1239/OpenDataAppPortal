@@ -117,42 +117,12 @@ const AppDetailPage: React.FC = () => {
               className="my-8 aspect-video w-full rounded-md object-cover"
             />
 
-            <BentoGrid metaPercent={metaPercent} tags={data.tags ?? []} />
-
-            {/* Section 1 */}
-            <section
-              id="section1"
-              ref={(ref) => addSectionRef('section1', ref)}
-              className="prose dark:prose-invert mb-8"
-            >
-              <h2>Barrierefreiheit</h2>
-              {data.barrierFree ? (
-                <p>Diese App ist barrierefrei gestaltet.</p>
-              ) : (
-                <p>Für diese App sind noch keine Barrierefrei-Funktionen vorhanden.</p>
-              )}
-            </section>
-
-            {/* Section 2 */}
-            <section
-              id="section2"
-              ref={(ref) => addSectionRef('section2', ref)}
-              className="prose dark:prose-invert mb-8"
-            >
-              <h2>Stadt</h2>
-              <p>Verfügbar in: <strong>{data.city}</strong></p>
-            </section>
-
-            {/* Section 3 */}
-            <section
-              id="section3"
-              ref={(ref) => addSectionRef('section3', ref)}
-              className="prose dark:prose-invert mb-8"
-            >
-              <h2>Kategorie</h2>
-              <p>{data.category}</p>
-            </section>
-          
+            <BentoGrid 
+              metaPercent={metaPercent} 
+              tags={data.tags ?? []} 
+              barrierFree={data.barrierFree}   
+              city={data.city} 
+            />
           </div>
 
           
