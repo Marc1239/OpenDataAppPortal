@@ -42,13 +42,13 @@ export function ComboboxCity({ value, onValueChange }: ComboboxCityProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] justify-between"
+          className="w-full justify-between"
         >
           {value || "Stadt wählen ..." }
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
         <Command>
           <CommandInput placeholder="Suche Stadt..." className="h-9" />
           <CommandList>
