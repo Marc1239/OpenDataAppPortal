@@ -7,13 +7,19 @@ import React from 'react'
 import appsDresdenData from "../../data/apps_dresden.json"
 import { ComboboxCity } from '@/components/comboboxCity'
 import { ComboboxCategory } from '@/components/comboboxCategory';
-import { Checkbox } from '@/components/ui/checkbox'
+import { ToggleButton } from "@/components/ui/toggle-button";
 import { Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ComboboxMetaData } from '@/components/comboboxMetaData';
 import Image from 'next/image';
 import { calcMetaQuality } from "@/utils/metadata-quality"
 import { TagsFilter, UITag } from '@/components/tags-filter'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 
 export interface AppData {
@@ -142,53 +148,72 @@ export interface AppEntry {
     
   return (
     <div className='w-full flex flex-col justify-center items-center '>
-        <div className='w-full h-auto flex flex-wrap gap-4 items-center'>
-            <ComboboxCity 
-                value={selectedCity}
-                onValueChange={setSelectedCity}
-            />
-            <ComboboxCategory
-                value={selectedCategory}
-                onValueChange={setSelectedCategory}
-            />
-            <ComboboxMetaData
-                value={selectedMetaDataQuality}
-                onValueChange={setMetaDataQuality}
-            />
-            <TagsFilter
-              value={selectedTags}
-              onChange={setSelectedTags}
-              suggestions={tagSuggestions}   
-              maxTags={5}
-            />
-            <div className='flex items-center gap-2'>
-                <Checkbox 
-                    checked={accessibleOnly}
-                    onCheckedChange={(val) => setAccessibleOnly(!!val)}
-                />
-                <p>Barrierefrei</p>
-            </div>
+        <Accordion className='w-full' type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger className='text-left'>Filtereinstellungen</AccordionTrigger>
+            <AccordionContent>
+              <div className='w-full h-auto gap-2 grid grid-cols-3 grid-rows-2 items-center'>
+                  <div className='col-span-1 row-span-1'>
+                    <ComboboxCity
+                        value={selectedCity}
+                        onValueChange={setSelectedCity}
+                    />
+                  </div>
+                  <div className='col-span-1 row-span-1'>
+                    <ComboboxCategory
+                        value={selectedCategory}
+                        onValueChange={setSelectedCategory}
+                    />
+                  </div>
+                  <div className='col-span-1 row-span-1'>
+                    <ComboboxMetaData
+                        value={selectedMetaDataQuality}
+                        onValueChange={setMetaDataQuality}
+                    />
+                  </div>
+                  <div className='col-span-2 row-span-1'>
+                    <TagsFilter
+                      value={selectedTags}
+                      onChange={setSelectedTags}
+                      suggestions={tagSuggestions}   
+                      maxTags={5}
+                    />
+                  </div>
+                  <div className='self-start col-span-1 row-span-1 grid grid-rows-subgrid grid-cols-2 gap-2'>
+                      <ToggleButton
+                          className='col-span-1' 
+                          pressed={accessibleOnly}
+                          onPressedChange={(val) => setAccessibleOnly(!!val)}
+                      >
+                        Barrierefrei
+                      </ToggleButton>
+                      <Button
+                        className="col-span-1 w-full"
+                        variant="destructive"
+                        size="icon"
+                        onClick={() => {
+                          setSelectedCity("")
+                          setSelectedCategory("")
+                          setMetaDataQuality("")
+                          setAccessibleOnly(false)  
+                          setSelectedTags([])
+                          localStorage.removeItem("selectedCity");
+                          localStorage.removeItem("selectedCategory");
+                          localStorage.removeItem("selectedMetaDataQuality");
+                          localStorage.setItem("accessibleOnly", "false");
+                          localStorage.removeItem("selectedTags");
+                        }}
+                      >
+                        Zurücksetzen
+                        <Trash />
+                      </Button>
+                  </div>
 
-            <Button
-              className="ml-auto"
-              variant="ghost"
-              size="icon"
-              onClick={() => {
-                setSelectedCity("")
-                setSelectedCategory("")
-                setMetaDataQuality("")
-                setAccessibleOnly(false)  
-                setSelectedTags([])
-                localStorage.removeItem("selectedCity");
-                localStorage.removeItem("selectedCategory");
-                localStorage.removeItem("selectedMetaDataQuality");
-                localStorage.setItem("accessibleOnly", "false");
-                localStorage.removeItem("selectedTags");
-              }}
-            >
-              <Trash />
-            </Button>
-        </div>
+                  
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
         <div className="my-4 flex justify-center flex-wrap gap-4">
             {filteredApps.map(({ key, slug, data }) => (
                 <Boxes

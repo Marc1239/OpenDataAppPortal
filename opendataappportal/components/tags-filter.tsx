@@ -21,7 +21,8 @@ interface TagsFilterProps {
   onChange?: (tags: UITag[]) => void;      
   suggestions?: UITag[];                   
   maxTags?: number;                        
-  placeholder?: string;                    
+  placeholder?: string;
+  suggestionLimit?: number;                    
 }
 
 export function TagsFilter({
@@ -29,12 +30,13 @@ export function TagsFilter({
   onChange,
   suggestions = DEFAULT_SUGGESTIONS,
   maxTags = 5,
-  placeholder = "Tag hinzufügen..."
+  placeholder = "Tag hinzufügen...",
+  suggestionLimit = 6,
 }: TagsFilterProps) {
+  
   const [inputValue, setInputValue] = useState("");
-
   const isControlled = value !== undefined && onChange !== undefined;
-
+  const visibleSuggestions = suggestions.slice(0, suggestionLimit);  
   // Uncontrolled Fallback (alter Hook)
   const uncontrolled = useTags({
     maxTags,
@@ -77,9 +79,8 @@ export function TagsFilter({
   };
 
   return (
-    <div className="w-full max-w-md space-y-4">
+    <div className="w-full space-y-4">
       <div className="space-y-2">
-        <label className="text-sm font-medium">Tags</label>
         <div className="rounded-lg border border-input bg-background p-1">
           <div className="flex flex-wrap gap-1">
             {tags.map((tag) => (
@@ -114,7 +115,7 @@ export function TagsFilter({
       <div className="space-y-2">
         <label className="text-sm font-medium">Vorschläge</label>
         <div className="flex flex-wrap gap-2">
-          {suggestions.map((s) => {
+          {visibleSuggestions.map((s) => {
             const isSelected = tags.some(t => t.id === s.id);
             return (
               <Button

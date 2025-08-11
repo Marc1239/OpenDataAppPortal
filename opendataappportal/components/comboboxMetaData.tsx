@@ -40,13 +40,13 @@ export function ComboboxMetaData({ value, onValueChange }: ComboboxMetaDataProps
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline" role="combobox" aria-expanded={open} className="w-[300px] justify-between">
+        <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
           {value || "Metadaten-Qualität wählen …"}
           <ChevronsUpDown className="opacity-50" />
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
         <Command>
           <CommandInput placeholder="Suche Quality-Score..." className="h-9" />
           <CommandList>
@@ -54,7 +54,7 @@ export function ComboboxMetaData({ value, onValueChange }: ComboboxMetaDataProps
             <CommandGroup>
               {qualities.map(q => (
                 <CommandItem
-                  key={`quality-${q}`}      // ✅ stabiler Key
+                  key={`quality-${q}`}   
                   value={q}
                   onSelect={(current) => {
                     onValueChange(current === value ? "" : current)
