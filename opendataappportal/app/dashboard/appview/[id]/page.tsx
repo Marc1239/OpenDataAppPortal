@@ -21,6 +21,14 @@ interface AppData {
   image: string;
   metaDataQuality: string;
   tags: string[];
+  websiteLink?: string;
+  appStoreLinkApple?: string;
+  appStoreLinkAndroid?: string;
+  publishDate?: string;
+  publishInformation?: string;
+  latestRelease?: string;
+  github?: string | boolean;
+  reportBug?: string;
 }
 
 interface AppEntry {
@@ -65,10 +73,24 @@ const AppDetailPage: React.FC = () => {
         .replace(/[^a-z0-9\-]/g, ''); 
 
       const metaQuality = calcMetaQuality(data as Record<string, unknown>);
+      const d = data as any;
+
       return {
         key,
         slug,
-        data: { ...(data as AppData), metaDataQuality: metaQuality }
+        data: { 
+          ...(data as AppData), 
+          websiteLink: d.websiteLink ?? undefined,
+          appStoreLinkApple: d.appStoreLinkApple ?? undefined,
+          appStoreLinkAndroid: d.appStoreLinkAndroid ?? undefined,
+          publishDate: d.publishDate ?? undefined,
+          publishInformation: d.publishInformation ?? undefined,
+          latestRelease: d.latestRelease ?? undefined,
+          github: d.github ?? undefined,
+          reportBug: d.reportBug ?? undefined,
+          tags: Array.isArray(d.tags) ? d.tags : [],
+          metaDataQuality: metaQuality, 
+        }
       };
     });
   }, []);
@@ -103,11 +125,19 @@ const AppDetailPage: React.FC = () => {
               alt={data.title}
               className="my-8 aspect-video w-full rounded-md object-cover"
             />
-            <BentoGrid 
-              metaPercent={metaPercent} 
-              tags={data.tags ?? []} 
-              barrierFree={data.barrierFree}   
-              city={data.city} 
+            <BentoGrid
+              metaPercent={metaPercent}
+              tags={data.tags ?? []}
+              barrierFree={data.barrierFree}
+              city={data.city}
+              websiteLink={data.websiteLink}
+              githubLink={typeof data.github === "string" ? data.github : undefined}
+              appStoreLinkApple={data.appStoreLinkApple}
+              appStoreLinkAndroid={data.appStoreLinkAndroid}
+              publishDate={data.publishDate}
+              publishInformation={data.publishInformation}
+              latestRelease={data.latestRelease}
+              reportBugLink={data.reportBug}
             />
           </div>
 

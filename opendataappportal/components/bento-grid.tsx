@@ -4,7 +4,9 @@ import { Button } from "@/components/ui/button"
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter, DrawerClose } from "@/components/ui/drawer";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Tags, Zap, Mails } from 'lucide-react'
+import Link from "next/link";
+import { CalendarClock, ExternalLink, Github, Globe, Apple, Smartphone, Tags, Mails, Zap, Bug, Info } from 'lucide-react'
+import { FaGooglePlay, FaApple } from "react-icons/fa";
 //import MetaDataQualityPieChart from "./metaDataQualityPieChart"
 import ModernToggle from "./ui/modern-toggle"
 import { useState, useEffect } from "react"
@@ -20,10 +22,24 @@ type BentoGridProps = {
   metaPercent: number;
   tags: string[];
   barrierFree: boolean;  
-  city: string;          
+  city: string;
+  websiteLink?: string;
+  githubLink?: string;
+  appStoreLinkApple?: string;
+  appStoreLinkAndroid?: string;
+  publishDate?: string;
+  publishInformation?: string;
+  latestRelease?: string;
+  reportBugLink?: string;          
 };
 
-export default function BentoGrid({ metaPercent, tags, barrierFree, city }: BentoGridProps) {
+export default function BentoGrid({ 
+  metaPercent, tags, barrierFree, city,
+  websiteLink, githubLink,
+  appStoreLinkApple, appStoreLinkAndroid,
+  publishDate, publishInformation, latestRelease,
+  reportBugLink
+}: BentoGridProps) {
 const [compact, setCompact] = useState(false)
 const [isAccessible, setIsAccessible] = useState(barrierFree);
 useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
@@ -35,7 +51,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           className="
             grid gap-6
             grid-cols-4
-            grid-rows-2
+            grid-rows-5
           "
         >
           {/* A — Tall photo with badge */}
@@ -142,8 +158,130 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
             <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Tags className="h-5 w-5" />
             </div>
-            <CardContent className="flex h-full flex-col justify-between p-6 md:p-8">
+            <CardContent className="flex h-full flex-col justify-center p-6 md:p-8">
               <IntegrationPills tags={tags} />
+            </CardContent>
+          </Card>
+
+          {/* Website & GitHub */}
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+            <CardContent className="flex h-full flex-col gap-4 p-6 md:p-8">
+              <div className="absolute left-3 top-3 flex h-10 w-24 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <ExternalLink className="h-4 w-4" />
+                <span>Links</span>
+              </div>
+              <div className="flex flex-col w-full h-full justify-center items-stretch gap-3">
+                {websiteLink ? (
+                  <Button asChild variant="outline">
+                    <Link href={websiteLink} target="_blank" rel="noopener noreferrer">
+                      <Globe className="mr-2 h-4 w-4" />
+                      Webseite
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button variant="outline" disabled><Globe className="mr-2 h-4 w-4" />Webseite</Button>
+                )}
+                {githubLink ? (
+                  <Button asChild variant="outline">
+                    <Link href={githubLink} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
+                      GitHub
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button variant="outline" disabled><Github className="mr-2 h-4 w-4" />GitHub</Button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Downloads (App Store / Google Play) */}
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+            <CardContent className="flex h-full flex-col gap-4 p-6 md:p-8">
+              <div className="absolute left-3 top-3 flex h-10 w-36 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <Smartphone className="h-4 w-4" />
+                <span>Downloads</span>
+              </div>
+              <div className="flex flex-col w-full h-full justify-center items-stretch gap-3">
+                {appStoreLinkApple ? (
+                  <Button asChild>
+                    <Link href={appStoreLinkApple} target="_blank" rel="noopener noreferrer">
+                      <FaApple className="mr-2 h-4 w-4" />
+                      App Store
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button variant="outline" disabled><FaApple className="mr-2 h-4 w-4" />App Store</Button>
+                )}
+                {appStoreLinkAndroid ? (
+                  <Button asChild>
+                    <Link href={appStoreLinkAndroid} target="_blank" rel="noopener noreferrer">
+                      {/* kein offizielles GP-Icon in lucide – Smartphone passt */}
+                      <FaGooglePlay className="mr-2 h-4 w-4" />
+                      Google Play Store
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button variant="outline" disabled><FaGooglePlay className="mr-2 h-4 w-4" />Google Play</Button>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* NEW 3 — Veröffentlichungen / Changelog */}
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-4">
+            <CardContent className="flex h-full flex-col justify-center items-center gap-4 p-6 md:p-8">
+              <div className="absolute left-3 top-3 flex h-10 w-48 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <CalendarClock className="h-4 w-4" />
+                <span>Veröffentlichungen</span>
+              </div>
+              <div className="grid gap-2 pt-4">
+                {publishDate && (
+                  <p className="text-sm">
+                    <span className="font-medium">Erstveröffentlichung:</span> {publishDate}
+                  </p>
+                )}
+                {latestRelease && (
+                  <p className="text-sm">
+                    <span className="font-medium">Letztes Release:</span> {latestRelease}
+                  </p>
+                )}
+                {publishInformation ? (
+                  <div className="mt-2 flex items-start gap-2 text-sm text-muted-foreground">
+                    <Info className="mt-0.5 h-4 w-4 shrink-0" />
+                    <p className="leading-6">{publishInformation}</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground">Keine zusätzlichen Veröffentlichungsinformationen vorhanden.</p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* NEW 4 — Bug melden */}
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+            <CardContent className="flex h-full w-full flex-col justify-center items-stretch gap-4 p-6 md:p-8">
+              <div className="absolute left-3 top-3 flex h-10 w-36 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <Bug className="h-4 w-4" />
+                <span>Fehler melden</span>
+              </div>
+              {reportBugLink ? (
+                <Button asChild>
+                  <Link href={reportBugLink} target="_blank" rel="noopener noreferrer">
+                    <Bug className="mr-2 h-4 w-4" />
+                    Issue erstellen
+                  </Link>
+                </Button>
+              ) : githubLink ? (
+                <Button asChild variant="outline">
+                  <Link href={githubLink} target="_blank" rel="noopener noreferrer">
+                    <Github className="mr-2 h-4 w-4" />
+                    Zum Repository
+                  </Link>
+                </Button>
+              ) : (
+                <p className="text-sm text-muted-foreground">Kein Bug-Tracker verlinkt.</p>
+              )}
             </CardContent>
           </Card>
         </div>
