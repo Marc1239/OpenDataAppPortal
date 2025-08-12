@@ -11,9 +11,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 
-/**
- * Ein Item für die Gallery6-Komponente
- */
 export interface GalleryItem {
   id: string;
   title: string;
@@ -22,18 +19,12 @@ export interface GalleryItem {
   image: string;
 }
 
-/**
- * Props für die Gallery6-Komponente
- */
 export interface Gallery6Props {
   heading?: string;
   demoUrl?: string;
   items?: GalleryItem[];
 }
 
-/**
- * Gallery6 zeigt eine Karussell-Übersicht von Items
- */
 export const Gallery6 = ({
   heading = "Neuste Veröffentlichungen",
   demoUrl = "/dashboard/appview",
@@ -102,11 +93,11 @@ export const Gallery6 = ({
               "(max-width: 768px)": { dragFree: true },
             },
           }}
-          className="relative left-[-1rem]"
+          className=""
         >
-          <CarouselContent className="-mr-4 ml-8 2xl:mr-[max(0rem,calc(50vw-700px-1rem))] 2xl:ml-[max(8rem,calc(50vw-700px+1rem))]">
+          <CarouselContent className="">
             {items.map((item) => (
-              <CarouselItem key={item.id} className="pl-4 md:max-w-[452px]">
+              <CarouselItem key={item.id} className="pl-2 md:max-w-1/3">
                 <a href={item.url} className="group flex flex-col justify-between">
                   <div>
                     <div className="flex aspect-[3/2] overflow-clip rounded-xl">
