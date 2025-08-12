@@ -127,7 +127,7 @@ export default function DashbaordLayout({children}: DashboardLayoutProps) {
           </Drawer>
         </div>
         </header>
-        <main className="flex flex-col gap-4 p-4 ">
+        <main className="flex flex-col gap-4 p-4">
             {children}
         </main>
       </SidebarInset>
