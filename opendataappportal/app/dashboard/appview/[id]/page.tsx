@@ -110,9 +110,9 @@ const AppDetailPage: React.FC = () => {
   );
 
   return (
-    <section className="py-32">
-      <div className="container max-w-7xl">
-        <div className="relative grid-cols-3 gap-20 lg:grid">
+    <section className="py-12">
+      
+        <div className="relative grid-cols-3">
           {/* Hauptinhalt */}
           <div className="lg:col-span-2">
             <Badge variant="outline">{data.category}</Badge>
@@ -143,7 +143,7 @@ const AppDetailPage: React.FC = () => {
 
           
           {/* Sticky Navigation */}
-          <div className="sticky top-8 hidden h-fit lg:block">
+          {/*<div className="sticky top-8 hidden h-fit lg:block">
             <span className="flex items-center gap-2 text-sm">
               <AlignLeft className="h-4 w-4" />
               Auf dieser Seite
@@ -171,9 +171,9 @@ const AppDetailPage: React.FC = () => {
                 ))}
               </ul>
             </nav>
-          </div>
+          </div>*/}
         </div>
-      </div>
+      
     </section>
   );
 };

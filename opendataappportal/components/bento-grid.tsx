@@ -54,24 +54,16 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
             grid-rows-5
           "
         >
-          {/* A — Tall photo with badge */}
+          {/* PieChart - Metadata Quality */}
           <Card className="relative overflow-hidden rounded-3xl border bg-muted/40 col-span-2 ">
-            <CardContent className="p-0 w-full h-full">
-              <div className="relative flex flex-col items-center justify-between h-full w-full">
-                {/* gradient for readability */}
-                <div className="left-1 top-1">
-                  <Badge
-                    variant="secondary"
-                    className="flex items-center gap-1 rounded-full bg-white/80 text-foreground backdrop-blur-md"
-                    aria-label="Featured"
-                  >
-                    <Zap className="h-3.5 w-3.5" />
-                    <span>Metadaten Qualität</span>
-                  </Badge>
-                </div>
+            <CardContent className="flex h-full flex-col justify-between p-6">
+              <div className="absolute left-3 gap-2 top-3 flex h-10 w-48 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                  <Zap className="h-3.5 w-3.5" />
+                  <span>Metadaten Qualität</span>
+              </div>
+              <div className="relative flex flex-col items-center justify-center h-full w-full">
                 <MetaDataQualityPieChart percent={metaPercent} />
               </div>
-              
             </CardContent>
           </Card>
 
@@ -99,8 +91,9 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           {/* C — Feedback */}
             <Card className="relative col-span-2 row-span-1 flex flex-col justify-center items-center rounded-3xl border bg-muted/40">
             <CardContent className="flex h-3/4 flex-col justify-between p-6">
-                <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
-                <Mails className="h-5 w-5" />
+                <div className="absolute left-3 gap-2 top-3 flex h-10 w-36 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                  <Mails className="h-5 w-5" />
+                  <span>Feedback</span>
                 </div>
                 <p>Hinterlasse Uns oder dem Entwickler gerne ein Feedback.</p>
                 <div className="mt-8 flex justify-center flex-wrap gap-2">
@@ -155,8 +148,9 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
 
           {/* E — Price */}
           <Card className="relative rounded-3xl col-span-2 row-span-1 border bg-muted/40 ">
-            <div className="absolute left-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+            <div className="absolute left-3 gap-2 top-3 flex h-10 w-24 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Tags className="h-5 w-5" />
+                <span>Tags</span>
             </div>
             <CardContent className="flex h-full flex-col justify-center p-6 md:p-8">
               <IntegrationPills tags={tags} />

@@ -208,8 +208,6 @@ export interface AppEntry {
                         <Trash />
                       </Button>
                   </div>
-
-                  
               </div>
             </AccordionContent>
           </AccordionItem>
