@@ -5,7 +5,7 @@ import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, Drawer
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link";
-import { CalendarClock, ExternalLink, Github, Globe, Apple, Smartphone, Tags, Mails, Zap, Bug, Info } from 'lucide-react'
+import { CalendarClock, ExternalLink, Github, Globe, Apple, Smartphone, Tags, Mails, Zap, Bug, Info, Mail } from 'lucide-react'
 import { FaGooglePlay, FaApple } from "react-icons/fa";
 //import MetaDataQualityPieChart from "./metaDataQualityPieChart"
 import ModernToggle from "./ui/modern-toggle"
@@ -30,7 +30,8 @@ type BentoGridProps = {
   publishDate?: string;
   publishInformation?: string;
   latestRelease?: string;
-  reportBugLink?: string;          
+  reportBugLink?: string; 
+  supportMail?: string;         
 };
 
 export default function BentoGrid({ 
@@ -38,7 +39,7 @@ export default function BentoGrid({
   websiteLink, githubLink,
   appStoreLinkApple, appStoreLinkAndroid,
   publishDate, publishInformation, latestRelease,
-  reportBugLink
+  reportBugLink, supportMail
 }: BentoGridProps) {
 const [compact, setCompact] = useState(false)
 const [isAccessible, setIsAccessible] = useState(barrierFree);
@@ -173,7 +174,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
                     </Link>
                   </Button>
                 ) : (
-                  <Button variant="outline" disabled><Globe className="mr-2 h-4 w-4" />Webseite</Button>
+                  <Button variant="outline" disabled className="cursor-not-allowed"><Globe className="mr-2 h-4 w-4" />Webseite</Button>
                 )}
                 {githubLink ? (
                   <Button asChild variant="outline">
@@ -183,7 +184,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
                     </Link>
                   </Button>
                 ) : (
-                  <Button variant="outline" disabled><Github className="mr-2 h-4 w-4" />GitHub</Button>
+                  <Button variant="outline" disabled className="cursor-not-allowed"><Github className="mr-2 h-4 w-4" />GitHub</Button>
                 )}
               </div>
             </CardContent>
@@ -205,24 +206,23 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
                     </Link>
                   </Button>
                 ) : (
-                  <Button variant="outline" disabled><FaApple className="mr-2 h-4 w-4" />App Store</Button>
+                  <Button variant="outline" disabled className="cursor-not-allowed"><FaApple className="mr-2 h-4 w-4" />App Store</Button>
                 )}
                 {appStoreLinkAndroid ? (
                   <Button asChild>
                     <Link href={appStoreLinkAndroid} target="_blank" rel="noopener noreferrer">
-                      {/* kein offizielles GP-Icon in lucide – Smartphone passt */}
                       <FaGooglePlay className="mr-2 h-4 w-4" />
                       Google Play Store
                     </Link>
                   </Button>
                 ) : (
-                  <Button variant="outline" disabled><FaGooglePlay className="mr-2 h-4 w-4" />Google Play</Button>
+                  <Button variant="outline" disabled className="cursor-not-allowed"><FaGooglePlay className="mr-2 h-4 w-4" />Google Play</Button>
                 )}
               </div>
             </CardContent>
           </Card>
 
-          {/* NEW 3 — Veröffentlichungen / Changelog */}
+          {/* Veröffentlichungen / Changelog */}
           <Card className="relative rounded-3xl border bg-muted/40 col-span-4">
             <CardContent className="flex h-full flex-col justify-center items-center gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-48 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
@@ -252,7 +252,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
             </CardContent>
           </Card>
 
-          {/* NEW 4 — Bug melden */}
+          {/* Bug melden */}
           <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
             <CardContent className="flex h-full w-full flex-col justify-center items-stretch gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-36 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
@@ -275,6 +275,30 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
                 </Button>
               ) : (
                 <p className="text-sm text-muted-foreground">Kein Bug-Tracker verlinkt.</p>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Support Mail */}
+
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+            <CardContent className="flex h-full w-full flex-col justify-center items-stretch gap-4 p-6 md:p-8">
+              <div className="absolute left-3 top-3 flex h-10 w-52 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
+                <Mail className="h-4 w-4" />
+                <span>Support Kontaktieren</span>
+              </div>
+              {supportMail ? (
+                <Button asChild>
+                  <Link href={`mailto:${supportMail}`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    Support kontaktieren
+                  </Link>
+                </Button>
+              ) : (
+                <Button variant="outline" className="cursor-not-allowed" disabled>
+                  <Mail className="mr-2 h-4 w-4" />
+                  Keine Support Mail vorhanden
+                </Button>
               )}
             </CardContent>
           </Card>
