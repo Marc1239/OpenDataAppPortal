@@ -39,33 +39,15 @@ interface AppEntry {
 }
 
 const AppDetailPage: React.FC = () => {
+  
   const { id } = useParams<{ id: string }>();
-  const [activeSection, setActiveSection] = useState<string | null>(null);
   const sectionRefs = useRef<Record<string, HTMLElement>>({});
-
-  // IntersectionObserver für die Sidebar
-  useEffect(() => {
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-    const observer = new IntersectionObserver(observerCallback, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 1,
-    });
-    Object.values(sectionRefs.current).forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   const addSectionRef = (id: string, ref: HTMLElement | null) => {
     if (ref) sectionRefs.current[id] = ref;
   };
 
-  // JSON → Array mit Slug umwandeln
+  // JSON -> Array mit Slug umwandeln
   const apps = useMemo<AppEntry[]>(() => {
     return Object.entries(appsDresdenData).map(([key, data]) => {
       const slug = key
@@ -113,9 +95,7 @@ const AppDetailPage: React.FC = () => {
 
   return (
     <section className="py-12">
-      
         <div className="relative grid-cols-3">
-          {/* Hauptinhalt */}
           <div className="lg:col-span-2">
             <Badge variant="outline">{data.category}</Badge>
             <h1 className="mt-3 text-3xl font-extrabold">{data.title}</h1>
@@ -143,40 +123,7 @@ const AppDetailPage: React.FC = () => {
               supportMail={data.supportMail}
             />
           </div>
-
-          
-          {/* Sticky Navigation */}
-          {/*<div className="sticky top-8 hidden h-fit lg:block">
-            <span className="flex items-center gap-2 text-sm">
-              <AlignLeft className="h-4 w-4" />
-              Auf dieser Seite
-            </span>
-            <nav className="mt-2 text-sm">
-              <ul>
-                {['section1','section2','section3'].map((sec) => (
-                  <li key={sec}>
-                    <a
-                      href={`#${sec}`}
-                      className={cn(
-                        'block py-1 transition-colors duration-200',
-                        activeSection === sec
-                          ? 'text-primary font-medium'
-                          : 'text-muted-foreground hover:text-primary'
-                      )}
-                    >
-                      {{
-                        section1: 'Barrierefreiheit',
-                        section2: 'Stadt',
-                        section3: 'Kategorie'
-                      }[sec]}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>*/}
         </div>
-      
     </section>
   );
 };
