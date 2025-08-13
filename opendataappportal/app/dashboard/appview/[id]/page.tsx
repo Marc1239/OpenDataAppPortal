@@ -29,6 +29,7 @@ interface AppData {
   latestRelease?: string;
   github?: string | boolean;
   reportBug?: string;
+  supportMail?: string;
 }
 
 interface AppEntry {
@@ -90,6 +91,7 @@ const AppDetailPage: React.FC = () => {
           reportBug: d.reportBug ?? undefined,
           tags: Array.isArray(d.tags) ? d.tags : [],
           metaDataQuality: metaQuality, 
+          supportMail: d.supportMail ?? undefined,
         }
       };
     });
@@ -138,6 +140,7 @@ const AppDetailPage: React.FC = () => {
               publishInformation={data.publishInformation}
               latestRelease={data.latestRelease}
               reportBugLink={data.reportBug}
+              supportMail={data.supportMail}
             />
           </div>
 
