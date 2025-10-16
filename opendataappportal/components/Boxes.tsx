@@ -37,7 +37,7 @@ function BoxesBase({ id, title, description, image }: BoxesProps) {
       </CardCurtainRevealBody>
 
       <CardCurtainRevealFooter className="h-1/2 relative">
-        <Image fill alt={title} className="object-cover" src={image} />
+        <Image fill alt={title} className="object-cover" src={image} sizes="(max-width: 768px) 100vw, 400px"/>
       </CardCurtainRevealFooter>
     </CardCurtainReveal>
   );

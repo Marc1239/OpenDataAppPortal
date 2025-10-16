@@ -18,6 +18,9 @@ export default function Dashboard() {
   const [items, setItems] = useState<GalleryItem[]>([])
   const [loading, setLoading] = useState(true)
 
+  const slugify = (s: string) =>
+  s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+
   useEffect(() => {
     fetch('/api/apps')
       .then(res => res.json())
@@ -25,10 +28,10 @@ export default function Dashboard() {
         const latest: GalleryItem[] = Object.entries(data)
           .filter(([, app]) => app.isLatest)
           .map(([key, app]) => ({
-            id: key,
+            id: slugify(key),
             title: app.title,
             summary: app.description.slice(0, 100) + '...',
-            url: `/dashboard/appview/${encodeURIComponent(key)}`,
+            url: `/dashboard/appview/${slugify(key)}`,
             image: app.image,
           }))
         setItems(latest)
@@ -40,16 +43,11 @@ export default function Dashboard() {
   return (
     <>
       <Hero45 />
-
-      {loading ? (
-        <p className="text-center py-16">Lade neuste Veröffentlichungen…</p>
-      ) : (
-        <Gallery6
-          heading="Neuste Veröffentlichungen"
-          demoUrl="/dashboard/appview"
-          items={items}
-        />
-      )}
+      <Gallery6
+        heading="Neuste Veröffentlichungen"
+        demoUrl="/dashboard/appview"
+        items={items}
+      />
     </>
   )
 }

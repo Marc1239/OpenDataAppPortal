@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { HandHelping, Users, Zap } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 
 interface FeatureConfig {
   icon: string;
@@ -31,29 +30,23 @@ export function Hero45() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return <p className="text-center py-16">Lade Start-Beitrag…</p>;
-  }
-  if (!config) {
-    return (
-      <p className="text-center py-16 text-red-600">
-        Fehler beim Laden des Start-Beitrags.
-      </p>
-    );
-  }
-
   return (
     <section className="py-32 flex justify-center items-center">
       <div className="container overflow-hidden">
         <div className="mb-20 flex flex-col items-center gap-6 text-center">
           <h1 className="text-4xl font-semibold max-w-3xl lg:text-5xl">
-            {config.heading}
+            {config?.heading}
           </h1>
         </div>
         <div className="relative mx-auto max-w-screen-lg">
-          <img
-            src={config.imageSrc}
-            alt={config.imageAlt}
+          <Image
+            width={1000}
+            height={500}
+            src={config?.imageSrc || "/notfound.jpg"}
+            alt={config?.imageAlt || "Hero Bild"}
+            priority
+            fetchPriority="high"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
             className="aspect-video max-h-[500px] w-full rounded-xl object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
@@ -61,7 +54,7 @@ export function Hero45() {
           <div className="absolute -top-28 -left-28 -z-10 aspect-video h-72 w-96 [background-size:12px_12px] opacity-40 [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_100%)] sm:bg-[radial-gradient(hsl(var(--muted-foreground))_1px,transparent_1px)]" />
         </div>
         <div className="mx-auto mt-10 flex max-w-screen-lg flex-col md:flex-row">
-          {config.features.map((feat, idx) => (
+          {config?.features.map((feat, idx) => (
             <React.Fragment key={idx}>
               {idx > 0 && (
                 <Separator
@@ -71,13 +64,16 @@ export function Hero45() {
               )}
               <div className="flex grow basis-0 flex-col rounded-md bg-background p-4">
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-background drop-shadow-lg">
-                  <img
+                  <Image
                     src={feat.icon}
                     alt={feat.title}
+                    fetchPriority="high"
+                    width={20}
+                    height={20}
                     className="h-auto w-5"
                   />
                 </div>
-                <h3 className="mb-2 font-semibold">{feat.title}</h3>
+                <h2 className="mb-2 font-semibold">{feat.title}</h2>
                 <p className="text-sm text-muted-foreground">
                   {feat.description}
                 </p>
