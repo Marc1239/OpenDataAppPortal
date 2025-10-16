@@ -1,16 +1,12 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import {
-  AlignLeft
-} from 'lucide-react';
+import React, { useMemo, useRef } from 'react';
 import { useParams } from 'next/navigation';
-import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import appsDresdenData from '@/app/data/apps_dresden.json';
 import { calcMetaQuality } from "@/utils/metadata-quality";
 import BentoGrid from '@/components/bento-grid';
+import Image from 'next/image';
 
 interface AppData {
   title: string;
@@ -102,9 +98,11 @@ const AppDetailPage: React.FC = () => {
             <p className="text-muted-foreground mt-2 text-lg">
               {data.description}
             </p>
-            <img
+            <Image
               src={data.image}
               alt={data.title}
+              width={1000}
+              height={500}
               className="my-8 aspect-video w-full rounded-md object-cover"
             />
             <BentoGrid

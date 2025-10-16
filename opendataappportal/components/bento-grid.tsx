@@ -1,5 +1,3 @@
-import Image from "next/image"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerFooter, DrawerClose } from "@/components/ui/drawer";
 import { Textarea } from "@/components/ui/textarea";
@@ -51,12 +49,12 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
         <div
           className="
             grid gap-6
-            grid-cols-4
-            grid-rows-5
+            grid-cols-1
+            md:grid-cols-4 md:grid-rows-5
           "
         >
           {/* PieChart - Metadata Quality */}
-          <Card className="relative overflow-hidden rounded-3xl border bg-muted/40 col-span-2 ">
+          <Card className="relative overflow-hidden rounded-3xl py-8 md:py-0 border bg-muted/40 col-span-1 md:col-span-2">
             <CardContent className="flex h-full flex-col justify-between p-6">
               <div className="absolute left-3 gap-2 top-3 flex h-10 w-48 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                   <Zap className="h-3.5 w-3.5" />
@@ -69,7 +67,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           </Card>
 
           {/* B — Center logo and copy */}
-          <Card className="relative rounded-3xl border bg-muted/40 col-span-1 row-span-1">
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-1">
             <CardContent className="flex h-full flex-col justify-between p-6 md:p-8">
               <div className="flex flex-1 items-center justify-center">
                 <ModernToggle
@@ -83,14 +81,14 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
             </CardContent>
           </Card>
 
-          <Card className="rounded-3xl border bg-muted/40">
+          <Card className="rounded-3xl border bg-muted/40 col-span-1">
             <CardContent className="flex h-full items-center justify-center p-6">
                 <p>{city}</p>
             </CardContent>
           </Card>
 
           {/* C — Feedback */}
-            <Card className="relative col-span-2 row-span-1 flex flex-col justify-center items-center rounded-3xl border bg-muted/40">
+          <Card className="relative col-span-1 md:col-span-2 py-12 md:py-0 rounded-3xl border bg-muted/40">
             <CardContent className="flex h-3/4 flex-col justify-between p-6">
                 <div className="absolute left-3 gap-2 top-3 flex h-10 w-36 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                   <Mails className="h-5 w-5" />
@@ -100,7 +98,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
                 <div className="mt-8 flex justify-center flex-wrap gap-2">
                 {/* Feedback an Entwickler */}
                 <Drawer>
-                    <DrawerTrigger asChild>
+                    <DrawerTrigger aria-label="Feedback an Entwickler" title="Feedback an Entwickler" asChild>
                     <Button className="rounded-md w-full" variant="default2">
                         Feedback an Entwickler
                     </Button>
@@ -123,7 +121,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
 
                 {/* Feedback an App-Portal */}
                 <Drawer>
-                    <DrawerTrigger asChild>
+                    <DrawerTrigger aria-label="Feedback an App-Portal" title="Feedback an App-Portal" asChild>
                     <Button className="rounded-md w-full" variant="default2">
                         Feedback an App-Portal
                     </Button>
@@ -148,7 +146,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
             </Card>
 
           {/* E — Price */}
-          <Card className="relative rounded-3xl col-span-2 row-span-1 border bg-muted/40 ">
+          <Card className="relative col-span-1 md:col-span-2 rounded-3xl border bg-muted/40">
             <div className="absolute left-3 gap-2 top-3 flex h-10 w-24 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Tags className="h-5 w-5" />
                 <span>Tags</span>
@@ -159,7 +157,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           </Card>
 
           {/* Website & GitHub */}
-          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+          <Card className="relative rounded-3xl border py-12 md:py-0 bg-muted/40 col-span-1 md:col-span-2">
             <CardContent className="flex h-full flex-col gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-24 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <ExternalLink className="h-4 w-4" />
@@ -191,7 +189,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           </Card>
 
           {/* Downloads (App Store / Google Play) */}
-          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+          <Card className="relative rounded-3xl border py-12 md:py-0 bg-muted/40 col-span-1 md:col-span-2">
             <CardContent className="flex h-full flex-col gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-36 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Smartphone className="h-4 w-4" />
@@ -223,7 +221,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           </Card>
 
           {/* Veröffentlichungen / Changelog */}
-          <Card className="relative rounded-3xl border bg-muted/40 col-span-4">
+          <Card className="relative rounded-3xl border bg-muted/40 col-span-1 md:col-span-4">
             <CardContent className="flex h-full flex-col justify-center items-center gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-48 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <CalendarClock className="h-4 w-4" />
@@ -253,7 +251,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
           </Card>
 
           {/* Bug melden */}
-          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+          <Card className="relative rounded-3xl border py-12 md:py-0 bg-muted/40 col-span-1 md:col-span-2">
             <CardContent className="flex h-full w-full flex-col justify-center items-stretch gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-36 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Bug className="h-4 w-4" />
@@ -281,7 +279,7 @@ useEffect(() => setIsAccessible(barrierFree), [barrierFree]);
 
           {/* Support Mail */}
 
-          <Card className="relative rounded-3xl border bg-muted/40 col-span-2">
+          <Card className="relative rounded-3xl border py-12 md:py-0 bg-muted/40 col-span-1 md:col-span-2">
             <CardContent className="flex h-full w-full flex-col justify-center items-stretch gap-4 p-6 md:p-8">
               <div className="absolute left-3 top-3 flex h-10 w-52 gap-2 items-center justify-center rounded-xl bg-background/70 ring-1 ring-border">
                 <Mail className="h-4 w-4" />

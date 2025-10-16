@@ -74,8 +74,9 @@ export function AppSidebar(
           variant="link"
           onClick={handleAdminClick}
           className="!mt-auto cursor-pointer p-2 m-2 rounded-md flex w-full justify-center items-center gap-2"
+          aria-label={isAdminPath ? 'Logout' : 'Admin'}
         >
-          <LockClosedIcon />
+          <LockClosedIcon aria-hidden="true" />
           {isAdminPath ? 'Logout' : 'Admin'}
         </Button>
       </SidebarContent>

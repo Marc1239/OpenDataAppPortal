@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -70,8 +71,9 @@ export const Gallery6 = ({
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
               className="disabled:pointer-events-auto"
+              aria-label="Nächste Elemente"
             >
-              <ArrowLeft className="size-5" />
+              <ArrowLeft className="size-5" aria-hidden="true" />
             </Button>
             <Button
               size="icon"
@@ -79,8 +81,9 @@ export const Gallery6 = ({
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
               className="disabled:pointer-events-auto"
+              aria-label="Vorherige Elemente"
             >
-              <ArrowRight className="size-5" />
+              <ArrowRight className="size-5" aria-hidden="true" />
             </Button>
           </div>
         </div>
@@ -103,9 +106,11 @@ export const Gallery6 = ({
                     <div className="flex aspect-[3/2] overflow-clip rounded-xl">
                       <div className="flex-1">
                         <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.title}
+                            width={400}
+                            height={150}
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
