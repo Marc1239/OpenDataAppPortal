@@ -1,0 +1,55 @@
+name: Deploy to Hetzner
+
+on:
+  workflow_run:
+    workflows: [CI]
+    branches: [main]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hetzner
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: SSH deploy
+    runs-on: ubuntu-latest
+    # workflow_run fires on failure too — only continue when CI went green.
+    # For manual dispatch (workflow_run.conclusion is null), always proceed.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    environment:
+      name: production
+      url: https://${{ vars.FRONTEND_DOMAIN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HETZNER_SSH_HOST }}
+          username: ${{ secrets.HETZNER_SSH_USER }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          port: ${{ secrets.HETZNER_SSH_PORT || 22 }}
+          script_stop: true
+          script: |
+            set -euo pipefail
+            cd "${{ secrets.HETZNER_DEPLOY_PATH }}"
+            git fetch --prune origin
+            git reset --hard origin/main
+            ./scripts/deploy.sh
+
+      - name: Smoke test — frontend responds
+        run: |
+          set -e
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            if curl -fsS -o /dev/null -w "%{http_code}" "https://${{ vars.FRONTEND_DOMAIN }}/" | grep -qE "^(2|3)[0-9]{2}$"; then
+              echo "frontend is up"; exit 0
+            fi
+            echo "waiting for frontend... ($i)"
+            sleep 6
+          done
+          echo "frontend did not respond with 2xx/3xx in time" >&2
+          exit 1
