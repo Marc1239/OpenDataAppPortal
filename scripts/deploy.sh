@@ -14,7 +14,16 @@ if [[ ! -f .env ]]; then
   exit 1
 fi
 
-COMPOSE=(docker compose -f docker-compose.yml -f docker-compose.prod.yml)
+# Use the Caddy/TLS overlay only when a domain is configured. For IP-only
+# deployments (no FRONTEND_DOMAIN in .env) we expose 3000/3001 directly and
+# skip docker-compose.prod.yml so Caddy isn't needed.
+COMPOSE=(docker compose -f docker-compose.yml)
+if grep -qE '^FRONTEND_DOMAIN=[^[:space:]]+' .env; then
+  COMPOSE+=(-f docker-compose.prod.yml)
+  echo "[deploy] domain mode (Caddy overlay)"
+else
+  echo "[deploy] IP-only mode (no Caddy, ports 3000/3001 exposed)"
+fi
 
 echo "[deploy] building images"
 "${COMPOSE[@]}" build --pull

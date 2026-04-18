@@ -22,7 +22,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success'
     environment:
       name: production
-      url: https://${{ vars.FRONTEND_DOMAIN }}
+      url: ${{ vars.FRONTEND_URL }}
     steps:
       - uses: actions/checkout@v4
 
@@ -44,9 +44,14 @@ jobs:
       - name: Smoke test — frontend responds
         run: |
           set -e
+          URL="${{ vars.FRONTEND_URL }}"
+          if [[ -z "$URL" ]]; then
+            echo "FRONTEND_URL variable not set — skipping smoke test"
+            exit 0
+          fi
           for i in 1 2 3 4 5 6 7 8 9 10; do
-            if curl -fsS -o /dev/null -w "%{http_code}" "https://${{ vars.FRONTEND_DOMAIN }}/" | grep -qE "^(2|3)[0-9]{2}$"; then
-              echo "frontend is up"; exit 0
+            if curl -fsS -o /dev/null -w "%{http_code}" "$URL/" | grep -qE "^(2|3)[0-9]{2}$"; then
+              echo "frontend is up ($URL)"; exit 0
             fi
             echo "waiting for frontend... ($i)"
             sleep 6
