@@ -1,0 +1,43 @@
+services:
+  mongo:
+    ports: []
+
+  cms:
+    ports: []
+    environment:
+      NODE_ENV: production
+      PAYLOAD_PUBLIC_SERVER_URL: https://${CMS_DOMAIN}
+      FRONTEND_URL: https://${FRONTEND_DOMAIN}
+    labels:
+      - "caddy=${CMS_DOMAIN}"
+      - "caddy.reverse_proxy={{upstreams 3001}}"
+
+  frontend:
+    ports: []
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_PAYLOAD_URL: https://${CMS_DOMAIN}
+      PAYLOAD_INTERNAL_URL: http://cms:3001
+    labels:
+      - "caddy=${FRONTEND_DOMAIN}"
+      - "caddy.reverse_proxy={{upstreams 3000}}"
+
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:2.9-alpine
+    container_name: odap_caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      CADDY_INGRESS_NETWORKS: odap
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - odap
+
+volumes:
+  caddy_data:
+  caddy_config:

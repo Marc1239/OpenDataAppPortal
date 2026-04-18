@@ -1,0 +1,69 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: odap_mongo
+    restart: unless-stopped
+    command: ["--bind_ip_all"]
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - odap
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 }).ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cms:
+    build:
+      context: ./cms
+      dockerfile: Dockerfile
+    container_name: odap_cms
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URI: mongodb://mongo:27017/opendata
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET:-change-me-in-production}
+      PAYLOAD_PUBLIC_SERVER_URL: ${PAYLOAD_PUBLIC_SERVER_URL:-http://localhost:3001}
+      FRONTEND_URL: ${FRONTEND_URL:-http://frontend:3000}
+      REVALIDATE_SECRET: ${REVALIDATE_SECRET:-change-me-in-production}
+      SEED_ADMIN_EMAIL: ${SEED_ADMIN_EMAIL:-admin@example.com}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-changeme123}
+    volumes:
+      - cms_media:/app/media
+    ports:
+      - "3001:3001"
+    networks:
+      - odap
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: odap_frontend
+    restart: unless-stopped
+    depends_on:
+      - cms
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      NEXT_PUBLIC_PAYLOAD_URL: ${NEXT_PUBLIC_PAYLOAD_URL:-http://localhost:3001}
+      PAYLOAD_INTERNAL_URL: http://cms:3001
+      PAYLOAD_REVALIDATE: ${PAYLOAD_REVALIDATE:-60}
+      REVALIDATE_SECRET: ${REVALIDATE_SECRET:-change-me-in-production}
+    ports:
+      - "3000:3000"
+    networks:
+      - odap
+
+networks:
+  odap:
+    driver: bridge
+
+volumes:
+  mongo_data:
+  cms_media:
