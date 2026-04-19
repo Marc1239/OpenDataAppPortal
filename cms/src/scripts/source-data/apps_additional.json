@@ -418,5 +418,1124 @@
       "publisherMail": null,
       "supportMail": null
     }
+  },
+  {
+    "title": "Berliner Haushalt",
+    "slug": "berliner-haushalt",
+    "city": "Berlin",
+    "category": "Haushalt & Transparenz",
+    "tags": [
+      "Haushalt",
+      "Berlin",
+      "Finanzen",
+      "Treemap",
+      "Textsuche",
+      "Open Source"
+    ],
+    "shortDescription": "Webapp zur Erkundung der geplanten Berliner Einnahmen und Ausgaben mit Visualisierung und Textsuche.",
+    "longDescription": "Die Anwendung wurde von ODIS und CityLAB Berlin gemeinsam mit der Senatsverwaltung für Finanzen entwickelt. Sie visualisiert offene Haushaltsdaten des Landes Berlin als interaktive Tree Maps und ergänzt diese um Such- und Filterfunktionen. Die Anwendung ist ausdrücklich als Open-Source-Projekt angelegt und wird für den aktuellen Doppelhaushalt weitergeführt.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": "2022",
+    "latestRelease": "2026",
+    "publishInformation": "Projekt der Technologiestiftung Berlin / ODIS / CityLAB Berlin zusammen mit der Senatsverwaltung für Finanzen; Open Source.",
+    "links": {
+      "website": "https://haushaltsdaten.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/berlin/haushaltsdaten",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/berlin/haushaltsdaten/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Leipzig gießt",
+    "slug": "leipzig-giesst",
+    "city": "Leipzig",
+    "category": "Umwelt & Klima",
+    "tags": [
+      "Stadtbäume",
+      "Bewässerung",
+      "Leipzig",
+      "Citizen Science",
+      "App",
+      "Webapp"
+    ],
+    "shortDescription": "Leipziger Adaptation von Gieß den Kiez als Webapp und mobile App zur koordinierten Baumbewässerung.",
+    "longDescription": "Leipzig gießt überträgt das Konzept von Gieß den Kiez auf Leipzig. Die Anwendung verarbeitet offene Baumkatasterdaten sowie Niederschlagsdaten des DWD und wird zusammen mit lokalen Initiativen weiterentwickelt. Neben der Webanwendung existieren mobile Apps für Android und iOS.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Projekt aus dem Code-for-Leipzig-Umfeld; basiert auf offenen Baum- und Wetterdaten.",
+    "links": {
+      "website": "https://www.leipziggiesst.de",
+      "appleAppStore": "https://apps.apple.com/de/app/leipzig-gie%C3%9Ft/id6443637713",
+      "googlePlay": "https://play.google.com/store/apps/details?id=webviewgold.leipziggiesst",
+      "github": "https://github.com/CodeforLeipzig/leipziggiesst",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/CodeforLeipzig/leipziggiesst/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "BranchenPuls",
+    "slug": "branchenpuls",
+    "city": "Berlin",
+    "category": "Wirtschaft & Stadtentwicklung",
+    "tags": [
+      "Unternehmen",
+      "IHK",
+      "Berlin",
+      "Karte",
+      "Wirtschaft",
+      "Open Data"
+    ],
+    "shortDescription": "Explorationstool für die Berliner Gewerbelandschaft auf Basis offener IHK-Daten.",
+    "longDescription": "Mit dem BranchenPuls lassen sich Unternehmens- und Standortstrukturen in Berlin räumlich und zeitlich erkunden. Das Tool basiert auf einem offenen Datensatz der IHK Berlin zu Mitgliedsunternehmen und ihren Betriebsstätten. Es ist als Prototyp veröffentlicht und soll gemeinsam mit interessierten Akteurinnen und Akteuren weiterentwickelt werden.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2023",
+    "latestRelease": null,
+    "publishInformation": "Prototypische Datenvisualisierung der ODIS / Technologiestiftung Berlin in Kooperation mit IHK Berlin.",
+    "links": {
+      "website": "https://branchenpuls.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/technologiestiftung/branchenpuls",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/technologiestiftung/branchenpuls/issues"
+    },
+    "contact": {
+      "publisherMail": "odis@ts.berlin",
+      "supportMail": "odis@ts.berlin"
+    }
+  },
+  {
+    "title": "EnergieCheckpoint",
+    "slug": "energiecheckpoint",
+    "city": "Berlin",
+    "category": "Energie & Klima",
+    "tags": [
+      "Energie",
+      "Sanierung",
+      "Öffentliche Gebäude",
+      "Berlin",
+      "Karte",
+      "Open Data"
+    ],
+    "shortDescription": "Webkarte zu Energieverbrauch und Sanierungspotenzialen öffentlicher Gebäude in Berlin.",
+    "longDescription": "Der Berliner EnergieCheckpoint visualisiert offene Daten zum Energieverbrauch und zu Einsparpotenzialen öffentlicher Gebäude. Nutzerinnen und Nutzer können Standorte auf einer Karte erkunden und Gebäude nach Energiekennzahlen und Sanierungsmerkmalen filtern. Die Anwendung wurde im ODIS-/CityLAB-Umfeld entwickelt.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2023",
+    "latestRelease": null,
+    "publishInformation": "Projekt der ODIS / Technologiestiftung Berlin.",
+    "links": {
+      "website": "https://energiecheckpoint.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/technologiestiftung/energiekarte",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/technologiestiftung/energiekarte/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Weihnachtsmarkt-Finder Berlin",
+    "slug": "weihnachtsmarkt-finder-berlin",
+    "city": "Berlin",
+    "category": "Freizeit & Stadtdaten",
+    "tags": [
+      "Weihnachtsmärkte",
+      "Berlin",
+      "Karte",
+      "Wetter",
+      "ÖPNV",
+      "Open Data"
+    ],
+    "shortDescription": "Interaktive Webkarte mit Berliner Weihnachtsmärkten, Filtern, Wetterdaten und ÖPNV-Bezug.",
+    "longDescription": "Der Weihnachtsmarkt-Finder von ODIS visualisiert offene Datensätze zu Berliner Weihnachtsmärkten und kombiniert sie mit Informationen zu Toiletten, Haltestellen, Wetter und Barrierefreiheit. Die Anwendung wurde zunächst 2022 veröffentlicht und später um neue Funktionen wie Suche und englische Sprache erweitert. Sie ist ein saisonales Beispiel für alltagsnahe Open-Data-Anwendungen.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2022",
+    "latestRelease": "2024",
+    "publishInformation": "Projekt der ODIS / Technologiestiftung Berlin; basiert auf offenen Datensätzen der Berliner Verwaltung und weiteren offenen Quellen.",
+    "links": {
+      "website": "https://weihnachtsmaerkte.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/technologiestiftung/weihnachtsmarktkarte",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/technologiestiftung/weihnachtsmarktkarte/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Kiezcolors",
+    "slug": "kiezcolors",
+    "city": "Berlin",
+    "category": "Geo & Stadtdaten",
+    "tags": [
+      "Flächennutzung",
+      "Berlin",
+      "Karte",
+      "Postkarte",
+      "ALKIS",
+      "Open Data"
+    ],
+    "shortDescription": "Webanwendung, die aus offenen Flächennutzungsdaten farbige Kiez-Postkarten erzeugt.",
+    "longDescription": "Kiezcolors stellt die Verteilung von Flächennutzungen in einem Berliner Umfeld visuell dar und erzeugt daraus eine herunterladbare Postkarte. Grundlage sind offene ALKIS-Daten aus Berlin. Die App verbindet Exploration, Gestaltung und Open Data auf spielerische Weise.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2023",
+    "latestRelease": null,
+    "publishInformation": "Projekt von ODIS und CityLAB Berlin / Technologiestiftung Berlin.",
+    "links": {
+      "website": "https://kiezcolors.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Bedarfserfassung Stadtbibliothek Pankow",
+    "slug": "bedarfserfassung-stadtbibliothek-pankow",
+    "city": "Berlin-Pankow",
+    "category": "Bildung & Kultur",
+    "tags": [
+      "Bibliothek",
+      "Dashboard",
+      "Pankow",
+      "Ausleihen",
+      "Statistik",
+      "Open Data"
+    ],
+    "shortDescription": "Dashboard zur Analyse offener Ausleihstatistiken der Stadtbibliothek Pankow.",
+    "longDescription": "Das Bibliotheksdashboard der ODIS visualisiert offene Ausleihdaten aus Pankower Bibliotheken und unterstützt die datengetriebene Bedarfserfassung. Die Anwendung zeigt, welche Medien häufig ausgeliehen werden und welche Standorte besonders stark genutzt sind. Damit übersetzt sie veröffentlichte Verwaltungsdaten in konkrete Entscheidungen der Kulturverwaltung.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2023",
+    "latestRelease": "2024",
+    "publishInformation": "Dashboard der ODIS / Technologiestiftung Berlin auf Basis offener Bibliotheksdaten aus Pankow.",
+    "links": {
+      "website": "https://bibliotheksdaten.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Offener Rat Münster",
+    "slug": "offener-rat-muenster",
+    "city": "Münster",
+    "category": "Politik & Verwaltung",
+    "tags": [
+      "Ratsinformation",
+      "Münster",
+      "Sitzungen",
+      "Vorlagen",
+      "Suche",
+      "Open Source"
+    ],
+    "shortDescription": "Webtool für aktuelle Vorlagen und Sitzungen des Rats Münster in besser durchsuchbarer Form.",
+    "longDescription": "Offener Rat Münster ist ein Civic-Tech-Projekt, das Inhalte des Ratsinformationssystems der Stadt Münster übersichtlicher und besser durchsuchbar aufbereitet. Damit wird kommunalpolitische Information zugänglicher gemacht. Der Quellcode liegt offen auf GitHub vor.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Germany-Projekt aus Münster.",
+    "links": {
+      "website": "https://rat.codeformuenster.org",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeformuenster/offenerrat-ms",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/codeformuenster/offenerrat-ms/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Offener Stadtrat",
+    "slug": "offener-stadtrat",
+    "city": "Jena",
+    "category": "Politik & Verwaltung",
+    "tags": [
+      "Ratsinformation",
+      "Jena",
+      "Bürgerinformation",
+      "Kommunalpolitik",
+      "Open Source"
+    ],
+    "shortDescription": "Offenes Ratsinformationssystem für Jena mit besserer Indizierung und automatischer Information für Bürger.",
+    "longDescription": "Das Projekt Offener Stadtrat soll Inhalte des Jenaer Ratsinformationssystems besser indizieren, automatisch kategorisieren und für Bürgerinnen und Bürger zugänglicher machen. Es ist ein typisches Beispiel für lokale Open-Data-Weiterverwendung im Politikbereich. Der Quellcode ist offen verfügbar.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Germany-Projekt aus Jena.",
+    "links": {
+      "website": "https://www.offenes-jena.com",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/OffenesJena/OffenerStadtrat",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/OffenesJena/OffenerStadtrat/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Ratskarte Dresden",
+    "slug": "ratskarte-dresden",
+    "city": "Dresden",
+    "category": "Politik & Verwaltung",
+    "tags": [
+      "Ratsinformation",
+      "Dresden",
+      "Karte",
+      "Dokumente",
+      "Straßenbezug",
+      "Open Source"
+    ],
+    "shortDescription": "Kartiert Ratsdokumente aus Dresden nach Straßenbezug und macht lokale Themen räumlich auffindbar.",
+    "longDescription": "Die Ratskarte Dresden hilft dabei, Dokumente aus dem städtischen Ratsinfosystem räumlich zu erschließen. Nutzerinnen und Nutzer sehen, welche Beschlussvorlagen oder Dokumente Straßen in ihrer Umgebung erwähnen. Damit verbindet die Webapp kommunalpolitische Dokumente mit Kartenlogik.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Germany-Projekt aus Dresden.",
+    "links": {
+      "website": "https://ratskarte.offenesdresden.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/astro/democropticon",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/astro/democropticon/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Berliner Schulen",
+    "slug": "berliner-schulen",
+    "city": "Berlin",
+    "category": "Bildung",
+    "tags": [
+      "Schulen",
+      "Berlin",
+      "Karte",
+      "Bildungsdaten",
+      "Vergleich",
+      "Open Data"
+    ],
+    "shortDescription": "Kartenbasierte Schulübersicht für Berlin auf Basis aufbereiteter offener Schuldaten.",
+    "longDescription": "Berliner Schulen wurde im Umfeld der Initiative 2.0 und der TU Berlin entwickelt. Die Webanwendung bereitet Berliner Schuldaten benutzerfreundlich auf und hilft bei der Suche nach einer passenden Schule. Das Projekt zeigt, wie offene Bildungsdaten verständlich visualisiert werden können.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Projekt aus dem Code-for-Germany-Umfeld; GitHub mit mehreren Tags verfügbar.",
+    "links": {
+      "website": "https://berlinerschulen.ini20.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/ini20/berliner-schulen",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/ini20/berliner-schulen/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Wo unsere Kinder lernen",
+    "slug": "wo-unsere-kinder-lernen",
+    "city": "Berlin",
+    "category": "Bildung & Infrastruktur",
+    "tags": [
+      "Schulen",
+      "Sanierung",
+      "Berlin",
+      "Karte",
+      "Gebäudezustand",
+      "Open Data"
+    ],
+    "shortDescription": "Webkarte zum Sanierungsstau und Zustand öffentlicher Schulen in Berlin.",
+    "longDescription": "Die Anwendung visualisiert, wie teuer die Sanierung Berliner Schulen ist und macht marode Schulgebäude räumlich sichtbar. Sie basiert auf veröffentlichten Verwaltungsdaten und übersetzt komplexe Tabellen in eine leicht verständliche Kartenanwendung. Das Projekt wurde von Thomas Tursics veröffentlicht.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Offenes Webprojekt von Thomas Tursics; GitHub öffentlich.",
+    "links": {
+      "website": "https://schulsanierung.tursics.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/tursics/schulsanierung",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/tursics/schulsanierung/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Quereinsteigende",
+    "slug": "quereinsteigende",
+    "city": "Berlin",
+    "category": "Bildung",
+    "tags": [
+      "Lehrkräfte",
+      "Quereinsteiger",
+      "Berlin",
+      "Karte",
+      "Schulen",
+      "Open Data"
+    ],
+    "shortDescription": "Kartenanwendung zur Verteilung von Lehrkräfte-Quereinsteigenden über Berliner Bezirke.",
+    "longDescription": "Die Anwendung visualisiert Daten aus einer Kleinen Anfrage zu Quereinsteigenden an Berliner Schulen. Über Filter und Kartendarstellung lassen sich Muster nach Bezirken und Schulformen erkennen. Das Projekt zeigt, wie parlamentarische Daten in analysierbare Open-Data-Anwendungen überführt werden können.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Offenes Webprojekt von Thomas Tursics.",
+    "links": {
+      "website": null,
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/tursics/schule-quereinsteiger",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/tursics/schule-quereinsteiger/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Wir zählen",
+    "slug": "wir-zaehlen",
+    "city": "Berlin",
+    "category": "Mobilität",
+    "tags": [
+      "Verkehr",
+      "Zählungen",
+      "Dashboard",
+      "Berlin",
+      "Citizen Science",
+      "Open Data"
+    ],
+    "shortDescription": "Dashboard-Prototyp für Verkehrszählungen auf Basis offener Mobilitätsdaten.",
+    "longDescription": "Wir zählen möchte Verkehrszählungen aus dem Projekt „Berlin zählt Mobilität“ und weiteren Quellen sichtbar machen. Ziel ist ein interaktives Dashboard, auf dem Nutzende eigene Ansichten zusammenstellen können. Das Projekt verbindet offene Verkehrsdaten mit zivilgesellschaftlicher Datensammlung.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Laufendes Code-for-Berlin-Projekt.",
+    "links": {
+      "website": "https://berlin-zaehlt.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Open Legal Data",
+    "slug": "open-legal-data",
+    "city": "deutschlandweit",
+    "category": "Recht & Transparenz",
+    "tags": [
+      "Recht",
+      "Urteile",
+      "Gesetze",
+      "Suche",
+      "Open Data",
+      "API"
+    ],
+    "shortDescription": "Freie Webplattform für gerichtliche Entscheidungen und Rechtsinformationen auf Open-Data-Basis.",
+    "longDescription": "Open Legal Data macht juristische Dokumente und Informationen öffentlich zugänglich und verfolgt ausdrücklich Open-Data-Prinzipien. Die Webanwendung verarbeitet unter anderem Gerichtsentscheidungen und Gesetze und bietet Suche sowie API-nahe Funktionen über die zugrunde liegende OLDP-Plattform. Der Quellcode ist offen und wird aktiv weiterentwickelt.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": "2018",
+    "latestRelease": "2026",
+    "publishInformation": "Gemeinnützige Initiative; Plattform und Kernsoftware offen auf GitHub verfügbar.",
+    "links": {
+      "website": "https://openlegaldata.io",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/openlegaldata/oldp",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/openlegaldata/oldp/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Was steckt in meinem Leitungswasser?",
+    "slug": "was-steckt-in-meinem-leitungswasser",
+    "city": "Leipzig / MIDEWA-Versorgungsgebiet",
+    "category": "Umwelt & Gesundheit",
+    "tags": [
+      "Trinkwasser",
+      "Leitungswasser",
+      "Vergleich",
+      "Karte",
+      "Mineralstoffe",
+      "Open Data"
+    ],
+    "shortDescription": "Visualisiert Qualitätswerte des Trinkwassers und vergleicht sie mit Mineralwasser.",
+    "longDescription": "Die Webanwendung zeigt Qualitätswerte des Leitungswassers schematisch und kartiert für das Versorgungsgebiet der MIDEWA. Sie macht abstrakte Labor- und Verwaltungsdaten greifbar, indem sie diese mit Produkten aus dem Handel vergleichbar macht. Der Quellcode ist offen verfügbar.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Leipzig-Projekt; GitHub unter MIT-Lizenz.",
+    "links": {
+      "website": "https://trinkwasser.codeforleipzig.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeforleipzig/trinkwasser",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/codeforleipzig/trinkwasser/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Wo ist Markt?",
+    "slug": "wo-ist-markt",
+    "city": "Leipzig",
+    "category": "Bürgerservices",
+    "tags": [
+      "Wochenmärkte",
+      "Leipzig",
+      "Karte",
+      "Filter",
+      "Öffnungszeiten",
+      "Open Data"
+    ],
+    "shortDescription": "Webkarte mit aktuell stattfindenden Wochenmärkten in Leipzig.",
+    "longDescription": "Wo ist Markt? zeigt Leipziger Wochenmärkte auf einer Karte und erlaubt Filter für den aktuellen Tag oder alle Märkte. Das Projekt nutzt maschinenlesbare Daten und ergänzende Scraper, um Marktinformationen aktuell zu halten. Damit wird ein kommunaler Alltagservice auf Open-Data-Basis bereitgestellt.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Leipzig-Projekt mit offenem GitHub-Repository.",
+    "links": {
+      "website": "https://wo-ist-markt.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/wo-ist-markt/wo-ist-markt.github.io",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/wo-ist-markt/wo-ist-markt.github.io/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Leipzig pumpt",
+    "slug": "leipzig-pumpt",
+    "city": "Leipzig",
+    "category": "Umwelt & Klima",
+    "tags": [
+      "Pumpen",
+      "Leipzig",
+      "Karte",
+      "Wasser",
+      "OpenStreetMap",
+      "Wikipedia"
+    ],
+    "shortDescription": "Informiert über Leipziger Handschwengelpumpen und ihren Status als Wasserspender.",
+    "longDescription": "Leipzig pumpt ist ein Projekt rund um Handschwengelpumpen in Leipzig und ihre Nutzbarkeit, etwa für das Gießen von Bäumen. Die Anwendung nutzt offene Daten aus Wikipedia und OpenStreetMap und macht Standorte und Status der Pumpen sichtbar. Sie ergänzt damit lokale Klima- und Stadtgrün-Projekte.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Leipzig-Projekt; GitHub unter MIT-Lizenz.",
+    "links": {
+      "website": "https://codeforleipzig.github.io/leipzig_auf_pump/",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/CodeforLeipzig/leipzig_auf_pump",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/CodeforLeipzig/leipzig_auf_pump/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Recyclinghof-Finder",
+    "slug": "recyclinghof-finder",
+    "city": "Heilbronn",
+    "category": "Bürgerservices",
+    "tags": [
+      "Recycling",
+      "Abfall",
+      "Heilbronn",
+      "Karte",
+      "ICS",
+      "Open Data"
+    ],
+    "shortDescription": "Mobiloptimierte Karte aller Recyclinghöfe im Raum Heilbronn mit ergänzenden Abfuhrkalender-Funktionen.",
+    "longDescription": "Der Recyclinghof-Finder zeigt alle Recyclinghöfe im Stadt- und Landkreis Heilbronn mobiloptimiert auf einer Karte. Ergänzend können Kalenderdateien mit Müllabfuhrterminen bereitgestellt werden. Das Projekt nutzt offene bzw. maschinenlesbar aufbereitete kommunale Informationen und Scraper.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Germany-Projekt; öffentliches GitHub-Repository vorhanden.",
+    "links": {
+      "website": "https://recycling.gonam.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/opendatalab-de/recycling-map",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/opendatalab-de/recycling-map/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "FinderApp",
+    "slug": "finderapp",
+    "city": "mehrere Städte / prototypisch aus München",
+    "category": "Bürgerservices",
+    "tags": [
+      "OpenStreetMap",
+      "Standortsuche",
+      "Defibrillatoren",
+      "Toiletten",
+      "Karte",
+      "Open Source"
+    ],
+    "shortDescription": "Generische Web-App zum Finden bestimmter Orte in der Umgebung auf Basis von OpenStreetMap.",
+    "longDescription": "Die FinderApp ist eine generische Webanwendung zum Auffinden des nächstgelegenen Orttyps, etwa öffentlicher Toiletten, Recyclingstationen oder Defibrillatoren. Sie baut auf OpenStreetMap auf und ist so angelegt, dass neue Varianten leicht konfiguriert werden können. Das Projekt steht unter einer freien Lizenz auf GitHub.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Munich-Projekt; Apache-2.0-lizenziert.",
+    "links": {
+      "website": "https://codeformunich.github.io/FinderApp/",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeformunich/FinderApp",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/codeformunich/FinderApp/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Visualisierung der Bonner Stolpersteine",
+    "slug": "visualisierung-der-bonner-stolpersteine",
+    "city": "Bonn",
+    "category": "Geschichte & Kultur",
+    "tags": [
+      "Stolpersteine",
+      "Bonn",
+      "Karte",
+      "Erinnerungskultur",
+      "Open Data",
+      "NS-Geschichte"
+    ],
+    "shortDescription": "Webanwendung zur digitalen Erkundung der Bonner Stolpersteine.",
+    "longDescription": "Das Projekt visualisiert die Bonner Stolpersteine digital und macht ihre Standorte sowie die damit verbundenen Schicksale im Web zugänglich. Ziel ist eine offene, virtuelle Aufbereitung lokaler Erinnerungskultur. Die Demo ist öffentlich erreichbar, der Code liegt auf GitHub.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Code-for-Bonn-Projekt mit offenem GitHub-Repository.",
+    "links": {
+      "website": "https://stolpersteine.codeforbonn.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/penpendede/stolperstein-bonn",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/penpendede/stolperstein-bonn/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Smart City-Dashboard Münster",
+    "slug": "smart-city-dashboard-muenster",
+    "city": "Münster",
+    "category": "Smart City & Stadtdaten",
+    "tags": [
+      "Dashboard",
+      "Münster",
+      "Echtzeitdaten",
+      "Sensoren",
+      "Mobilität",
+      "Umwelt"
+    ],
+    "shortDescription": "Dashboard mit Echtzeitdaten aus Münster zu Mobilität, Umwelt und Stadtentwicklung.",
+    "longDescription": "Das Smart City-Dashboard visualisiert ausgewählte Echtzeitdaten aus Münster, darunter Fahrradzählstationen, Parkhäuser, Passantenfrequenzen und Umweltdaten. Es ist ein Informationsangebot der Stabsstelle Smart City Münster. Anfang 2026 wurde es vorübergehend deaktiviert und in Teilen in das Klimadashboard überführt.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": "2021",
+    "latestRelease": null,
+    "publishInformation": "Informationsangebot der Stabsstelle Smart City Münster; Anfang 2026 temporär deaktiviert.",
+    "links": {
+      "website": "https://smartcity.ms/dashboard/",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Klimadashboard Münster",
+    "slug": "klimadashboard-muenster",
+    "city": "Münster",
+    "category": "Umwelt & Klima",
+    "tags": [
+      "Klima",
+      "Münster",
+      "Dashboard",
+      "CO2",
+      "Energie",
+      "Mobilität"
+    ],
+    "shortDescription": "Dashboard zum Fortschritt Münsters auf dem Weg zur Klimaneutralität.",
+    "longDescription": "Das Klimadashboard Münster bündelt Kennzahlen zu Klima, Energie, Mobilität und Gebäuden. Es zeigt offen bereitgestellte oder öffentlich nutzbare Datenquellen in einer modern aufbereiteten Oberfläche und soll Fortschritte der Stadt zur Klimaneutralität nachvollziehbar machen. Auf der Website wird außerdem eine Adaptionsanleitung für die freie Software angeboten.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": "2023",
+    "latestRelease": null,
+    "publishInformation": "Projekt der Stadt Münster mit Smart City Münster und Stabsstelle Klima.",
+    "links": {
+      "website": "https://www.klimadashboard.ms",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": "klima@stadt-muenster.de",
+      "supportMail": "smartcity@stadt-muenster.de"
+    }
+  },
+  {
+    "title": "Mobilitätsdashboard Aachen",
+    "slug": "mobilitaetsdashboard-aachen",
+    "city": "Aachen",
+    "category": "Mobilität",
+    "tags": [
+      "Verkehr",
+      "Aachen",
+      "Parken",
+      "Bus",
+      "E-Ladestationen",
+      "Dashboard"
+    ],
+    "shortDescription": "Dashboard mit aktuellen Verkehrsinformationen für Aachen, inklusive Parken, Bus, Wetter und Ladepunkten.",
+    "longDescription": "Das Mobilitätsdashboard der Stadt Aachen bündelt aktuelle Informationen zu Parkplätzen, Verkehrslage, Busfahrplänen, E-Ladestationen und weiteren Mobilitätsangeboten. Es ist ein kommunales Beispiel für die praktische Nutzung offener oder offengelegter Verkehrsdaten in einer zentralen Weboberfläche.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": null,
+    "latestRelease": "2025",
+    "publishInformation": "Webanwendung der Stadt Aachen.",
+    "links": {
+      "website": "https://verkehr.aachen.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Interaktiver Unfallatlas",
+    "slug": "interaktiver-unfallatlas",
+    "city": "deutschlandweit",
+    "category": "Mobilität & Sicherheit",
+    "tags": [
+      "Unfälle",
+      "Karte",
+      "Straßenverkehr",
+      "Statistik",
+      "Bundesländer",
+      "Open Data"
+    ],
+    "shortDescription": "Interaktive Kartenanwendung zu Unfällen mit Personenschaden in Deutschland.",
+    "longDescription": "Der Unfallatlas der amtlichen Statistik macht Unfälle mit Personenschaden auf Straßenebene sichtbar. Nutzerinnen und Nutzer können nach Unfalltypen, Beteiligten und Unfallfolgen filtern; die zugrunde liegenden Daten lassen sich als Open Data herunterladen. Die Karte funktioniert auch auf mobilen Geräten und deckt inzwischen das gesamte Bundesgebiet ab.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": null,
+    "latestRelease": "2025",
+    "publishInformation": "Kartenanwendung der amtlichen Statistik / Statistikportal.",
+    "links": {
+      "website": "https://unfallatlas.statistikportal.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Wheelmap",
+    "slug": "wheelmap",
+    "city": "Berlin (Projektursprung), international nutzbar",
+    "category": "Barrierefreiheit & Mobilität",
+    "tags": [
+      "Barrierefreiheit",
+      "Rollstuhl",
+      "OpenStreetMap",
+      "Karte",
+      "App",
+      "Webapp"
+    ],
+    "shortDescription": "Webapp und mobile App zum Finden und Bewerten rollstuhlgerechter Orte.",
+    "longDescription": "Wheelmap ist ein Projekt von Sozialhelden e.V. und nutzt offene Geodaten aus OpenStreetMap sowie weitere Partnerdaten, um rollstuhlgerechte Orte sichtbar zu machen. Neben der Webanwendung existieren Apps für Android und iOS. Die Anwendung ist international, stammt aber aus Deutschland und zählt zu den bekanntesten offenen Mobilitäts- und Inklusionsprojekten.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": "2010",
+    "latestRelease": "2024",
+    "publishInformation": "Projekt von Sozialhelden e.V. aus Berlin; Web und mobile Apps verfügbar.",
+    "links": {
+      "website": "https://wheelmap.org",
+      "appleAppStore": "https://itunes.apple.com/de/app/wheelmap/id399239476?mt=8",
+      "googlePlay": "https://play.google.com/store/apps/details?id=org.wheelmap.android.online",
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": "info@sozialhelden.de",
+      "supportMail": "info@sozialhelden.de"
+    }
+  },
+  {
+    "title": "KiTa-Finder NRW",
+    "slug": "kita-finder-nrw",
+    "city": "Nordrhein-Westfalen",
+    "category": "Familie & Soziales",
+    "tags": [
+      "Kita",
+      "Betreuung",
+      "NRW",
+      "Suche",
+      "Karte",
+      "Familie"
+    ],
+    "shortDescription": "Online-Suchanwendung für über 10.000 Kitas und Kindertagespflege-Angebote in NRW.",
+    "longDescription": "Der KiTa-Finder NRW hilft Eltern, Kindertageseinrichtungen und Vermittlungsstellen in Nordrhein-Westfalen zu finden. Die Anwendung bietet Umkreissuche, Karte, Ergebnislisten und zusätzliche Filter. Sie ist ein landesweites Beispiel für öffentlich bereitgestellte Such- und Informationsanwendungen.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Online-Angebot des Landes Nordrhein-Westfalen.",
+    "links": {
+      "website": "https://www.kita.nrw.de/kinder-betreuen/kita-finder",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Heimfinder NRW",
+    "slug": "heimfinder-nrw",
+    "city": "Nordrhein-Westfalen",
+    "category": "Familie & Soziales",
+    "tags": [
+      "Pflege",
+      "Pflegeplätze",
+      "NRW",
+      "App",
+      "Webapp",
+      "Suche"
+    ],
+    "shortDescription": "Webapp und mobile App zum Finden freier Pflegeplätze in Nordrhein-Westfalen.",
+    "longDescription": "Der Heimfinder NRW zeigt tagesaktuell freie Langzeit- und Kurzzeitpflegeplätze in über 2.000 Einrichtungen. Das Land NRW stellt den Dienst sowohl als Webversion als auch als App bereit. Die Anwendung gilt als erstes landesweites App-Angebot dieser Art in Deutschland.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": null,
+    "latestRelease": "2025",
+    "publishInformation": "Angebot des Landes Nordrhein-Westfalen; Web und mobile Apps.",
+    "links": {
+      "website": "https://heimfinder.nrw.de",
+      "appleAppStore": "https://apps.apple.com/de/app/heimfinder-nrw/id1484756364",
+      "googlePlay": "https://play.google.com/store/apps/details?id=de.nrw.heimfinder",
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": "heimfinder@d-nrw.de"
+    }
+  },
+  {
+    "title": "Klimawandelrisiken in Deutschland",
+    "slug": "klimawandelrisiken-in-deutschland",
+    "city": "deutschlandweit",
+    "category": "Umwelt & Klima",
+    "tags": [
+      "Klima",
+      "Risiken",
+      "Deutschland",
+      "Karte",
+      "Storytelling",
+      "Open Source"
+    ],
+    "shortDescription": "Interaktive Kartenanwendung zu regionalen Klimawandelrisiken in Deutschland.",
+    "longDescription": "Die Anwendung macht regionale Auswirkungen des Klimawandels in Deutschland kartografisch sichtbar. Sie nutzt offene Datensätze und Modellierungen unter anderem von Umweltbundesamt, BfG und Deutschem Wetterdienst. Der Code ist als Open Source veröffentlicht und die Karte wurde als Forschungsprojekt aufgebaut.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2022",
+    "latestRelease": null,
+    "publishInformation": "Forschungsnahe Open-Data-Anwendung; Open-Source-Code laut Open.NRW verfügbar.",
+    "links": {
+      "website": "https://klima-risiken.vislab.io",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Emissionskataster Luft NRW",
+    "slug": "emissionskataster-luft-nrw",
+    "city": "Nordrhein-Westfalen",
+    "category": "Umwelt & Gesundheit",
+    "tags": [
+      "Luftqualität",
+      "Emissionen",
+      "NRW",
+      "Karte",
+      "Industrie",
+      "CSV"
+    ],
+    "shortDescription": "Interaktive Karte zu Luftemissionen und Emittenten in Nordrhein-Westfalen.",
+    "longDescription": "Das Emissionskataster Luft NRW zeigt auf Karten und in Listen, wie belastet die Luft in einer Region ist und welche Quellen Schadstoffe verursachen. Die Anwendung basiert auf den Emissionsdaten des Landes Nordrhein-Westfalen und erlaubt auch Exportfunktionen. Damit gehört sie zu den datenintensiven Umwelt-Webapps im deutschen Open-Data-Umfeld.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2022",
+    "latestRelease": null,
+    "publishInformation": "Anwendung des Landesamts für Natur, Umwelt und Verbraucherschutz Nordrhein-Westfalen (LANUV).",
+    "links": {
+      "website": "https://www.ekl.nrw.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "PEGELONLINE",
+    "slug": "pegelonline",
+    "city": "deutschlandweit",
+    "category": "Umwelt & Wasser",
+    "tags": [
+      "Pegel",
+      "Wasserstand",
+      "Hydrologie",
+      "Bund",
+      "Karte",
+      "Webservices"
+    ],
+    "shortDescription": "Webanwendung für aktuelle Pegelstände und weitere gewässerkundliche Daten der Bundeswasserstraßen.",
+    "longDescription": "PEGELONLINE publiziert tagesaktuelle Rohwerte verschiedener gewässerkundlicher Parameter von Binnen- und Küstenpegeln. Die Webanwendung bietet Karte, Tabellen, Downloads und Webservices für offene Weiterverwendung. Sie ist eines der wichtigsten offiziellen Wasser-Open-Data-Angebote des Bundes mit anwendungsnaher Oberfläche.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": true,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Angebot der Wasserstraßen- und Schifffahrtsverwaltung des Bundes / BfG-nahes Umfeld.",
+    "links": {
+      "website": "https://pegelonline.wsv.de/gast/start",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": "https://pegelonline.wsv.de/webservices/rest-api/v2/",
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Recherchetool: Berliner Förderdaten unter der Lupe",
+    "slug": "recherchetool-berliner-foerderdaten-unter-der-lupe",
+    "city": "Berlin",
+    "category": "Haushalt & Transparenz",
+    "tags": [
+      "Förderdaten",
+      "Berlin",
+      "Zuwendungen",
+      "Visualisierung",
+      "Recherche",
+      "Open Data"
+    ],
+    "shortDescription": "Interaktive Visualisierung der Berliner Förderdatenbank für explorative Recherchen.",
+    "longDescription": "Das Recherchetool der Technologiestiftung Berlin visualisiert offene Zuwendungsdaten des Landes Berlin. Nutzerinnen und Nutzer können Förderungen nach Jahren, Empfängern, Summen und Themen analysieren und Zusammenhänge erkennen. Die Anwendung ist vor allem für Transparenz- und Recherchezwecke interessant.",
+    "heroImageURL": null,
+    "barrierFree": null,
+    "isFeatured": false,
+    "publishDate": "2018",
+    "latestRelease": null,
+    "publishInformation": "Projekt der Technologiestiftung Berlin auf Basis offener Zuwendungsdaten des Landes Berlin.",
+    "links": {
+      "website": "https://zuwendungsdatenbank.lab.technologiestiftung-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
   }
 ]
