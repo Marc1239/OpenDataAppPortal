@@ -52,6 +52,12 @@ const CATEGORY_ICON_MAP: Record<string, string> = {
   Umwelt: "TreePine",
   Tourismus: "MapPin",
   Wirtschaft: "Briefcase",
+  "Haushalt & Transparenz": "PieChart",
+  "Umwelt & Klima": "TreePine",
+  "Geo & Stadtdaten": "Map",
+  Bürgerservices: "Users",
+  Mobilität: "Bus",
+  "Politik & Verwaltung": "Landmark",
 };
 
 const ensureUser = async (payload: Payload) => {
@@ -303,6 +309,118 @@ const seedApps = async (payload: Payload) => {
   }
 };
 
+type NewFormatApp = {
+  title: string;
+  slug?: string;
+  city?: string | null;
+  category?: string | null;
+  tags?: string[];
+  shortDescription: string;
+  longDescription?: string | null;
+  heroImageURL?: string | null;
+  barrierFree?: boolean;
+  isFeatured?: boolean;
+  publishDate?: string | null;
+  latestRelease?: string | null;
+  publishInformation?: string | null;
+  links?: {
+    website?: string | null;
+    appleAppStore?: string | null;
+    googlePlay?: string | null;
+    github?: string | null;
+    api?: string | null;
+    downloadLink?: string | null;
+    reportBug?: string | null;
+  };
+  contact?: {
+    publisherMail?: string | null;
+    supportMail?: string | null;
+  };
+};
+
+const strOrUndef = (value: string | null | undefined): string | undefined =>
+  value ? value : undefined;
+
+const seedAdditionalApps = async (payload: Payload) => {
+  const jsonPath = path.join(SOURCE_DIR, "apps_additional.json");
+  let raw: NewFormatApp[];
+  try {
+    raw = JSON.parse(await readFile(jsonPath, "utf8")) as NewFormatApp[];
+  } catch {
+    payload.logger.info(
+      "apps_additional.json nicht gefunden — Zusatz-Seed übersprungen.",
+    );
+    return;
+  }
+
+  for (const entry of raw) {
+    const slug = entry.slug || slugify(entry.title);
+    const existing = await payload.find({
+      collection: "apps",
+      where: { slug: { equals: slug } },
+      limit: 1,
+    });
+
+    if (existing.totalDocs > 0) {
+      payload.logger.info(`App existiert bereits: ${entry.title}`);
+      continue;
+    }
+
+    const categoryId = entry.category
+      ? await ensureCategory(payload, entry.category)
+      : undefined;
+
+    const tagIds: string[] = [];
+    for (const tag of entry.tags ?? []) {
+      tagIds.push(await ensureTag(payload, tag));
+    }
+
+    const heroImageId = entry.heroImageURL
+      ? await uploadHeroImage(payload, entry.heroImageURL, entry.title)
+      : null;
+
+    const links = entry.links ?? {};
+    const contact = entry.contact ?? {};
+
+    await payload.create({
+      collection: "apps",
+      data: {
+        title: entry.title,
+        slug,
+        city: strOrUndef(entry.city),
+        category: categoryId,
+        tags: tagIds,
+        shortDescription: entry.shortDescription,
+        longDescription: entry.longDescription
+          ? richTextFromText(entry.longDescription)
+          : undefined,
+        heroImage: heroImageId ?? undefined,
+        heroImageURL: strOrUndef(entry.heroImageURL),
+        barrierFree: Boolean(entry.barrierFree),
+        isFeatured: Boolean(entry.isFeatured),
+        publishDate: strOrUndef(entry.publishDate),
+        latestRelease: strOrUndef(entry.latestRelease),
+        publishInformation: strOrUndef(entry.publishInformation),
+        links: {
+          website: strOrUndef(links.website),
+          appleAppStore: strOrUndef(links.appleAppStore),
+          googlePlay: strOrUndef(links.googlePlay),
+          github: strOrUndef(links.github),
+          api: strOrUndef(links.api),
+          downloadLink: strOrUndef(links.downloadLink),
+          reportBug: strOrUndef(links.reportBug),
+        },
+        contact: {
+          publisherMail: strOrUndef(contact.publisherMail),
+          supportMail: strOrUndef(contact.supportMail),
+        },
+      },
+    });
+
+    payload.logger.info(`App angelegt: ${entry.title}`);
+  }
+};
+
 const backfillHeroImages = async (payload: Payload) => {
   const missing = await payload.find({
     collection: "apps",
@@ -410,6 +528,7 @@ const run = async () => {
 
   await ensureUser(payload);
   await seedApps(payload);
+  await seedAdditionalApps(payload);
   await backfillHeroImages(payload);
   await seedHero(payload);
   await seedContact(payload);
