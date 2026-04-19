@@ -523,13 +523,34 @@ const seedSiteSettings = async (payload: Payload) => {
   payload.logger.info("Site-Settings aktualisiert.");
 };
 
-const run = async () => {
-  const payload = await getPayload({ config });
-
-  await ensureUser(payload);
+const seedCatalog = async (payload: Payload) => {
   await seedApps(payload);
   await seedAdditionalApps(payload);
   await backfillHeroImages(payload);
+};
+
+const parseScope = (): "all" | "catalog" => {
+  const scopeArg = process.argv.find((arg) => arg.startsWith("--scope="));
+  const rawScope =
+    process.env.SEED_SCOPE ??
+    scopeArg?.split("=")[1] ??
+    (process.argv.includes("--catalog") ? "catalog" : "all");
+
+  return rawScope === "catalog" ? "catalog" : "all";
+};
+
+const run = async () => {
+  const payload = await getPayload({ config });
+  const scope = parseScope();
+
+  if (scope === "catalog") {
+    await seedCatalog(payload);
+    payload.logger.info("Katalog-Seed abgeschlossen.");
+    process.exit(0);
+  }
+
+  await ensureUser(payload);
+  await seedCatalog(payload);
   await seedHero(payload);
   await seedContact(payload);
   await seedSiteSettings(payload);

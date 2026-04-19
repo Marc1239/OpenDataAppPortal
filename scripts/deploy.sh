@@ -48,6 +48,9 @@ for svc in cms frontend; do
   done
 done
 
+echo "[deploy] syncing seeded catalog entries into CMS"
+"${COMPOSE[@]}" run --rm cms npm run seed:catalog
+
 echo "[deploy] pruning dangling images"
 docker image prune -f >/dev/null
 
