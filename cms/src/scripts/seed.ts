@@ -40,24 +40,44 @@ type RawHero = {
 };
 
 const CATEGORY_ICON_MAP: Record<string, string> = {
-  Nachhaltigkeit: "Leaf",
-  Sport: "Dumbbell",
-  Essen: "UtensilsCrossed",
-  Verkehr: "Bus",
-  Politik: "Landmark",
-  Kultur: "Palette",
-  Bildung: "GraduationCap",
-  Gesundheit: "Stethoscope",
-  Verwaltung: "Building2",
-  Umwelt: "TreePine",
-  Tourismus: "MapPin",
-  Wirtschaft: "Briefcase",
-  "Haushalt & Transparenz": "PieChart",
+  "Mobilität & Verkehr": "Bus",
   "Umwelt & Klima": "TreePine",
-  "Geo & Stadtdaten": "Map",
-  Bürgerservices: "Users",
-  Mobilität: "Bus",
   "Politik & Verwaltung": "Landmark",
+  Bürgerservices: "Users",
+  "Geo & Stadtdaten": "Map",
+  "Bildung & Kultur": "GraduationCap",
+  "Freizeit & Sport": "Dumbbell",
+};
+
+const CATEGORY_ALIAS_MAP: Record<string, string> = {
+  "Mobilität": "Mobilität & Verkehr",
+  Verkehr: "Mobilität & Verkehr",
+  "Mobilität & Sicherheit": "Mobilität & Verkehr",
+  "Barrierefreiheit & Mobilität": "Mobilität & Verkehr",
+  "Energie & Klima": "Umwelt & Klima",
+  "Umwelt & Gesundheit": "Umwelt & Klima",
+  "Umwelt & Wasser": "Umwelt & Klima",
+  Umwelt: "Umwelt & Klima",
+  Nachhaltigkeit: "Umwelt & Klima",
+  Politik: "Politik & Verwaltung",
+  "Haushalt & Transparenz": "Politik & Verwaltung",
+  "Recht & Transparenz": "Politik & Verwaltung",
+  Verwaltung: "Politik & Verwaltung",
+  "Familie & Soziales": "Bürgerservices",
+  Integration: "Bürgerservices",
+  Gesundheit: "Bürgerservices",
+  "Smart City & Stadtdaten": "Geo & Stadtdaten",
+  "Wirtschaft & Stadtentwicklung": "Geo & Stadtdaten",
+  Wirtschaft: "Geo & Stadtdaten",
+  Tourismus: "Geo & Stadtdaten",
+  Bildung: "Bildung & Kultur",
+  "Bildung & Infrastruktur": "Bildung & Kultur",
+  "Geschichte & Kultur": "Bildung & Kultur",
+  Kultur: "Bildung & Kultur",
+  Freizeit: "Freizeit & Sport",
+  "Freizeit & Stadtdaten": "Freizeit & Sport",
+  Sport: "Freizeit & Sport",
+  Essen: "Freizeit & Sport",
 };
 
 const ensureUser = async (payload: Payload) => {
@@ -90,8 +110,9 @@ const ensureUser = async (payload: Payload) => {
 
 const ensureCategory = async (
   payload: Payload,
-  name: string,
+  rawName: string,
 ): Promise<string> => {
+  const name = CATEGORY_ALIAS_MAP[rawName] ?? rawName;
   const slug = slugify(name);
   const existing = await payload.find({
     collection: "categories",
