@@ -171,20 +171,33 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   }
 }
 
+function absoluteUrl(url: string): string {
+  return url.startsWith("http")
+    ? url
+    : `${BASE}${url.startsWith("/") ? url : `/${url}`}`;
+}
+
 export function mediaUrl(
   input: AppDoc["heroImage"] | string | null | undefined,
   size: "thumb" | "card" | "hero" | "full" = "full",
 ): string | null {
   if (!input) return null;
   if (typeof input === "string") {
-    if (input.startsWith("http://") || input.startsWith("https://")) return input;
-    return `${BASE}${input.startsWith("/") ? input : `/${input}`}`;
+    return absoluteUrl(input);
   }
   if (size !== "full" && input.sizes && input.sizes[size]?.url) {
     const u = input.sizes[size]!.url!;
-    return u.startsWith("http") ? u : `${BASE}${u.startsWith("/") ? u : `/${u}`}`;
+    return absoluteUrl(u);
   }
   const u = input.url;
   if (!u) return null;
-  return u.startsWith("http") ? u : `${BASE}${u.startsWith("/") ? u : `/${u}`}`;
+  return absoluteUrl(u);
+}
+
+export function appImageUrl(
+  app: Pick<AppDoc, "heroImage" | "heroImageURL"> | null | undefined,
+  size: "thumb" | "card" | "hero" | "full" = "full",
+): string | null {
+  if (!app) return null;
+  return mediaUrl(app.heroImage, size) ?? mediaUrl(app.heroImageURL);
 }

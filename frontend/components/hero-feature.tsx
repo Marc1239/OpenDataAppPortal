@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import type { AppDoc, HeroFeature as HeroFeatureData } from "@/lib/types";
-import { mediaUrl } from "@/lib/payload";
+import { appImageUrl } from "@/lib/payload";
 import { DownloadButton } from "@/components/download-button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -27,7 +27,7 @@ export function HeroFeature({ hero, fallbackApp }: Props) {
     featured?.shortDescription ??
     "Suche, entdecke und nutze Apps, die öffentliche Daten in echten Mehrwert verwandeln.";
 
-  const image = featured ? mediaUrl(featured.heroImage, "hero") ?? featured.heroImageURL ?? null : null;
+  const image = featured ? appImageUrl(featured, "hero") : null;
   const primaryCtaLabel = hero?.primaryCTA?.label ?? "App-Katalog durchsuchen";
   const primaryCtaHref = hero?.primaryCTA?.href ?? "/apps";
 

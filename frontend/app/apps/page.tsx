@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getApps, getCategories, getTags, mediaUrl } from "@/lib/payload";
+import { appImageUrl, getApps, getCategories, getTags } from "@/lib/payload";
 import { calculateQuality } from "@/lib/metadata-quality";
 import { AppsBrowser, type BrowserApp, type BrowserCategory, type BrowserTag } from "@/components/apps-browser";
 
@@ -43,7 +43,7 @@ export default async function AppsPage({ searchParams }: PageProps) {
       category: categoryName,
       categorySlug,
       tags: tagList,
-      heroImage: mediaUrl(a.heroImage, "card"),
+      heroImage: appImageUrl(a, "card"),
       publishDate: a.publishDate ?? null,
       latestRelease: a.latestRelease ?? null,
       isFeatured: !!a.isFeatured,

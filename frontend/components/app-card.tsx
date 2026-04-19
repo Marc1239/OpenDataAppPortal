@@ -2,15 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle2, MapPin } from "lucide-react";
 import type { AppDoc, Category } from "@/lib/types";
-import { mediaUrl } from "@/lib/payload";
+import { appImageUrl } from "@/lib/payload";
 import { calculateQuality } from "@/lib/metadata-quality";
 import { cn } from "@/lib/utils";
 
 function coverFor(app: AppDoc): string | null {
-  return (
-    mediaUrl(app.heroImage, "card") ??
-    (app.heroImageURL && app.heroImageURL.length > 0 ? app.heroImageURL : null)
-  );
+  return appImageUrl(app, "card");
 }
 
 function categoryName(cat: AppDoc["category"]): string | null {

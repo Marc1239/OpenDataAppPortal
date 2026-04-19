@@ -34,7 +34,14 @@ export const metadata: Metadata = {
   },
   description:
     "Ein Community-Verzeichnis für Anwendungen, die auf offenen Daten basieren.",
-  icons: { icon: "/favicon.ico" },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
