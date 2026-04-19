@@ -362,7 +362,22 @@ const seedAdditionalApps = async (payload: Payload) => {
     });
 
     if (existing.totalDocs > 0) {
-      payload.logger.info(`App existiert bereits: ${entry.title}`);
+      const existingDoc = existing.docs[0];
+      const nextHeroImageURL = strOrUndef(entry.heroImageURL);
+
+      if (nextHeroImageURL && existingDoc.heroImageURL !== nextHeroImageURL) {
+        await payload.update({
+          collection: "apps",
+          id: existingDoc.id,
+          data: {
+            heroImageURL: nextHeroImageURL,
+          },
+        });
+        payload.logger.info(`App aktualisiert: ${entry.title} (heroImageURL)`);
+      } else {
+        payload.logger.info(`App existiert bereits: ${entry.title}`);
+      }
+
       continue;
     }
 
