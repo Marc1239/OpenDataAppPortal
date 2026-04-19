@@ -48,6 +48,10 @@ for svc in cms frontend; do
   done
 done
 
+echo "[deploy] applying category consolidation migration"
+docker cp cms/src/scripts/migrate-categories.js odap_mongo:/tmp/migrate-categories.js
+docker exec odap_mongo mongosh --quiet opendata /tmp/migrate-categories.js
+
 echo "[deploy] syncing seeded catalog entries into CMS"
 "${COMPOSE[@]}" run --rm cms npm run seed:catalog
 
