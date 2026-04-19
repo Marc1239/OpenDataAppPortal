@@ -12,6 +12,11 @@ async function loadMediaUrl() {
   return mod.mediaUrl;
 }
 
+async function loadAppImageUrl() {
+  const mod = await import("../lib/payload");
+  return mod.appImageUrl;
+}
+
 describe("mediaUrl", () => {
   it("returns null for nullish input", async () => {
     const mediaUrl = await loadMediaUrl();
@@ -54,5 +59,37 @@ describe("mediaUrl", () => {
   it("returns null when no url can be derived", async () => {
     const mediaUrl = await loadMediaUrl();
     expect(mediaUrl({ id: "m1" })).toBeNull();
+  });
+});
+
+describe("appImageUrl", () => {
+  it("prefers heroImage over heroImageURL", async () => {
+    const appImageUrl = await loadAppImageUrl();
+    expect(
+      appImageUrl({
+        heroImage: { id: "m1", url: "/uploads/full.png" },
+        heroImageURL: "https://example.com/fallback.png",
+      }, "card"),
+    ).toBe(`${BASE}/uploads/full.png`);
+  });
+
+  it("falls back to heroImageURL when no uploaded image exists", async () => {
+    const appImageUrl = await loadAppImageUrl();
+    expect(
+      appImageUrl({
+        heroImage: null,
+        heroImageURL: "https://example.com/fallback.png",
+      }),
+    ).toBe("https://example.com/fallback.png");
+  });
+
+  it("normalizes relative heroImageURL values", async () => {
+    const appImageUrl = await loadAppImageUrl();
+    expect(
+      appImageUrl({
+        heroImage: null,
+        heroImageURL: "/uploads/fallback.png",
+      }),
+    ).toBe(`${BASE}/uploads/fallback.png`);
   });
 });

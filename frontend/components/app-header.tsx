@@ -2,13 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, MapPin } from "lucide-react";
 import type { AppDoc, Category } from "@/lib/types";
-import { mediaUrl } from "@/lib/payload";
+import { appImageUrl } from "@/lib/payload";
 import { DownloadButton } from "@/components/download-button";
 import { formatDate } from "@/lib/utils";
 
 export function AppHeader({ app }: { app: AppDoc }) {
-  const cover =
-    mediaUrl(app.heroImage, "hero") ?? app.heroImageURL ?? null;
+  const cover = appImageUrl(app, "hero");
   const category =
     app.category && typeof app.category === "object"
       ? (app.category as Category)

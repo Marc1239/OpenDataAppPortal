@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getApps, getCategories, mediaUrl } from "@/lib/payload";
+import { appImageUrl, getApps, getCategories } from "@/lib/payload";
 import { calculateQuality } from "@/lib/metadata-quality";
 import { Icon } from "@/components/icon";
 import { Pill } from "@/components/pill";
@@ -41,7 +41,7 @@ export default async function HomePage() {
     categories: categories.length,
     openSource: apps.filter((a) => a.links?.github).length,
   };
-  const tiles = apps.filter((a) => mediaUrl(a.heroImage, "card")).slice(0, 6);
+  const tiles = apps.filter((a) => appImageUrl(a, "card")).slice(0, 6);
   const spotlight = tiles[0];
   const spotlightCategory = spotlight ? categoryName(spotlight) : "";
   const extraCount = Math.max(0, apps.length - 5);
@@ -207,7 +207,7 @@ function HeroV2({
           <Link href={`/apps/${spotlight.slug}`} className="hero2__spotlight">
             <div className="hero2__spotlight-media">
               <HeroImage
-                src={mediaUrl(spotlight.heroImage, "card")}
+                src={appImageUrl(spotlight, "card")}
                 alt=""
                 ratio="4/3"
                 placeholder={spotlight.title}
@@ -240,7 +240,7 @@ function HeroV2({
               aria-label={a.title}
             >
               <HeroImage
-                src={mediaUrl(a.heroImage, "thumb")}
+                src={appImageUrl(a, "thumb")}
                 alt=""
                 ratio="1/1"
                 placeholder={a.title}
@@ -285,7 +285,7 @@ function FeaturedCard({ app, size }: { app: AppDoc; size: "lg" | "md" }) {
     <Link href={`/apps/${app.slug}`} className={`featured featured--${size}`}>
       <div className="featured__media">
         <HeroImage
-          src={mediaUrl(app.heroImage, size === "lg" ? "hero" : "card")}
+          src={appImageUrl(app, size === "lg" ? "hero" : "card")}
           alt={app.title}
           ratio={size === "lg" ? "16/9" : "16/10"}
           placeholder={app.title}

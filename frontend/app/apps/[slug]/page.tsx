@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAppBySlug, getRelatedApps, mediaUrl } from "@/lib/payload";
+import { appImageUrl, getAppBySlug, getRelatedApps } from "@/lib/payload";
 import { calculateQuality } from "@/lib/metadata-quality";
 import { Icon } from "@/components/icon";
 import { Pill } from "@/components/pill";
@@ -64,7 +64,7 @@ export default async function AppDetailPage({ params }: Props) {
   const quality = calculateQuality(app);
   const cat = categoryName(app);
   const tags = tagLabels(app);
-  const heroSrc = mediaUrl(app.heroImage, "hero");
+  const heroSrc = appImageUrl(app, "hero");
   const longText = richTextToText(app.longDescription, "");
 
   const links = app.links ?? {};
@@ -276,7 +276,7 @@ export default async function AppDetailPage({ params }: Props) {
                 <Link key={a.slug} href={`/apps/${a.slug}`} className="related-card">
                   <div className="related-card__media">
                     <HeroImage
-                      src={mediaUrl(a.heroImage, "card")}
+                      src={appImageUrl(a, "card")}
                       alt={a.title}
                       ratio="4/3"
                       placeholder={a.title}
