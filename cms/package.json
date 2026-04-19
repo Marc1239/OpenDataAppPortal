@@ -11,6 +11,7 @@
     "test:watch": "vitest",
     "generate:types": "payload generate:types",
     "seed": "tsx src/scripts/seed.ts",
+    "seed:catalog": "tsx src/scripts/seed.ts --scope=catalog",
     "payload": "payload"
   },
   "dependencies": {
