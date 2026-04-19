@@ -1,0 +1,422 @@
+[
+  {
+    "title": "OffenerHaushalt",
+    "slug": "offenerhaushalt",
+    "city": null,
+    "category": "Haushalt & Transparenz",
+    "tags": ["Haushalt", "Finanzen", "Bund", "Länder", "Kommunen", "Visualisierung"],
+    "shortDescription": "Visualisiert Einnahmen und Ausgaben von Bund, Ländern und Kommunen auf Basis offener Haushaltsdaten. Interaktive Treemap macht öffentliche Finanzen transparent.",
+    "longDescription": "OffenerHaushalt ist ein Community-Projekt der Open Knowledge Foundation Deutschland (OKF DE) und ermöglicht es, öffentliche Haushalte interaktiv zu erkunden. Nutzer können auf verschiedenen Ebenen (Bund, Land, Kreis, Kommune) in die Struktur der Ausgaben und Einnahmen eintauchen. Das Projekt ist Open Source (MIT-Lizenz) und basiert auf dem OpenSpending-API-Framework. Der Quellcode liegt auf GitHub und kann frei genutzt werden. Das Projekt befindet sich aktuell in einem Ruhezustand und sucht Freiwillige.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": "2011",
+    "latestRelease": null,
+    "publishInformation": "Open Knowledge Foundation Deutschland e.V. (OKF DE). MIT-Lizenz. Projekt aktuell in Hibernation, sucht aktive Maintainer.",
+    "links": {
+      "website": "https://offenerhaushalt.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/okfde/offenerhaushalt.de",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/okfde/offenerhaushalt.de/issues"
+    },
+    "contact": {
+      "publisherMail": "info@okfn.de",
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Klimawatch",
+    "slug": "klimawatch",
+    "city": "Münster (Ursprung), deutschlandweit",
+    "category": "Umwelt & Klima",
+    "tags": ["Klima", "CO2", "Kommunen", "Pariser Klimaziele", "Visualisierung", "Open Source"],
+    "shortDescription": "Zeigt anschaulich, wie weit ausgewählte Kommunen bei der Umsetzung der Pariser Klimaziele sind. Reale und geplante CO2-Emissionen auf einen Blick – für über 15 Kommunen.",
+    "longDescription": "Klimawatch wurde von Code for Münster gestartet und wird inzwischen durch mehrere lokale Gruppen von Code for Germany betrieben. Die Web-App visualisiert historische und geplante CO2-Emissionen einzelner Kommunen und stellt sie den Zielen des Pariser Klimaabkommens gegenüber. Das Projekt basiert vollständig auf offenen Daten und enthält eine Anleitung, wie neue Kommunen hinzugefügt werden können. Neben Münster sind bereits über 15 weitere Städte vertreten. Der gesamte Quellcode ist Open Source und auf GitHub verfügbar.",
+    "heroImageURL": "https://klimawatch.de/og-image.png",
+    "barrierFree": false,
+    "isFeatured": true,
+    "publishDate": "2019",
+    "latestRelease": null,
+    "publishInformation": "Ehrenamtliches Community-Projekt von Code for Münster / Code for Germany. Open Knowledge Foundation Deutschland e.V.",
+    "links": {
+      "website": "https://klimawatch.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeformuenster/klimawatch",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/codeformuenster/klimawatch/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Gieß den Kiez",
+    "slug": "giess-den-kiez",
+    "city": "Berlin",
+    "category": "Umwelt & Klima",
+    "tags": ["Stadtbäume", "Bewässerung", "Bürger", "Berlin", "Citizen Science", "Open Source", "CityLAB"],
+    "shortDescription": "Kartenbasierte Web-App zur koordinierten Bewässerung Berliner Stadtbäume. Über 625.000 Bäume mit Infos zu Art, Alter und Wasserbedarf – inklusive Regendaten des DWD.",
+    "longDescription": "Gieß den Kiez wurde im Mai 2020 vom CityLAB Berlin der Technologiestiftung Berlin entwickelt und ist seither ein zentrales Citizen-Science-Projekt. Bürgerinnen und Bürger können Bäume adoptieren, deren Bewässerungsstatus eintragen und sich mit anderen koordinieren. Die App nutzt das offene Baumkataster der Berliner Stadtverwaltung, tagesaktuelle Niederschlagsdaten des Deutschen Wetterdienstes und Pumpstandorte aus OpenStreetMap. Das Modell wurde erfolgreich von anderen Städten wie Köln, Leipzig und Heilbronn adaptiert. Der gesamte Quellcode ist unter MIT-Lizenz auf GitHub verfügbar.",
+    "heroImageURL": "https://giessdenkiez.de/og-image.jpg",
+    "barrierFree": false,
+    "isFeatured": true,
+    "publishDate": "2020",
+    "latestRelease": "2024",
+    "publishInformation": "Entwickelt und betrieben von CityLAB Berlin / Technologiestiftung Berlin. Open Source, MIT-Lizenz.",
+    "links": {
+      "website": "https://www.giessdenkiez.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/technologiestiftung/giessdenkiez-de",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/technologiestiftung/giessdenkiez-de/issues"
+    },
+    "contact": {
+      "publisherMail": "giessdenkiez@citylab-berlin.org",
+      "supportMail": "giessdenkiez@citylab-berlin.org"
+    }
+  },
+  {
+    "title": "Erfrischungskarte Berlin",
+    "slug": "erfrischungskarte-berlin",
+    "city": "Berlin",
+    "category": "Umwelt & Klima",
+    "tags": ["Hitze", "Klima", "Berlin", "Karte", "Temperatur", "Schatten"],
+    "shortDescription": "Webkarte für Berlin, die Temperaturverhältnisse, Kaltluftströme und Schattenbereiche stündlich visualisiert – ideal zur Planung an heißen Tagen.",
+    "longDescription": "Die Erfrischungskarte ist ein Projekt der ODIS (Open Data Informationsstelle Berlin) und zeigt klimatische Unterschiede innerhalb des Berliner Stadtgebiets. Nutzer können für jede Stunde zwischen 9 und 20 Uhr einsehen, wo vergleichsweise niedrigere Temperaturen herrschen, wo Kaltluft fließt und wo Schatten zu erwarten ist. Die Datenbasis stammt aus offenen Klimadaten der Senatsverwaltung und des Deutschen Wetterdienstes.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": "2021",
+    "latestRelease": null,
+    "publishInformation": "Projekt der ODIS (Open Data Informationsstelle Berlin) / Technologiestiftung Berlin.",
+    "links": {
+      "website": "https://erfrischungskarte.odis-berlin.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/technologiestiftung/erfrischungskarte-frontend",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/technologiestiftung/erfrischungskarte-frontend/issues"
+    },
+    "contact": {
+      "publisherMail": "odis@technologiestiftung-berlin.de",
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Fahrraddiebstahl Berlin",
+    "slug": "fahrraddiebstahl-berlin",
+    "city": "Berlin",
+    "category": "Geo & Stadtdaten",
+    "tags": ["Fahrrad", "Diebstahl", "Polizei", "Berlin", "Heatmap", "Kriminalität"],
+    "shortDescription": "Visualisiert Fahrraddiebstähle in Berlin als interaktive Heatmap auf Basis täglicher Polizeidaten. Filter nach Fahrradtyp, Wert und Tatzeit möglich.",
+    "longDescription": "Die Web-App Fahrraddiebstahl Berlin wertet täglich aktualisierte Daten der Polizei Berlin zu Fahrraddiebstählen aus und bereitet sie verständlich auf. Nutzer können die Diebstähle als Heatmap auf einer Berliner Karte betrachten oder anhand verschiedener Attribute (Art des Fahrrads, Wert, Zeitraum) als Balkendiagramme analysieren. Die Daten stammen aus dem offenen Kriminalitätsatlas der Polizei Berlin.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Community-Projekt auf Basis offener Polizeidaten Berlin (Kriminalitätsatlas).",
+    "links": {
+      "website": "https://fahrraddiebstahl.berlin",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Baumkataster-Visualisierungen",
+    "slug": "baumkataster-visualisierungen",
+    "city": "Hamburg, Flensburg, Magdeburg, Karlsruhe, Köln",
+    "category": "Geo & Stadtdaten",
+    "tags": ["Bäume", "Stadtgrün", "Karte", "OpenStreetMap", "Baumkataster", "Kommunen"],
+    "shortDescription": "Interaktive Karten der städtischen Baumbestände in mehreren deutschen Städten. Zeigt Baumart, Alter und Standort auf Basis offener Katasterdaten.",
+    "longDescription": "Mehrere lokale Code-for-Germany-Labs haben offene Baumkatasterdaten ihrer Städte interaktiv visualisiert. In Hamburg, Flensburg, Magdeburg, Karlsruhe und Köln lässt sich so der gesamte Baumbestand erkunden. Die Karten sind kollaborativ angelegt, sodass Bürgerinnen aktiv daran mitarbeiten können. Das Projekt ist eng mit der Gieß-den-Kiez-Familie verwandt und nutzt offene Geodaten der Stadtverwaltungen.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Ehrenamtliche Projekte verschiedener OK Labs im Code-for-Germany-Netzwerk. Open Knowledge Foundation Deutschland e.V.",
+    "links": {
+      "website": "https://codefor.de/projekte/",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codefor",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Wo ist…? – Standortfinder per OpenStreetMap",
+    "slug": "wo-ist-standortfinder",
+    "city": "Berlin, Köln, Leipzig, Potsdam, Heilbronn u.a.",
+    "category": "Bürgerservices",
+    "tags": ["OpenStreetMap", "Finder", "Toiletten", "Spielplätze", "Defibrillatoren", "Karte"],
+    "shortDescription": "Web-App, die auf Basis von OpenStreetMap Orte einer bestimmten Kategorie in der Nähe findet – z.B. öffentliche Toiletten, Spielplätze oder Defibrillatoren.",
+    "longDescription": "Die generische Finder-App entstand im Code-for-Germany-Umfeld und wurde in mehreren Städten adaptiert. Die Anwendung lässt sich mit wenig Aufwand für unterschiedliche Kategorien konfigurieren. In der Pandemie wurde sie erfolgreich für Corona-Testzentren eingesetzt. Die zugrunde liegenden Daten stammen vollständig aus OpenStreetMap und werden laufend von der Community aktualisiert. Das Projekt demonstriert die Wiederverwendbarkeit von Open-Source-Code für kommunale Anwendungsfälle.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Open-Source-Projekt verschiedener OK Labs (Code for Germany). Adaptierungen in mehreren deutschen Städten.",
+    "links": {
+      "website": "https://codefor.de/projekte/",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeformunich/FinderApp",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Mängelmelder",
+    "slug": "maengelmelder",
+    "city": null,
+    "category": "Bürgerservices",
+    "tags": ["Mängel", "Infrastruktur", "Bürger", "Kommunen", "Melden", "Städte"],
+    "shortDescription": "App und Website zum Melden von Schäden und Mängeln im öffentlichen Raum. Bürgerinnen fotografieren Probleme, senden sie an die zuständige Kommune und verfolgen die Bearbeitung.",
+    "longDescription": "Der Mängelmelder ist eine bundesweit eingesetzte Plattform, die es Bürgerinnen ermöglicht, Schäden an Infrastruktur (z.B. defekte Straßenlaternen, Schlaglöcher, Graffiti) einfach per App oder Website zu melden. Die Meldungen werden automatisch an die jeweils zuständige Behörde weitergeleitet. Der Dienst ist in zahlreichen deutschen Städten und Gemeinden aktiv und nutzt offene Geodaten zur Verortung. Für iOS und Android verfügbar.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Betrieben von WerteWandel GmbH. Wird von zahlreichen deutschen Kommunen offiziell eingesetzt.",
+    "links": {
+      "website": "https://maengelmelder.de",
+      "appleAppStore": "https://apps.apple.com/de/app/mängelmelder/id454860058",
+      "googlePlay": "https://play.google.com/store/apps/details?id=de.maengelmelder",
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://maengelmelder.de/kontakt"
+    },
+    "contact": {
+      "publisherMail": "info@maengelmelder.de",
+      "supportMail": "info@maengelmelder.de"
+    }
+  },
+  {
+    "title": "Trinkwasser-App",
+    "slug": "trinkwasser-app",
+    "city": "Moers (Ursprung), weitere Kommunen",
+    "category": "Bürgerservices",
+    "tags": ["Trinkwasser", "Wasserqualität", "Gesundheit", "Kommunen", "Vergleich"],
+    "shortDescription": "Zeigt die Zusammensetzung des lokalen Trinkwassers auf Basis offener Kommunaldaten und vergleicht es mit handelsüblichem Mineralwasser.",
+    "longDescription": "Die Trinkwasser-App wurde von Code for Niederrhein entwickelt und macht offene Trinkwasseruntersuchungsdaten der Stadt Moers für Bürgerinnen greifbar. Nutzer können die Mineralstoffe ihres Leitungswassers einsehen und direkt mit Mineralwässern aus dem Handel vergleichen. Das Projekt entstand als Demonstration, wie offene Verwaltungsdaten alltagsrelevant aufbereitet werden können.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Entwickelt von Code for Niederrhein (OK Lab Niederrhein) im Code-for-Germany-Netzwerk. Open Knowledge Foundation Deutschland e.V.",
+    "links": {
+      "website": "https://trinkwasser.codefor.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeformuenster/trinkwasser",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Mein Moers",
+    "slug": "mein-moers",
+    "city": "Moers",
+    "category": "Bürgerservices",
+    "tags": ["Bürger-App", "Moers", "Kommunal", "Informationen", "Open Data"],
+    "shortDescription": "Mobile Bürgerinformations-App der Stadt Moers auf Basis offener Daten. Lokale Nachrichten, Veranstaltungen und Stadtinfos kompakt auf dem Smartphone.",
+    "longDescription": "Die Mein-Moers-App ist eine kommunale Bürgeranwendung, die offene Daten der Stadt Moers bündelt und für Bewohnerinnen zugänglich macht. Die App informiert über lokale Ereignisse, städtische Dienstleistungen und aktuelle Meldungen der Stadtverwaltung. Sie steht beispielhaft für den Einsatz offener Verwaltungsdaten im kommunalen Bürgerservice und wurde im Showroom von GovData als Best-Practice gelistet.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Betrieben von der Stadt Moers.",
+    "links": {
+      "website": "https://www.moers.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": "stadtinfo@moers.de",
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Parkleitsystem (Open Data)",
+    "slug": "parkleitsystem-open-data",
+    "city": "Verschiedene Innenstädte",
+    "category": "Mobilität",
+    "tags": ["Parken", "Echtzeit", "Innenstadt", "Parkhäuser", "Mobilität"],
+    "shortDescription": "Echtzeit-Anzeige freier Parkplätze in Innenstadtparkhäusern auf Basis offener Echtzeit-APIs. Ergänzt stationäre Anzeigetafeln durch digitale Darstellung.",
+    "longDescription": "Mehrere deutsche Kommunen stellen Belegungsdaten ihrer Parkhäuser als offene Echtzeit-Daten bereit. Auf dieser Basis sind Web-Anwendungen entstanden, die freie Parkplätze in der Innenstadt übersichtlich anzeigen. Die 30 dynamischen Anzeigetafeln vor Ort werden durch digitale Darstellungen ergänzt, die auf jedem Gerät abrufbar sind. Die Daten werden direkt aus den Parkhaussystemen gespeist und fortlaufend aktualisiert.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Kommunale Anwendungen auf Basis offener Echtzeitdaten. Betrieben von verschiedenen Städten und Stadtwerken.",
+    "links": {
+      "website": null,
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "bahn.guru – Bahn-Preiskalender",
+    "slug": "bahn-guru",
+    "city": null,
+    "category": "Mobilität",
+    "tags": ["Deutsche Bahn", "Sparpreis", "Tickets", "Preiskalender", "Reise", "Open Source"],
+    "shortDescription": "Findet die günstigsten Sparpreistickets der Deutschen Bahn für die nächsten Wochen – übersichtlich als Kalender dargestellt, damit der beste Reisezeitpunkt auf einen Blick erkennbar ist.",
+    "longDescription": "bahn.guru ist ein inoffizielles, ehrenamtlich entwickeltes Open-Source-Projekt von Julius Tens (juliuste). Die Web-App greift auf die öffentliche API der Deutschen Bahn zu und visualisiert Sparpreise für beliebige Verbindungen in einem Kalenderformat. Ergänzt wird sie durch die Schwester-App direkt.bahn.guru, die alle Direktverbindungen einer Stadt visualisiert, und pricemap.eu für europäische Reisekostenvergleiche. Der Quellcode liegt auf GitHub unter ISC-Lizenz.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": true,
+    "publishDate": "2017",
+    "latestRelease": "2025",
+    "publishInformation": "Privates Open-Source-Projekt von Julius Tens. ISC-Lizenz. Kein offizielles DB-Produkt.",
+    "links": {
+      "website": "https://bahn.guru",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/juliuste/bahn.guru",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/juliuste/bahn.guru/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "direkt.bahn.guru – Direktverbindungskarte",
+    "slug": "direkt-bahn-guru",
+    "city": null,
+    "category": "Mobilität",
+    "tags": ["Deutsche Bahn", "Direktverbindung", "Karte", "Fernverkehr", "Open Source"],
+    "shortDescription": "Karte aller Direktverbindungen im Fernverkehr ab einem beliebigen Startort in Deutschland und Mitteleuropa. Zeigt sofort, wohin man ohne Umstieg fahren kann.",
+    "longDescription": "direkt.bahn.guru ist ein Open-Source-Begleitprojekt zu bahn.guru, ebenfalls von Julius Tens entwickelt. Die interaktive Karte zeigt alle Direktverbindungen im Fernverkehr von einem frei wählbaren Ausgangspunkt aus – auch über Deutschland hinaus nach ganz Mitteleuropa. Die App ist datenschutzfreundlich aufgebaut und nutzt cookiefreie Analyse. Der Quellcode steht auf GitHub zur freien Nutzung bereit.",
+    "heroImageURL": "https://direkt.bahn.guru/assets/screenshot.png",
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Privates Open-Source-Projekt von Julius Tens. Kein offizielles DB-Produkt.",
+    "links": {
+      "website": "https://direkt.bahn.guru",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/juliuste/direkt.bahn.guru",
+      "api": null,
+      "downloadLink": null,
+      "reportBug": "https://github.com/juliuste/direkt.bahn.guru/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "München Transparent",
+    "slug": "muenchen-transparent",
+    "city": "München",
+    "category": "Politik & Verwaltung",
+    "tags": ["Kommunalpolitik", "München", "Stadtrat", "Ratsinformationssystem", "Transparenz", "OParl"],
+    "shortDescription": "Alternatives Ratsinformationssystem für München: Über 180.000 Dokumente aus dem Stadtrat und den Bezirksausschüssen – mit Volltextsuche, E-Mail-Benachrichtigungen und Erklärungen.",
+    "longDescription": "München Transparent ist eine Plattform, die Münchner Bürgerinnen schnellen und einfachen Einblick in die Kommunalpolitik ermöglicht. Die Anwendung wurde von Tobias Hößl, Bernd Oswald und Konstantin Schütze im Rahmen des Code-for-Munich-Labs entwickelt. Sie scrapt das offizielle Ratsinformationssystem der Stadt und bereitet es übersichtlich auf – mit Volltextsuche, Geodaten, Glossar und E-Mail-Abonnements. Die App besitzt eine OParl-kompatible API. Der gesamte Quellcode ist Open Source und auf GitHub verfügbar.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": true,
+    "publishDate": "2013",
+    "latestRelease": null,
+    "publishInformation": "Entwickelt vom Code for München (OK Lab München) im Code-for-Germany-Netzwerk. Open Knowledge Foundation Deutschland e.V. Open Source.",
+    "links": {
+      "website": "https://www.muenchen-transparent.de",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": "https://github.com/codeformunich/muenchen-transparent",
+      "api": "https://www.muenchen-transparent.de/infos/api",
+      "downloadLink": null,
+      "reportBug": "https://github.com/codeformunich/muenchen-transparent/issues"
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  },
+  {
+    "title": "Wepublic",
+    "slug": "wepublic",
+    "city": null,
+    "category": "Politik & Verwaltung",
+    "tags": ["Demokratie", "Bürgerbeteiligung", "Politik", "Dialog", "Civic Tech"],
+    "shortDescription": "Plattform zur Verbesserung der digitalen Kommunikation zwischen Bürgerinnen und Politikerinnen – für mehr Dialog, mehr Verständnis und konstruktive Kritik.",
+    "longDescription": "Wepublic ist ein Civic-Tech-Projekt aus dem Code-for-Germany-Umfeld, das die Kommunikation zwischen Bürgerinnen und Politikerinnen grundlegend verbessern möchte. Die Plattform setzt auf offene Daten und transparente Strukturen, um konstruktiven Dialog zu ermöglichen. Das Projekt versteht sich als Beitrag zur Stärkung demokratischer Teilhabe im digitalen Raum.",
+    "heroImageURL": null,
+    "barrierFree": false,
+    "isFeatured": false,
+    "publishDate": null,
+    "latestRelease": null,
+    "publishInformation": "Community-Projekt im Code-for-Germany-Netzwerk. Open Knowledge Foundation Deutschland e.V.",
+    "links": {
+      "website": "https://codefor.de/projekte/",
+      "appleAppStore": null,
+      "googlePlay": null,
+      "github": null,
+      "api": null,
+      "downloadLink": null,
+      "reportBug": null
+    },
+    "contact": {
+      "publisherMail": null,
+      "supportMail": null
+    }
+  }
+]
