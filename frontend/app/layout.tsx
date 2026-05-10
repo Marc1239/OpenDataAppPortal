@@ -1,29 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Source_Serif_4, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TopBar } from "@/components/top-bar";
 import { Footer } from "@/components/footer";
 import { getApps, getSiteSettings } from "@/lib/payload";
 
-const plex = IBM_Plex_Sans({
+const body = Public_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const grotesk = Space_Grotesk({
+const display = Source_Serif_4({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  variable: "--font-mono-font",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -66,7 +60,7 @@ export default async function RootLayout({
       lang="de"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${plex.variable} ${grotesk.variable} ${mono.variable}`}
+      className={`${body.variable} ${display.variable}`}
     >
       <body>
         <ThemeProvider>
