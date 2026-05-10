@@ -1,12 +1,10 @@
 import Link from "next/link";
 import { appImageUrl, getApps, getCategories } from "@/lib/payload";
-import { calculateQuality } from "@/lib/metadata-quality";
 import { Icon } from "@/components/icon";
-import { Pill } from "@/components/pill";
-import { QualityBadge } from "@/components/quality-badge";
 import { SectionLabel } from "@/components/section-label";
 import { HeroImage } from "@/components/hero-image";
-import type { AppDoc, Category } from "@/lib/types";
+import { AppCard } from "@/components/app-card";
+import type { AppDoc } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
@@ -21,11 +19,6 @@ function categorySlug(app: AppDoc): string | null {
   const c = app.category;
   if (!c) return null;
   return typeof c === "string" ? c : c.slug;
-}
-
-function tagLabels(app: AppDoc): string[] {
-  if (!app.tags) return [];
-  return app.tags.map((t) => (typeof t === "string" ? t : t.label));
 }
 
 export default async function HomePage() {
@@ -59,7 +52,12 @@ export default async function HomePage() {
         </div>
         <div className="featured-grid">
           {(featured.length > 0 ? featured : apps).slice(0, 3).map((app, i) => (
-            <FeaturedCard key={app.slug} app={app} size={i === 0 ? "lg" : "md"} />
+            <AppCard
+              key={app.slug}
+              app={app}
+              size={i === 0 ? "lg" : "md"}
+              priority={i === 0}
+            />
           ))}
         </div>
       </section>
@@ -214,47 +212,3 @@ function HeroV2({
   );
 }
 
-function FeaturedCard({ app, size }: { app: AppDoc; size: "lg" | "md" }) {
-  const tags = tagLabels(app);
-  const quality = calculateQuality(app);
-  const cat = categoryName(app);
-  return (
-    <Link href={`/apps/${app.slug}`} className={`featured featured--${size}`}>
-      <div className="featured__media">
-        <HeroImage
-          src={appImageUrl(app, size === "lg" ? "hero" : "card")}
-          alt={app.title}
-          ratio={size === "lg" ? "16/9" : "16/10"}
-          placeholder={app.title}
-        />
-        {app.isFeatured && (
-          <span className="featured__flag">
-            <Icon name="star" size={11} /> Featured
-          </span>
-        )}
-      </div>
-      <div className="featured__body">
-        <div className="featured__meta">
-          {app.city && <span>{app.city}</span>}
-          {app.city && cat && <span>·</span>}
-          {cat && <span>{cat}</span>}
-          <QualityBadge score={quality} />
-        </div>
-        <h3 className="featured__title">{app.title}</h3>
-        <p className="featured__desc">{app.shortDescription}</p>
-        <div className="featured__foot">
-          <div className="featured__tags">
-            {tags.slice(0, size === "lg" ? 3 : 2).map((t) => (
-              <Pill key={t} tone="mono">
-                {t}
-              </Pill>
-            ))}
-          </div>
-          <span className="featured__cta">
-            <Icon name="arrow-up-right" size={16} />
-          </span>
-        </div>
-      </div>
-    </Link>
-  );
-}

@@ -1,100 +1,68 @@
 import Link from "next/link";
-import Image from "next/image";
-import { CheckCircle2, MapPin } from "lucide-react";
-import type { AppDoc, Category } from "@/lib/types";
+import type { AppDoc, Category, Tag } from "@/lib/types";
 import { appImageUrl } from "@/lib/payload";
 import { calculateQuality } from "@/lib/metadata-quality";
-import { cn } from "@/lib/utils";
+import { HeroImage } from "@/components/hero-image";
+import { Icon } from "@/components/icon";
+import { Pill } from "@/components/pill";
+import { QualityBadge } from "@/components/quality-badge";
 
-function coverFor(app: AppDoc): string | null {
-  return appImageUrl(app, "card");
-}
+type Size = "lg" | "md";
 
 function categoryName(cat: AppDoc["category"]): string | null {
   if (!cat) return null;
-  if (typeof cat === "string") return null;
-  return (cat as Category).name;
+  return typeof cat === "string" ? null : (cat as Category).name;
 }
 
-export function AppCard({ app, priority = false }: { app: AppDoc; priority?: boolean }) {
-  const cover = coverFor(app);
+function tagLabels(app: AppDoc): string[] {
+  if (!app.tags) return [];
+  return app.tags.map((t) => (typeof t === "string" ? t : (t as Tag).label));
+}
+
+export function AppCard({
+  app,
+  size = "md",
+  priority = false,
+}: {
+  app: AppDoc;
+  size?: Size;
+  priority?: boolean;
+}) {
+  const tags = tagLabels(app);
   const quality = calculateQuality(app);
-  const catName = categoryName(app.category);
+  const cat = categoryName(app.category);
 
   return (
-    <Link
-      href={`/apps/${app.slug}`}
-      className={cn(
-        "group relative flex flex-col overflow-hidden rounded-[var(--radius-lg)]",
-        "bg-card border border-border elevate",
-      )}
-    >
-      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-        {cover ? (
-          <Image
-            src={cover}
-            alt={app.title}
-            fill
-            priority={priority}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
-            Kein Bild
-          </div>
-        )}
-        {app.isFeatured && (
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-[var(--radius-pill)] bg-accent text-accent-foreground text-[11px] font-semibold px-2 py-1">
-            Empfohlen
-          </span>
-        )}
+    <Link href={`/apps/${app.slug}`} className={`featured featured--${size}`}>
+      <div className="featured__media">
+        <HeroImage
+          src={appImageUrl(app, size === "lg" ? "hero" : "card")}
+          alt={app.title}
+          ratio={size === "lg" ? "16/9" : "16/10"}
+          placeholder={app.title}
+          priority={priority}
+        />
       </div>
-
-      <div className="flex-1 p-5 flex flex-col gap-3">
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          {catName && (
-            <span className="font-medium uppercase tracking-wider text-primary">
-              {catName}
-            </span>
-          )}
-          {app.city && (
-            <span className="inline-flex items-center gap-1">
-              <MapPin size={12} aria-hidden /> {app.city}
-            </span>
-          )}
+      <div className="featured__body">
+        <div className="featured__meta">
+          {app.city && <span>{app.city}</span>}
+          {app.city && cat && <span>·</span>}
+          {cat && <span>{cat}</span>}
+          <QualityBadge score={quality} />
         </div>
-
-        <h3 className="font-[var(--font-display)] font-semibold text-lg leading-snug">
-          {app.title}
-        </h3>
-
-        <p className="text-sm text-muted-foreground line-clamp-3 flex-1">
-          {app.shortDescription}
-        </p>
-
-        <div className="flex items-center justify-between pt-2 mt-1 border-t border-border">
-          <div className="flex items-center gap-1.5 text-xs">
-            <span
-              aria-hidden
-              className={cn(
-                "inline-block h-2 w-2 rounded-full",
-                quality >= 80
-                  ? "bg-[var(--success)]"
-                  : quality >= 50
-                    ? "bg-primary"
-                    : "bg-accent",
-              )}
-            />
-            <span className="tabular-nums font-medium">{quality}%</span>
-            <span className="text-muted-foreground">Metadaten</span>
+        <h3 className="featured__title">{app.title}</h3>
+        <p className="featured__desc">{app.shortDescription}</p>
+        <div className="featured__foot">
+          <div className="featured__tags">
+            {tags.slice(0, size === "lg" ? 3 : 2).map((t) => (
+              <Pill key={t} tone="mono">
+                {t}
+              </Pill>
+            ))}
           </div>
-          {app.barrierFree && (
-            <span className="inline-flex items-center gap-1 text-xs text-[var(--success)] font-medium">
-              <CheckCircle2 size={12} aria-hidden />
-              Barrierefrei
-            </span>
-          )}
+          <span className="featured__cta" aria-hidden>
+            <Icon name="arrow-up-right" size={16} />
+          </span>
         </div>
       </div>
     </Link>

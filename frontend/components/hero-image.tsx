@@ -9,6 +9,7 @@ export function HeroImage({
   placeholder,
   className = "",
   style,
+  priority = false,
 }: {
   src?: string | null;
   alt?: string;
@@ -16,6 +17,7 @@ export function HeroImage({
   placeholder?: string;
   className?: string;
   style?: CSSProperties;
+  priority?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   const decorative = !alt || alt === "";
@@ -45,7 +47,8 @@ export function HeroImage({
       className={`hero-img ${className}`.trim()}
       style={mergedStyle}
       onError={() => setFailed(true)}
-      loading="lazy"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
     />
   );
 }
