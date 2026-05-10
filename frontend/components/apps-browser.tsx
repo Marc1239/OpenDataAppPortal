@@ -227,7 +227,7 @@ export function AppsBrowser({
             value={sort}
             options={[
               { v: "quality", l: "Qualität (hoch → niedrig)" },
-              { v: "featured", l: "Featured zuerst" },
+              { v: "featured", l: "Empfehlungen zuerst" },
               { v: "title", l: "Titel A → Z" },
               { v: "city", l: "Stadt A → Z" },
             ]}
