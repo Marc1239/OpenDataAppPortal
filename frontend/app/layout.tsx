@@ -42,8 +42,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0b2545" },
-    { media: "(prefers-color-scheme: light)", color: "#f4f1ea" },
+    { media: "(prefers-color-scheme: light)", color: "#f5efe1" },
+    { media: "(prefers-color-scheme: dark)", color: "#181b22" },
   ],
 };
 
@@ -58,7 +58,6 @@ export default async function RootLayout({
   return (
     <html
       lang="de"
-      data-theme="dark"
       suppressHydrationWarning
       className={`${body.variable} ${display.variable}`}
     >
