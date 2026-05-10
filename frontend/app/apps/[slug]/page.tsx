@@ -113,12 +113,10 @@ export default async function AppDetailPage({ params }: Props) {
           <h1>{app.title}</h1>
           <p>{app.shortDescription}</p>
           <div className="detail-hero__badges">
-            <QualityBadge score={quality} size="lg" />
             {app.isFeatured && (
-              <Pill tone="accent">
-                <Icon name="star" size={11} /> Featured
-              </Pill>
+              <Pill tone="accent">Empfehlung der Redaktion</Pill>
             )}
+            <QualityBadge score={quality} size="lg" />
             {app.latestRelease && <Pill tone="mono">{app.latestRelease}</Pill>}
           </div>
         </div>
@@ -140,11 +138,6 @@ export default async function AppDetailPage({ params }: Props) {
                   <span className="detail__release-version">
                     {app.latestRelease || "—"}
                   </span>
-                  {app.isFeatured && (
-                    <Pill tone="accent">
-                      <Icon name="star" size={10} /> Featured
-                    </Pill>
-                  )}
                 </div>
                 <p>{app.publishInformation}</p>
               </div>
@@ -212,7 +205,7 @@ export default async function AppDetailPage({ params }: Props) {
                 </dd>
               </div>
               <div>
-                <dt>Featured</dt>
+                <dt>Empfehlung</dt>
                 <dd>{app.isFeatured ? "ja" : "nein"}</dd>
               </div>
               <div>

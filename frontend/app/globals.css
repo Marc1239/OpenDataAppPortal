@@ -25,6 +25,7 @@ html[data-theme="light"] {
   --quality-high: oklch(0.62 0.13 145);
   --quality-mid: oklch(0.72 0.13 80);
   --quality-low: oklch(0.6 0.16 35);
+  --success: var(--quality-high);
   --ring: var(--accent);
   --radius: 4px;
   --radius-lg: 6px;
@@ -55,8 +56,6 @@ html[data-theme="dark"] {
   --quality-low: oklch(0.68 0.16 35);
 }
 
-/* Legacy aliases, kept until call sites migrate to --quality-* */
-:root { --good: var(--quality-high); --ok: var(--quality-mid); --low: var(--quality-low); }
 
 @theme inline {
   --color-bg: var(--bg);
@@ -384,13 +383,16 @@ img { max-width: 100%; display: block; }
   object-fit: cover;
 }
 .featured__flag {
-  position: absolute; top: 12px; left: 12px;
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 10px;
-  background: var(--accent); color: var(--accent-ink);
-  font-size: 11px;
+  position: absolute; top: 14px; left: 14px;
+  display: inline-block;
+  padding: 5px 12px;
+  background: var(--bg);
+  color: var(--accent);
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: -0.005em;
   border-radius: 100px;
-  letter-spacing: 0.04em;
 }
 .featured__body { padding: 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
 .featured--lg .featured__body { padding: 28px; }
@@ -468,9 +470,9 @@ html[data-theme="light"] .pill--ghost { background: rgba(0,0,0,0.04); }
 }
 html[data-theme="light"] .qbadge { background: rgba(0,0,0,0.04); }
 .qbadge--lg { font-size: 13px; padding: 5px 12px 5px 10px; }
-.qbadge__dot { width: 6px; height: 6px; border-radius: 100px; background: var(--good); }
-.qbadge--ok .qbadge__dot { background: var(--ok); }
-.qbadge--low .qbadge__dot { background: var(--low); }
+.qbadge__dot { width: 6px; height: 6px; border-radius: 100px; background: var(--quality-high); }
+.qbadge--ok .qbadge__dot { background: var(--quality-mid); }
+.qbadge--low .qbadge__dot { background: var(--quality-low); }
 .qbadge__num { color: var(--fg); font-weight: 500; }
 .qbadge__unit { color: var(--fg-mute); }
 
@@ -751,8 +753,19 @@ html[data-theme="dark"] .apps-filters__meta strong { color: var(--fg); font-weig
   overflow: hidden;
   -webkit-line-clamp: 1; -webkit-box-orient: vertical;
 }
-.apps-table__flag { color: var(--accent); display: inline-grid; place-items: center; }
-html[data-theme="dark"] .apps-table__flag { color: var(--fg); }
+.apps-table__flag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--accent);
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  border-radius: 100px;
+  vertical-align: middle;
+}
 .apps-table__thumb {
   width: 44px; height: 44px; border-radius: var(--radius);
   overflow: hidden; background: var(--bg-3);
@@ -792,12 +805,14 @@ html[data-theme="dark"] .apps-table__flag { color: var(--fg); }
 .app-card__media { position: relative; background: var(--bg-3); }
 .app-card__flag {
   position: absolute; top: 10px; left: 10px;
-  display: inline-flex; align-items: center; gap: 4px;
-  padding: 3px 8px;
-  background: var(--accent); color: var(--accent-ink);
-  font-size: 10px;
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--bg);
+  color: var(--accent);
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 12px;
   border-radius: 100px;
-  letter-spacing: 0.04em;
 }
 .app-card__q { position: absolute; top: 10px; right: 10px; }
 .app-card__body { padding: 16px; display: flex; flex-direction: column; gap: 8px; }
@@ -1046,7 +1061,7 @@ html[data-theme="dark"] .detail__release-version { color: var(--fg); font-weight
 .detail__facts dd { margin: 0; color: var(--fg); font-size: 13.5px; text-align: right; }
 
 .tick { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
-.tick--yes { color: var(--good); }
+.tick--yes { color: var(--quality-high); }
 .tick--no { color: var(--fg-mute); }
 
 .detail__tags {

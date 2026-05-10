@@ -319,12 +319,14 @@ function AppsTable({ apps }: { apps: BrowserApp[] }) {
               <HeroImage src={a.heroImage} alt="" ratio="1/1" placeholder="·" />
             </span>
             <span>
-              <strong>{a.title}</strong>
-              {a.isFeatured && (
-                <span className="apps-table__flag">
-                  <Icon name="star" size={10} />
-                </span>
-              )}
+              <strong>
+                {a.title}
+                {a.isFeatured && (
+                  <span className="apps-table__flag" aria-label="Empfehlung der Redaktion">
+                    Empfehlung
+                  </span>
+                )}
+              </strong>
               <em>{a.shortDescription}</em>
             </span>
           </span>
@@ -365,9 +367,7 @@ function AppsGrid({ apps }: { apps: BrowserApp[] }) {
           <div className="app-card__media">
             <HeroImage src={a.heroImage} alt={a.title} ratio="16/10" placeholder={a.title} />
             {a.isFeatured && (
-              <span className="app-card__flag">
-                <Icon name="star" size={10} /> Featured
-              </span>
+              <span className="app-card__flag">Empfehlung</span>
             )}
             <span className="app-card__q">
               <QualityBadge score={a.metadataQuality} size="sm" />
@@ -411,11 +411,7 @@ function AppsList({ apps }: { apps: BrowserApp[] }) {
           <div className="app-row__body">
             <div className="app-row__top">
               <h3>{a.title}</h3>
-              {a.isFeatured && (
-                <Pill tone="accent">
-                  <Icon name="star" size={10} /> Featured
-                </Pill>
-              )}
+              {a.isFeatured && <Pill tone="accent">Empfehlung</Pill>}
               <QualityBadge score={a.metadataQuality} />
             </div>
             <p>{a.shortDescription}</p>

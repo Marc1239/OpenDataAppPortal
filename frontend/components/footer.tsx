@@ -48,7 +48,7 @@ export function Footer({
               <Link href="/apps?sort=newest">Neueste Releases</Link>
             </li>
             <li>
-              <Link href="/apps">Featured</Link>
+              <Link href="/apps">Empfehlungen</Link>
             </li>
           </ul>
         </nav>
