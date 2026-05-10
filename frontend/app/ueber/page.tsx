@@ -39,7 +39,7 @@ export default async function UeberPage() {
       </div>
 
       <section className="simple-page__section">
-        <SectionLabel index="01">Prinzipien</SectionLabel>
+        <SectionLabel>Prinzipien</SectionLabel>
         <ul className="about__list">
           <li>
             <span>01</span> Frei zugänglich und nutzbar – ohne Registrierung, ohne Paywall
@@ -57,7 +57,7 @@ export default async function UeberPage() {
       </section>
 
       <section className="simple-page__section">
-        <SectionLabel index="02">Was passiert hier?</SectionLabel>
+        <SectionLabel>Was passiert hier?</SectionLabel>
         <p>
           Dieses Portal sammelt Anwendungen, die aus solchen Daten etwas Nützliches bauen:
           informierend, spielerisch, aktivierend, nützlich. Die Auswahl ist community-gepflegt

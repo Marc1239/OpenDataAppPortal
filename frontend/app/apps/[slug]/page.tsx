@@ -127,14 +127,14 @@ export default async function AppDetailPage({ params }: Props) {
       <div className="detail__body">
         <article className="detail__main">
           <section className="detail__section">
-            <SectionLabel index="01">Beschreibung</SectionLabel>
+            <SectionLabel>Beschreibung</SectionLabel>
             <p className="detail__lead">{app.shortDescription}</p>
             {longText && <p className="detail__long">{longText}</p>}
           </section>
 
           {app.publishInformation && (
             <section className="detail__section">
-              <SectionLabel index="02">Release-Informationen</SectionLabel>
+              <SectionLabel>Release-Informationen</SectionLabel>
               <div className="detail__release">
                 <div className="detail__release-head">
                   <span className="detail__release-version">
@@ -152,7 +152,7 @@ export default async function AppDetailPage({ params }: Props) {
           )}
 
           <section className="detail__section">
-            <SectionLabel index="03">Links &amp; Ressourcen</SectionLabel>
+            <SectionLabel>Links &amp; Ressourcen</SectionLabel>
             <div className="detail__links">
               <LinkRow icon="globe" label="Website" href={links.website} />
               <LinkRow icon="apple" label="App Store" href={links.appleAppStore} />
@@ -268,7 +268,7 @@ export default async function AppDetailPage({ params }: Props) {
 
       {related.length > 0 && (
         <section className="detail__related">
-          <SectionLabel index="04">Ähnliche Anwendungen</SectionLabel>
+          <SectionLabel>Ähnliche Anwendungen</SectionLabel>
           <div className="detail__related-grid">
             {related.map((a) => {
               const rCat = categoryName(a);

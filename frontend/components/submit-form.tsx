@@ -80,7 +80,7 @@ export function SubmitForm({ categories }: { categories: string[] }) {
       </div>
 
       <form className="submit-form" onSubmit={onSubmit}>
-        <SectionLabel index="01">Grunddaten</SectionLabel>
+        <SectionLabel>Grunddaten</SectionLabel>
         <div className="submit-form__row">
           <label className="submit-form__field">
             <span>
@@ -141,7 +141,7 @@ export function SubmitForm({ categories }: { categories: string[] }) {
           <span className="submit-form__hint">{form.description.length}/280 Zeichen</span>
         </label>
 
-        <SectionLabel index="02">Kontakt</SectionLabel>
+        <SectionLabel>Kontakt</SectionLabel>
         <label className="submit-form__field">
           <span>
             E-Mail für Rückfragen <em>*</em>

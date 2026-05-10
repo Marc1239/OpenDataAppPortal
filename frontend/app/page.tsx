@@ -44,14 +44,13 @@ export default async function HomePage() {
   const tiles = apps.filter((a) => appImageUrl(a, "card")).slice(0, 6);
   const spotlight = tiles[0];
   const spotlightCategory = spotlight ? categoryName(spotlight) : "";
-  const extraCount = Math.max(0, apps.length - 5);
 
   return (
     <div className="home">
-      <HeroV2 apps={apps} tiles={tiles} spotlight={spotlight} spotlightCategory={spotlightCategory} stats={stats} extraCount={extraCount} />
+      <HeroV2 apps={apps} spotlight={spotlight} spotlightCategory={spotlightCategory} stats={stats} />
 
       <section className="section">
-        <SectionLabel index="01">Im Fokus</SectionLabel>
+        <SectionLabel>Im Fokus</SectionLabel>
         <div className="section__head">
           <h2>Ausgewählte Anwendungen</h2>
           <Link className="link-btn" href="/apps">
@@ -66,7 +65,7 @@ export default async function HomePage() {
       </section>
 
       <section className="section">
-        <SectionLabel index="02">Nach Thema</SectionLabel>
+        <SectionLabel>Nach Thema</SectionLabel>
         <div className="section__head">
           <h2>Kategorien</h2>
         </div>
@@ -91,7 +90,7 @@ export default async function HomePage() {
       </section>
 
       <section id="about" className="section section--band">
-        <SectionLabel index="03">Open Data</SectionLabel>
+        <SectionLabel>Open Data</SectionLabel>
         <div className="about">
           <div className="about__col about__col--head">
             <h2>Daten, die allen gehören.</h2>
@@ -122,7 +121,7 @@ export default async function HomePage() {
       <section id="submit" className="section section--submit">
         <div className="submit">
           <div>
-            <SectionLabel index="04">Mitmachen</SectionLabel>
+            <SectionLabel>Mitmachen</SectionLabel>
             <h2>Du baust an einer App mit offenen Daten?</h2>
             <p>
               Reiche dein Projekt ein – wir nehmen es nach kurzer Redaktion in den
@@ -150,48 +149,30 @@ export default async function HomePage() {
 
 function HeroV2({
   apps,
-  tiles,
   spotlight,
   spotlightCategory,
   stats,
-  extraCount,
 }: {
   apps: AppDoc[];
-  tiles: AppDoc[];
   spotlight: AppDoc | undefined;
   spotlightCategory: string;
   stats: { apps: number; cities: number; categories: number; openSource: number };
-  extraCount: number;
 }) {
   return (
     <section className="hero2" aria-labelledby="hero-title">
-      <div className="hero2__top">
-        <div className="hero2__live" role="status" aria-live="polite">
-          <span className="hero2__pulse" aria-hidden>
-            <span />
-            <span />
-          </span>
-          <span>
-            <strong>{apps.length}</strong>&nbsp;Apps im Katalog
-          </span>
-        </div>
-        <div className="hero2__breadcrumbs" aria-hidden>
-          <span>OffeneApps</span>
-          <span>/</span>
-          <span>Open-Data-Verzeichnis</span>
-        </div>
-      </div>
-
       <h1 className="hero2__title" id="hero-title">
+        <span className="hero2__line">Offene Daten.</span>
         <span className="hero2__line">
-          <span className="hero2__word">Offene</span>{" "}
-          <span className="hero2__word hero2__word--accent">Daten.</span>
-        </span>
-        <span className="hero2__line">
-          <span className="hero2__word">Echte</span>{" "}
-          <span className="hero2__word hero2__word--outline">Apps.</span>
+          <em>Echte</em> Apps.
         </span>
       </h1>
+
+      <p className="hero2__lede">
+        Ein kuratiertes Verzeichnis für Anwendungen, die aus offenen Daten etwas
+        Nützliches bauen. Aus {stats.cities} Städten zusammengetragen,
+        {" "}
+        {stats.openSource} davon Open Source, alle ohne Werbung und Login.
+      </p>
 
       <div className="hero2__foot">
         <div className="hero2__cta">
@@ -214,11 +195,13 @@ function HeroV2({
               />
             </div>
             <div className="hero2__spotlight-body">
-              <span className="hero2__spotlight-label">Im Fokus</span>
+              <span className="hero2__spotlight-label">
+                Empfehlung der Redaktion
+              </span>
               <strong className="hero2__spotlight-title">{spotlight.title}</strong>
               <span className="hero2__spotlight-meta">
                 {spotlight.city}
-                {spotlightCategory ? ` · ${spotlightCategory}` : ""}
+                {spotlightCategory ? `, ${spotlightCategory}` : ""}
               </span>
             </div>
             <span className="hero2__spotlight-arrow" aria-hidden>
@@ -226,52 +209,6 @@ function HeroV2({
             </span>
           </Link>
         )}
-      </div>
-
-      <div className="hero2__strip">
-        <div className="hero2__thumbs" aria-hidden>
-          {tiles.slice(1, 6).map((a, i) => (
-            <Link
-              key={a.slug}
-              href={`/apps/${a.slug}`}
-              className="hero2__thumb"
-              style={{ animationDelay: `${i * 0.08}s` }}
-              title={a.title}
-              aria-label={a.title}
-            >
-              <HeroImage
-                src={appImageUrl(a, "thumb")}
-                alt=""
-                ratio="1/1"
-                placeholder={a.title}
-              />
-            </Link>
-          ))}
-          {extraCount > 0 && (
-            <Link
-              href="/apps"
-              className="hero2__thumb hero2__thumb--more"
-              aria-label={`Alle ${apps.length} Apps ansehen`}
-            >
-              <span>+{extraCount}</span>
-            </Link>
-          )}
-        </div>
-
-        <dl className="hero2__stats">
-          <div>
-            <dt>{stats.cities}</dt>
-            <dd>Städte</dd>
-          </div>
-          <div>
-            <dt>{stats.categories}</dt>
-            <dd>Kategorien</dd>
-          </div>
-          <div>
-            <dt>{stats.openSource}</dt>
-            <dd>Open Source</dd>
-          </div>
-        </dl>
       </div>
     </section>
   );
