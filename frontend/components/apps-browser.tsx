@@ -51,7 +51,7 @@ export function AppsBrowser({
   const [year, setYear] = useState("Alle");
   const [tag, setTag] = useState(initial.tag ?? "Alle");
   const [minQuality, setMinQuality] = useState(0);
-  const [sort, setSort] = useState(initial.sort || "quality");
+  const [sort, setSort] = useState(initial.sort || "featured");
   const [layout, setLayout] = useState<Layout>("table");
 
   useEffect(() => {
@@ -206,30 +206,14 @@ export function AppsBrowser({
         <div className="apps-filters__row">
           <FilterSelect label="Kategorie" value={category} options={categoryOpts} onChange={setCategory} />
           <FilterSelect label="Stadt" value={city} options={cities} onChange={setCity} />
-          <FilterSelect label="Tag" value={tag} options={tagOpts} onChange={setTag} />
-          <FilterSelect label="Jahr" value={year} options={years} onChange={setYear} />
-          <div className="filter-range">
-            <label>
-              Metadaten-Qualität ≥ <strong>{minQuality}</strong>
-            </label>
-            <input
-              type="range"
-              min={0}
-              max={100}
-              step={5}
-              value={minQuality}
-              onChange={(e) => setMinQuality(Number(e.target.value))}
-              aria-label="Mindest-Metadaten-Qualität"
-            />
-          </div>
           <FilterSelect
             label="Sortierung"
             value={sort}
             options={[
-              { v: "quality", l: "Qualität (hoch → niedrig)" },
               { v: "featured", l: "Empfehlungen zuerst" },
               { v: "title", l: "Titel A → Z" },
               { v: "city", l: "Stadt A → Z" },
+              { v: "quality", l: "Datenqualität" },
             ]}
             onChange={setSort}
           />
@@ -239,6 +223,30 @@ export function AppsBrowser({
             </button>
           )}
         </div>
+        <details
+          className="apps-filters__advanced"
+          open={tag !== "Alle" || year !== "Alle" || minQuality > 0}
+        >
+          <summary>Weitere Filter</summary>
+          <div className="apps-filters__row">
+            <FilterSelect label="Tag" value={tag} options={tagOpts} onChange={setTag} />
+            <FilterSelect label="Jahr" value={year} options={years} onChange={setYear} />
+            <div className="filter-range">
+              <label>
+                Datenqualität ≥ <strong>{minQuality}</strong>
+              </label>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                step={5}
+                value={minQuality}
+                onChange={(e) => setMinQuality(Number(e.target.value))}
+                aria-label="Mindest-Datenqualität"
+              />
+            </div>
+          </div>
+        </details>
         <div className="apps-filters__meta" role="status" aria-live="polite">
           <strong>{filtered.length}</strong> von {apps.length} Anwendungen
           {hasActiveFilter && <span className="apps-filters__hint"> · Filter aktiv</span>}

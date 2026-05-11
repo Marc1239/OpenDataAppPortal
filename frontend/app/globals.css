@@ -707,6 +707,33 @@ html[data-theme="dark"] .filter-range label strong { color: var(--fg); font-weig
 .apps-filters__meta strong { color: var(--accent); font-weight: 500; }
 html[data-theme="dark"] .apps-filters__meta strong { color: var(--fg); font-weight: 600; }
 .apps-filters__hint { color: var(--fg-mute); }
+.apps-filters__advanced { margin: 4px 0 4px; }
+.apps-filters__advanced > summary {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--fg-dim);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  list-style: none;
+  user-select: none;
+}
+.apps-filters__advanced > summary::-webkit-details-marker { display: none; }
+.apps-filters__advanced > summary::before {
+  content: "+";
+  display: inline-block;
+  width: 14px;
+  font-style: normal;
+  font-size: 13px;
+  font-family: var(--font-body);
+  color: var(--accent);
+}
+.apps-filters__advanced[open] > summary::before { content: "−"; }
+.apps-filters__advanced > summary:hover { color: var(--fg); }
+.apps-filters__advanced[open] > summary { color: var(--fg); margin-bottom: 12px; }
 
 /* Table */
 .apps-table {
