@@ -1,27 +1,28 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Icon } from "@/components/icon";
+import { SectionLabel } from "@/components/section-label";
 
 export default function NotFound() {
   return (
-    <div className="container-page py-24 text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.08em] text-primary">
-        404
-      </p>
-      <h1 className="mt-3 text-4xl md:text-5xl font-[var(--font-display)] font-bold">
-        Seite nicht gefunden
-      </h1>
-      <p className="mt-4 text-muted-foreground max-w-md mx-auto">
-        Diese Seite existiert nicht oder wurde verschoben. Finde stattdessen
-        Apps im Katalog.
-      </p>
-      <div className="mt-8 flex items-center justify-center gap-3">
-        <Link href="/">
-          <Button variant="primary">Zur Startseite</Button>
-        </Link>
-        <Link href="/apps">
-          <Button variant="outline">Apps durchsuchen</Button>
-        </Link>
+    <div className="simple-page">
+      <div className="simple-page__head">
+        <SectionLabel>Seite nicht gefunden</SectionLabel>
+        <h1>Hier ist nichts.</h1>
+        <p className="simple-page__lead">
+          Diese Seite existiert nicht oder wurde verschoben. Wahrscheinlich findest
+          du, was du suchst, im Katalog.
+        </p>
       </div>
+
+      <section className="simple-page__cta">
+        <h2>Zurück zum Katalog.</h2>
+        <p>
+          Stöber durch alle Open-Data-Apps, oder geh zurück zur Startseite.
+        </p>
+        <Link href="/apps" className="btn btn--primary">
+          Apps durchsuchen <Icon name="arrow" size={14} aria-hidden />
+        </Link>
+      </section>
     </div>
   );
 }
