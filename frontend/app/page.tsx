@@ -160,9 +160,9 @@ function HeroV2({
   return (
     <section className="hero2" aria-labelledby="hero-title">
       <h1 className="hero2__title" id="hero-title">
-        <span className="hero2__line">Offene Daten.</span>
+        <span className="hero2__line">Offene Daten,</span>
         <span className="hero2__line">
-          <em>Echte</em> Apps.
+          <em>in deiner</em> Stadt.
         </span>
       </h1>
 

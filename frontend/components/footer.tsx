@@ -8,13 +8,6 @@ export function Footer({
   settings: SiteSettings;
   appCount?: number;
 }) {
-  const now = new Date();
-  const version = `v${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}`;
-  const updated = new Intl.DateTimeFormat("de-DE", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(now);
   const extraLinks = settings.footerLinks ?? [];
 
   return (
@@ -102,10 +95,7 @@ export function Footer({
         </nav>
       </div>
       <div className="app-footer__meta">
-        <span>
-          {version} · CC BY 4.0
-        </span>
-        <span>Letztes Update: {updated}</span>
+        <span>Inhalte unter CC BY 4.0</span>
         <span>{appCount} Anwendungen gelistet</span>
       </div>
     </footer>

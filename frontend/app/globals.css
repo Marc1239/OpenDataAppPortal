@@ -1148,11 +1148,13 @@ html[data-theme="dark"] .detail__release-version { color: var(--fg); font-weight
   padding: 4px 10px;
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  text-transform: lowercase;
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 13px;
   max-width: 80%;
   text-align: center;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  color: var(--fg);
+  color: var(--fg-dim);
 }
 .hero-img { width: 100%; object-fit: cover; }
 

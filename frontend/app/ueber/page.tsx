@@ -64,24 +64,12 @@ export default async function UeberPage() {
           und konzentriert sich auf Projekte mit offenem Quellcode oder dokumentierten
           Datenquellen.
         </p>
-        <dl className="hero__stats">
-          <div>
-            <dt>{stats.apps}</dt>
-            <dd>Anwendungen</dd>
-          </div>
-          <div>
-            <dt>{stats.cities}</dt>
-            <dd>Städte &amp; Regionen</dd>
-          </div>
-          <div>
-            <dt>{stats.openSource}</dt>
-            <dd>mit Quelltext</dd>
-          </div>
-          <div>
-            <dt>{stats.barrierFree}</dt>
-            <dd>barrierefrei</dd>
-          </div>
-        </dl>
+        <p>
+          Aktuell stehen {stats.apps} Anwendungen aus {stats.cities} Städten und Regionen
+          im Katalog. {stats.openSource} davon liegen quelloffen vor,
+          {" "}
+          {stats.barrierFree} sind ausdrücklich als barrierefrei ausgewiesen.
+        </p>
       </section>
 
       <section className="simple-page__cta">
