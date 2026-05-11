@@ -67,7 +67,7 @@ export default async function HomePage() {
         <div className="section__head">
           <h2>Kategorien</h2>
         </div>
-        <ul className="cat-list">
+        <div className="cat-grid">
           {categories
             .map((c) => ({
               ...c,
@@ -76,16 +76,24 @@ export default async function HomePage() {
             .filter((c) => c.count > 0)
             .sort((a, b) => b.count - a.count)
             .map((c) => (
-              <li key={c.id}>
-                <Link href={`/apps?category=${encodeURIComponent(c.slug)}`}>
-                  <span className="cat-list__name">{c.name}</span>
-                  <span className="cat-list__count" aria-label={`${c.count} Anwendungen`}>
-                    {c.count}
-                  </span>
-                </Link>
-              </li>
+              <Link
+                key={c.id}
+                href={`/apps?category=${encodeURIComponent(c.slug)}`}
+                className="cat-card"
+              >
+                <span className="cat-card__name">{c.name}</span>
+                <span
+                  className="cat-card__count"
+                  aria-label={`${c.count} Anwendungen`}
+                >
+                  {c.count}
+                </span>
+                <span className="cat-card__arrow" aria-hidden>
+                  <Icon name="arrow" size={16} />
+                </span>
+              </Link>
             ))}
-        </ul>
+        </div>
       </section>
 
       <section id="about" className="section section--band">

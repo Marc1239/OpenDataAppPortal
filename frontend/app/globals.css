@@ -481,43 +481,59 @@ img { max-width: 100%; display: block; }
 .qbadge__unit { color: var(--fg-mute); }
 
 /* ---------------- Categories ---------------- */
-.cat-list {
-  list-style: none;
-  margin: 0; padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 24px;
-  row-gap: 12px;
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.cat-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  gap: 4px 12px;
+  padding: 22px 22px 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  position: relative;
+  color: inherit;
+  min-height: 132px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.cat-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.cat-card__name {
+  grid-column: 1 / 2;
   font-family: var(--font-head);
-  line-height: 1.15;
-  max-width: 70ch;
-}
-.cat-list li { display: inline-flex; align-items: baseline; }
-.cat-list li + li::before {
-  content: "·";
-  color: var(--fg-mute);
-  margin-right: 24px;
-  font-size: 18px;
-  align-self: center;
-}
-.cat-list a {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 8px;
-  color: var(--fg);
-  border-bottom: 1px solid transparent;
+  font-size: 22px;
   font-weight: 500;
-  letter-spacing: -0.015em;
-  transition: color 0.15s, border-color 0.15s;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+  line-height: 1.15;
+  align-self: start;
 }
-.cat-list a:hover { color: var(--accent); border-color: var(--accent); }
-.cat-list__name { font-size: clamp(20px, 2.2vw, 30px); }
-.cat-list__count {
+.cat-card__count {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  font-family: var(--font-head);
   font-style: italic;
-  font-weight: 400;
+  font-size: 18px;
   color: var(--accent);
-  font-size: clamp(14px, 1.4vw, 18px);
+  align-self: start;
+}
+.cat-card__arrow {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: inline-grid; place-items: center;
+  color: var(--fg-dim);
+  transition: color 0.15s, transform 0.15s;
+}
+.cat-card:hover .cat-card__arrow {
+  color: var(--accent);
+  transform: translateX(3px);
 }
 
 /* ---------------- About band ---------------- */
@@ -1617,9 +1633,9 @@ html[data-theme="dark"] .submit-form__field em { color: var(--fg); }
   .app-row__tags { margin-left: 0; }
   .app-footer__inner { grid-template-columns: 1fr; gap: 32px; padding: 40px var(--pad) 24px; }
   .app-footer__meta { flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px var(--pad) 32px; }
-  .cat-list { column-gap: 18px; row-gap: 10px; }
-  .cat-list li + li::before { margin-right: 18px; }
-  .cat-list__name { font-size: 19px; }
+  .cat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cat-card { padding: 16px 18px; min-height: 104px; }
+  .cat-card__name { font-size: 18px; }
 }
 
 @media (max-width: 760px) {

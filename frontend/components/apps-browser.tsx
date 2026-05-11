@@ -45,11 +45,30 @@ export function AppsBrowser({
     query: string;
   };
 }) {
+  // The URL can carry either category name or slug; tags likewise. Normalize
+  // to the visible value used by FilterSelect (the human-readable name/label).
+  const resolveCategory = (raw: string | null) => {
+    if (!raw) return "Alle";
+    const bySlug = categories.find((c) => c.slug === raw);
+    if (bySlug) return bySlug.name;
+    const byName = categories.find((c) => c.name === raw);
+    if (byName) return byName.name;
+    return "Alle";
+  };
+  const resolveTag = (raw: string | null) => {
+    if (!raw) return "Alle";
+    const bySlug = tags.find((t) => t.slug === raw);
+    if (bySlug) return bySlug.label;
+    const byLabel = tags.find((t) => t.label === raw);
+    if (byLabel) return byLabel.label;
+    return raw;
+  };
+
   const [query, setQuery] = useState(initial.query);
-  const [category, setCategory] = useState(initial.category ?? "Alle");
+  const [category, setCategory] = useState(() => resolveCategory(initial.category));
   const [city, setCity] = useState(initial.city ?? "Alle");
   const [year, setYear] = useState("Alle");
-  const [tag, setTag] = useState(initial.tag ?? "Alle");
+  const [tag, setTag] = useState(() => resolveTag(initial.tag));
   const [minQuality, setMinQuality] = useState(0);
   const [sort, setSort] = useState(initial.sort || "featured");
   const [layout, setLayout] = useState<Layout>("table");
