@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 import { getContactInfo } from "@/lib/payload";
+import { Icon } from "@/components/icon";
+import { SectionLabel } from "@/components/section-label";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -13,86 +15,70 @@ export const revalidate = 300;
 export default async function KontaktPage() {
   const info = await getContactInfo();
 
-  const headline = info?.headline ?? "Kontakt";
+  const headline = info?.headline ?? "Kontakt.";
   const body =
     info?.body ??
-    "Du hast Fragen, Anregungen oder möchtest eine App einreichen? Wir freuen uns auf deine Nachricht.";
-  const email = info?.email ?? "kontakt@open-data-portal.de";
+    "Du hast Fragen, Anregungen oder eine Idee, die nicht ins Einreichungsformular passt? Schreib uns.";
+  const email = info?.email ?? "hallo@opendata-portal.de";
   const phone = info?.phone;
   const address = info?.address;
   const hours = info?.hours;
 
   return (
-    <div className="container-page py-14 md:py-20">
-      <header className="max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-primary">
-          Sag hallo
-        </p>
-        <h1 className="mt-3 text-4xl md:text-5xl font-[var(--font-display)] font-bold text-balance">
-          {headline}
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground">{body}</p>
-      </header>
-
-      <div className="mt-12 grid gap-6 md:grid-cols-2 max-w-3xl">
-        <ContactTile icon={<Mail size={18} aria-hidden />} label="E-Mail">
-          <a
-            href={`mailto:${email}`}
-            className="text-primary hover:underline break-all"
-          >
-            {email}
-          </a>
-        </ContactTile>
-        {phone && (
-          <ContactTile icon={<Phone size={18} aria-hidden />} label="Telefon">
-            <a
-              href={`tel:${phone.replace(/\s+/g, "")}`}
-              className="text-primary hover:underline"
-            >
-              {phone}
-            </a>
-          </ContactTile>
-        )}
-        {address && (
-          <ContactTile icon={<MapPin size={18} aria-hidden />} label="Adresse">
-            <address className="not-italic whitespace-pre-line text-foreground">
-              {address}
-            </address>
-          </ContactTile>
-        )}
-        {hours && (
-          <ContactTile icon={<Clock size={18} aria-hidden />} label="Erreichbarkeit">
-            <p className="whitespace-pre-line">{hours}</p>
-          </ContactTile>
-        )}
+    <div className="simple-page">
+      <div className="simple-page__head">
+        <div className="breadcrumb">
+          <Link href="/">Start</Link> <Icon name="arrow" size={12} aria-hidden />{" "}
+          <span>Kontakt</span>
+        </div>
+        <h1>{headline}</h1>
+        <p className="simple-page__lead">{body}</p>
       </div>
-    </div>
-  );
-}
 
-function ContactTile({
-  icon,
-  label,
-  children,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-[var(--radius-lg)] border border-border bg-card p-6 flex gap-4">
-      <span
-        aria-hidden
-        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-muted text-primary"
-      >
-        {icon}
-      </span>
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
-          {label}
+      <section className="simple-page__section">
+        <SectionLabel>Direkt erreichbar</SectionLabel>
+        <dl className="contact-list">
+          <div>
+            <dt>E-Mail</dt>
+            <dd>
+              <a href={`mailto:${email}`}>{email}</a>
+            </dd>
+          </div>
+          {phone && (
+            <div>
+              <dt>Telefon</dt>
+              <dd>
+                <a href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}</a>
+              </dd>
+            </div>
+          )}
+          {address && (
+            <div>
+              <dt>Adresse</dt>
+              <dd>
+                <address>{address}</address>
+              </dd>
+            </div>
+          )}
+          {hours && (
+            <div>
+              <dt>Erreichbarkeit</dt>
+              <dd>{hours}</dd>
+            </div>
+          )}
+        </dl>
+      </section>
+
+      <section className="simple-page__cta">
+        <h2>Eine App vorschlagen?</h2>
+        <p>
+          Für konkrete App-Einreichungen ist das Formular der schnellere Weg, dort
+          landet alles direkt bei der Redaktion.
         </p>
-        <div className="mt-1 text-base">{children}</div>
-      </div>
+        <Link href="/einreichen" className="btn btn--primary">
+          Zum Einreichungsformular <Icon name="arrow" size={14} aria-hidden />
+        </Link>
+      </section>
     </div>
   );
 }

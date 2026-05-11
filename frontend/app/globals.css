@@ -1183,6 +1183,30 @@ html[data-theme="dark"] .detail__release-version { color: var(--fg); font-weight
 @media (max-width: 700px) {
   .simple-page__cta .btn { grid-column: 1; grid-row: auto; justify-self: start; }
 }
+
+/* ---------------- Contact list ---------------- */
+.contact-list {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px 48px;
+  margin: 0; max-width: 720px;
+}
+@media (max-width: 640px) { .contact-list { grid-template-columns: 1fr; gap: 24px; } }
+.contact-list > div { display: flex; flex-direction: column; gap: 6px; }
+.contact-list dt {
+  font-family: var(--font-head); font-style: italic;
+  font-size: 14px; font-weight: 400;
+  color: var(--accent);
+}
+.contact-list dd {
+  margin: 0; font-size: 17px; line-height: 1.5;
+  color: var(--fg);
+}
+.contact-list address { font-style: normal; white-space: pre-line; }
+.contact-list a {
+  color: var(--fg);
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  transition: color 0.15s, border-color 0.15s;
+}
+.contact-list a:hover { color: var(--accent); border-color: var(--accent); }
 .simple-page__stats {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(0, max-content));
   justify-content: start;
