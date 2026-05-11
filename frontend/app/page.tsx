@@ -97,11 +97,12 @@ export default async function HomePage() {
       </section>
 
       <section id="about" className="section section--band">
-        <SectionLabel>Open Data</SectionLabel>
-        <div className="about">
-          <div className="about__col about__col--head">
-            <h2>Daten, die allen gehören.</h2>
-          </div>
+        <div className="about-wrap">
+          <SectionLabel>Open Data</SectionLabel>
+          <div className="about">
+            <div className="about__col about__col--head">
+              <h2>Daten, die allen gehören.</h2>
+            </div>
           <div className="about__col">
             <p>
               Offene Daten sind frei zugängliche Datensätze – von Fahrplänen über
@@ -121,6 +122,7 @@ export default async function HomePage() {
               <li><span>03</span> Community-getragen, dokumentiert</li>
               <li><span>04</span> Transparente Herkunft &amp; Aktualität</li>
             </ul>
+          </div>
           </div>
         </div>
       </section>
