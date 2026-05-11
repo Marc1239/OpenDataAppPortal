@@ -991,10 +991,9 @@ html[data-theme="light"] .detail-hero__bg::after {
 
 .detail__release {
   border: 1px solid var(--line);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 20px;
-  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 22px 22px 22px 24px;
+  background: color-mix(in oklab, var(--accent) 5%, var(--card));
 }
 .detail__release-head {
   display: flex; align-items: center; gap: 10px;
@@ -1273,6 +1272,33 @@ html[data-theme="dark"] .submit-form__field em { color: var(--fg); }
   font-size: 11px;
   color: var(--fg-mute); align-self: flex-end;
   text-transform: none; letter-spacing: 0.02em;
+}
+.submit-form__field [aria-invalid="true"] {
+  border-color: var(--quality-low);
+  background: color-mix(in oklab, var(--quality-low) 6%, var(--card));
+}
+.submit-form__field [aria-invalid="true"]:focus {
+  border-color: var(--quality-low);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--quality-low) 28%, transparent);
+}
+.submit-form__error {
+  font-size: 13px;
+  color: var(--quality-low);
+  margin-top: 4px;
+}
+.submit-form__error--global {
+  padding: 12px 14px;
+  background: color-mix(in oklab, var(--quality-low) 8%, var(--card));
+  border: 1px solid color-mix(in oklab, var(--quality-low) 40%, transparent);
+  border-radius: var(--radius);
+  margin: 4px 0 0;
+}
+.submit-form__draft {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--fg-dim);
+  font-style: italic;
+  font-family: var(--font-head);
 }
 .submit-form__note {
   font-size: 12px;
