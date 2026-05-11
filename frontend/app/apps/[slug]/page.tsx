@@ -114,7 +114,7 @@ export default async function AppDetailPage({ params }: Props) {
           <p>{app.shortDescription}</p>
           <div className="detail-hero__badges">
             {app.isFeatured && (
-              <Pill tone="accent">Empfehlung der Redaktion</Pill>
+              <Pill tone="editorial">Empfehlung der Redaktion</Pill>
             )}
             <QualityBadge score={quality} size="lg" />
             {app.latestRelease && <Pill tone="mono">{app.latestRelease}</Pill>}

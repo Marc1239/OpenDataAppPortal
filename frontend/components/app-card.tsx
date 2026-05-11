@@ -42,6 +42,11 @@ export function AppCard({
           placeholder={app.title}
           priority={priority}
         />
+        {app.isFeatured && (
+          <span className="featured__flag">
+            <Pill tone="editorial">Empfehlung</Pill>
+          </span>
+        )}
       </div>
       <div className="featured__body">
         <div className="featured__meta">

@@ -323,7 +323,7 @@ function AppsTable({ apps }: { apps: BrowserApp[] }) {
                 {a.title}
                 {a.isFeatured && (
                   <span className="apps-table__flag" aria-label="Empfehlung der Redaktion">
-                    Empfehlung
+                    <Pill tone="editorial">Empfehlung</Pill>
                   </span>
                 )}
               </strong>
@@ -367,7 +367,9 @@ function AppsGrid({ apps }: { apps: BrowserApp[] }) {
           <div className="app-card__media">
             <HeroImage src={a.heroImage} alt={a.title} ratio="16/10" placeholder={a.title} />
             {a.isFeatured && (
-              <span className="app-card__flag">Empfehlung</span>
+              <span className="app-card__flag">
+                <Pill tone="editorial">Empfehlung</Pill>
+              </span>
             )}
             <span className="app-card__q">
               <QualityBadge score={a.metadataQuality} size="sm" />
@@ -411,7 +413,7 @@ function AppsList({ apps }: { apps: BrowserApp[] }) {
           <div className="app-row__body">
             <div className="app-row__top">
               <h3>{a.title}</h3>
-              {a.isFeatured && <Pill tone="accent">Empfehlung</Pill>}
+              {a.isFeatured && <Pill tone="editorial">Empfehlung</Pill>}
               <QualityBadge score={a.metadataQuality} />
             </div>
             <p>{a.shortDescription}</p>

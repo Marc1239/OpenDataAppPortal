@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-type Tone = "default" | "mono" | "ghost" | "accent";
+type Tone = "default" | "mono" | "ghost" | "accent" | "editorial";
 
 export function Pill({
   children,
