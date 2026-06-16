@@ -134,3 +134,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Local tooling — not part of the project, kept out of the repo
+.claude/
+.impeccable/
