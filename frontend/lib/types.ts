@@ -48,6 +48,11 @@ export type AppContact = {
   supportMail?: string | null;
 };
 
+export type AppSharing = {
+  shareText?: string | null;
+  disableSharing?: boolean | null;
+};
+
 export type AppDoc = {
   id: string;
   title: string;
@@ -67,6 +72,7 @@ export type AppDoc = {
   publishInformation?: string | null;
   links?: AppLinks | null;
   contact?: AppContact | null;
+  sharing?: AppSharing | null;
   metadataQualityOverride?: number | null;
   createdAt?: string;
   updatedAt?: string;

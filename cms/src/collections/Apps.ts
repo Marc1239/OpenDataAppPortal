@@ -128,5 +128,28 @@ export const Apps: CollectionConfig = {
         { name: "supportMail", type: "email" },
       ],
     },
+    {
+      name: "sharing",
+      type: "group",
+      admin: {
+        description: "Einstellungen für die Teilen-Funktion auf der Detailseite.",
+      },
+      fields: [
+        {
+          name: "shareText",
+          type: "text",
+          admin: {
+            description:
+              "Optionaler Teilen-Text. Leer lassen, um die Kurzbeschreibung zu verwenden.",
+          },
+        },
+        {
+          name: "disableSharing",
+          type: "checkbox",
+          defaultValue: false,
+          admin: { description: "Teilen-Bereich für diese App ausblenden." },
+        },
+      ],
+    },
   ],
 };

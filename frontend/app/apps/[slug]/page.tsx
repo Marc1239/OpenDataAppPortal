@@ -8,10 +8,13 @@ import { Pill } from "@/components/pill";
 import { QualityBadge } from "@/components/quality-badge";
 import { SectionLabel } from "@/components/section-label";
 import { HeroImage } from "@/components/hero-image";
+import { ShareBar } from "@/components/share-bar";
 import type { AppDoc, Tag } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,10 +22,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const app = await getAppBySlug(slug);
   if (!app) return { title: "App nicht gefunden" };
+  const ogImage = appImageUrl(app, "hero") ?? "/og-default.png";
+  const canonical = `/apps/${app.slug}`;
   return {
+    metadataBase: new URL(SITE_URL),
     title: app.title,
     description: app.shortDescription,
-    openGraph: { title: app.title, description: app.shortDescription },
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title: app.title,
+      description: app.shortDescription,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: app.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: app.title,
+      description: app.shortDescription,
+      images: [ogImage],
+    },
   };
 }
 
@@ -69,6 +88,14 @@ export default async function AppDetailPage({ params }: Props) {
 
   const links = app.links ?? {};
   const contact = app.contact ?? {};
+
+  const sharing = app.sharing ?? {};
+  const sharingEnabled = sharing.disableSharing !== true;
+  const shareText =
+    sharing.shareText && sharing.shareText.trim()
+      ? sharing.shareText
+      : app.shortDescription;
+  const shareUrl = `${SITE_URL}/apps/${app.slug}`;
 
   const primaryCta = links.appleAppStore
     ? { href: links.appleAppStore, label: "Im App Store öffnen", tone: "primary" as const }
@@ -168,6 +195,13 @@ export default async function AppDetailPage({ params }: Props) {
               />
             </div>
           </section>
+
+          {sharingEnabled && (
+            <section className="detail__section">
+              <SectionLabel>Teilen</SectionLabel>
+              <ShareBar url={shareUrl} title={app.title} text={shareText} />
+            </section>
+          )}
         </article>
 
         <aside className="detail__side">
