@@ -1,0 +1,30 @@
+%% Open Data App Portal - Systemarchitektur (konzeptionell)
+%% Konkrete Technologien werden im Fliesstext beschrieben.
+%% Rendern: https://mermaid.live  ·  npx -p @mermaid-js/mermaid-cli mmdc -i architecture.mmd -o architecture.svg
+
+flowchart TB
+  visitor(["Besucher:in"])
+  editor(["Redakteur:in"])
+
+  proxy["Reverse Proxy"]
+  frontend["Frontend"]
+  cms["CMS"]
+  db[("Datenbank")]
+  storage[("Medienspeicher")]
+
+  visitor --> proxy
+  editor --> proxy
+  proxy --> frontend
+  proxy --> cms
+
+  frontend -->|"Inhalte (REST, lesend)"| cms
+  cms --> db
+  cms --> storage
+  cms -.->|"Cache-Invalidierung (Webhook)"| frontend
+
+  classDef actor fill:#ffffff,stroke:#1f2937,stroke-width:1px,color:#111827;
+  classDef service fill:#f3f4f6,stroke:#1f2937,stroke-width:1px,color:#111827;
+  classDef store fill:#e5e7eb,stroke:#1f2937,stroke-width:1px,color:#111827;
+  class visitor,editor actor;
+  class proxy,frontend,cms service;
+  class db,storage store;
