@@ -11,6 +11,9 @@ concurrency:
   group: deploy-hetzner
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     name: SSH deploy
@@ -28,16 +31,27 @@ jobs:
 
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          # Ephemeral, per-run token with read access to this (private) repo.
+          # Minted fresh each run, so the deploy can never break from an
+          # expired credential cached on the server.
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         with:
           host: ${{ secrets.HETZNER_SSH_HOST }}
           username: ${{ secrets.HETZNER_SSH_USER }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
           port: ${{ secrets.HETZNER_SSH_PORT || 22 }}
           script_stop: true
+          envs: GH_TOKEN,GH_REPO
           script: |
             set -euo pipefail
             cd "${{ secrets.HETZNER_DEPLOY_PATH }}"
-            git fetch --prune origin
+            # Fetch over HTTPS with the ephemeral token instead of relying on
+            # credentials stored on the server (which expire). Token stays in
+            # the inline URL only — it is never written to git config.
+            git fetch "https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git" \
+              "+refs/heads/main:refs/remotes/origin/main"
             git reset --hard origin/main
             ./scripts/deploy.sh
 
