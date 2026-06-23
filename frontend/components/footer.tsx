@@ -95,7 +95,6 @@ export function Footer({
         </nav>
       </div>
       <div className="app-footer__meta">
-        <span>Inhalte unter CC BY 4.0</span>
         <span>{appCount} Anwendungen gelistet</span>
       </div>
     </footer>
