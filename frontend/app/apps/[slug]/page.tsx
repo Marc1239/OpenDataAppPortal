@@ -9,12 +9,11 @@ import { QualityBadge } from "@/components/quality-badge";
 import { SectionLabel } from "@/components/section-label";
 import { HeroImage } from "@/components/hero-image";
 import { ShareBar } from "@/components/share-bar";
+import { getSiteUrl } from "@/lib/site-url";
 import type { AppDoc, Tag } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = appImageUrl(app, "hero") ?? "/og-default.png";
   const canonical = `/apps/${app.slug}`;
   return {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(await getSiteUrl()),
     title: app.title,
     description: app.shortDescription,
     alternates: { canonical },
@@ -95,7 +94,7 @@ export default async function AppDetailPage({ params }: Props) {
     sharing.shareText && sharing.shareText.trim()
       ? sharing.shareText
       : app.shortDescription;
-  const shareUrl = `${SITE_URL}/apps/${app.slug}`;
+  const shareUrl = `${await getSiteUrl()}/apps/${app.slug}`;
 
   const primaryCta = links.appleAppStore
     ? { href: links.appleAppStore, label: "Im App Store öffnen", tone: "primary" as const }

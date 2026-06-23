@@ -55,6 +55,10 @@ services:
       PAYLOAD_INTERNAL_URL: http://cms:3001
       PAYLOAD_REVALIDATE: ${PAYLOAD_REVALIDATE:-60}
       REVALIDATE_SECRET: ${REVALIDATE_SECRET:-change-me-in-production}
+      # Feste oeffentliche Basis-URL (kanonische Links, Open Graph, Teilen-URLs).
+      # Leer lassen => wird automatisch aus dem Request-Host abgeleitet. Fuer eine
+      # feste Adresse in der .env setzen, z. B. SITE_URL=http://178.104.68.119:3000
+      SITE_URL: ${SITE_URL:-}
     ports:
       - "3000:3000"
     networks:
