@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Icon } from "./icon";
@@ -34,7 +34,6 @@ function Logo() {
 
 export function TopBar() {
   const pathname = usePathname() || "/";
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -92,13 +91,6 @@ export function TopBar() {
               suppressHydrationWarning
             >
               <Icon name={isDark ? "sun" : "moon"} size={18} />
-            </button>
-            <button
-              className="icon-btn"
-              onClick={() => router.push("/apps")}
-              aria-label="Anwendungen durchsuchen"
-            >
-              <Icon name="search" size={18} />
             </button>
             <Link
               href="/apps"
