@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
 # Server-side deployment: rebuild & restart the production stack.
-# Invoked via SSH by .github/workflows/deploy.yml after `git reset --hard origin/main`.
-# Safe to run manually on the Hetzner host from the repo root.
+# The deploy workflow (.github/workflows/deploy.yml) runs this over SSH after
+# `git reset --hard origin/main`. Safe to run manually from the repo root.
 
 set -euo pipefail
 
@@ -14,9 +14,9 @@ if [[ ! -f .env ]]; then
   exit 1
 fi
 
-# Use the Caddy/TLS overlay only when a domain is configured. For IP-only
-# deployments (no FRONTEND_DOMAIN in .env) we expose 3000/3001 directly and
-# skip docker-compose.prod.yml so Caddy isn't needed.
+# Use the Caddy/TLS overlay only when .env sets a domain. IP-only deployments
+# (no FRONTEND_DOMAIN in .env) expose 3000/3001 directly and skip
+# docker-compose.prod.yml, so Caddy stays out of the stack.
 COMPOSE=(docker compose -f docker-compose.yml)
 if grep -qE '^FRONTEND_DOMAIN=[^[:space:]]+' .env; then
   COMPOSE+=(-f docker-compose.prod.yml)

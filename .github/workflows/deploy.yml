@@ -18,7 +18,7 @@ jobs:
   deploy:
     name: SSH deploy
     runs-on: ubuntu-latest
-    # workflow_run fires on failure too — only continue when CI went green.
+    # workflow_run fires on failure too; only continue when CI went green.
     # For manual dispatch (workflow_run.conclusion is null), always proceed.
     if: >
       github.event_name == 'workflow_dispatch' ||
@@ -33,8 +33,8 @@ jobs:
         uses: appleboy/ssh-action@v1.2.0
         env:
           # Ephemeral, per-run token with read access to this (private) repo.
-          # Minted fresh each run, so the deploy can never break from an
-          # expired credential cached on the server.
+          # Each run mints a fresh token, so an expired credential cached on
+          # the server can't break the deploy.
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         with:
@@ -47,9 +47,9 @@ jobs:
           script: |
             set -euo pipefail
             cd "${{ secrets.HETZNER_DEPLOY_PATH }}"
-            # Fetch over HTTPS with the ephemeral token instead of relying on
-            # credentials stored on the server (which expire). Token stays in
-            # the inline URL only — it is never written to git config.
+            # Fetch over HTTPS with the ephemeral token instead of credentials
+            # stored on the server (those expire). The token lives only in the
+            # inline URL and stays out of git config.
             git fetch "https://x-access-token:${GH_TOKEN}@github.com/${GH_REPO}.git" \
               "+refs/heads/main:refs/remotes/origin/main"
             git reset --hard origin/main

@@ -1,4 +1,4 @@
-// MongoDB migration: consolidate categories from 27 → 7.
+// MongoDB migration: consolidate 27 categories into 7.
 // Run via: docker exec odap_mongo mongosh --quiet opendata /tmp/migrate-categories.js
 
 const NEW_CATEGORIES = [

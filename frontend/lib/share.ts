@@ -1,5 +1,5 @@
-// Reine Hilfsfunktionen zum Erzeugen von Teilen-Ziel-URLs (Social Sharing).
-// Bewusst ohne Browser-APIs gehalten, damit die Logik testbar bleibt.
+// Hilfsfunktionen zum Erzeugen der Teilen-Ziel-URLs (Social Sharing).
+// Ohne Browser-APIs, damit die Logik in Vitest testbar bleibt.
 
 export type ShareChannel =
   | "email"
@@ -29,9 +29,9 @@ export type ShareInput = {
 };
 
 /**
- * Baut die Ziel-URLs für die unterstützten Teilen-Kanäle.
- * Alle Parameter werden URL-kodiert. Es werden ausschließlich offizielle
- * Share-Intents verwendet, keine Drittanbieter-Skripte oder Tracking-Parameter.
+ * Baut die Ziel-URLs für die unterstützten Teilen-Kanäle. Alle Parameter sind
+ * URL-kodiert. Die Links nutzen die offiziellen Share-Intents der Plattformen
+ * und enthalten keine Tracking-Parameter.
  */
 export function buildShareTargets({ url, title, text }: ShareInput): ShareTarget[] {
   const u = encodeURIComponent(url);

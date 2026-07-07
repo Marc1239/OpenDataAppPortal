@@ -9,9 +9,9 @@ type Props = {
   text: string;
 };
 
-// Marken-Glyphen als Inline-SVG (fill), damit keine externen Skripte oder
-// Tracking-Ressourcen geladen werden. Icons sind rein dekorativ (aria-hidden),
-// die Bedeutung steckt im aria-label des jeweiligen Buttons/Links.
+// Marken-Glyphen als Inline-SVG (fill); so lädt die Seite keine externen
+// Skripte oder Tracking-Ressourcen. Die Icons sind dekorativ (aria-hidden),
+// die Bedeutung trägt das aria-label des jeweiligen Buttons/Links.
 const BRAND_ICONS: Record<ShareChannel, React.ReactNode> = {
   email: (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -124,7 +124,7 @@ export function ShareBar({ url, title, text }: Props) {
     try {
       await navigator.share({ title, text, url });
     } catch {
-      // Vom Nutzer abgebrochen oder nicht unterstützt – kein Fehlerzustand nötig.
+      // Vom Nutzer abgebrochen oder nicht unterstützt; kein Fehlerzustand nötig.
     }
   }
 

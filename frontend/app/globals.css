@@ -3,12 +3,12 @@
 @custom-variant dark (&:is([data-theme="dark"] *, [data-theme="dark"]));
 
 /* =================================================================
-   OffeneApps — design tokens (mirrors the prototype's styles.css)
+   OffeneApps design tokens (mirrors the prototype's styles.css)
    ================================================================= */
 
 :root,
 html[data-theme="light"] {
-  /* Stadtbibliothek-Newsletter — warm-civic, cream paper, deep navy ink, terra accent */
+  /* Stadtbibliothek-Newsletter: warm-civic, cream paper, deep navy ink, terra accent */
   --bg: oklch(0.962 0.01 85);
   --bg-2: oklch(0.93 0.012 80);
   --bg-3: oklch(0.89 0.014 75);
