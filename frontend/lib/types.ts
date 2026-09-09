@@ -73,6 +73,7 @@ export type AppDoc = {
   links?: AppLinks | null;
   contact?: AppContact | null;
   sharing?: AppSharing | null;
+  /** Legacy API value; ignored by the automatic field occupancy calculation. */
   metadataQualityOverride?: number | null;
   createdAt?: string;
   updatedAt?: string;

@@ -31,7 +31,6 @@ type RawApp = {
   github?: string | false;
   image?: string;
   reportBug?: string;
-  metaDataQuality?: string;
 };
 
 type RawHero = {
@@ -199,15 +198,6 @@ const normalizeLinks = (raw: RawApp) => {
   };
 };
 
-const parseQuality = (value?: string) => {
-  if (!value) return undefined;
-  const match = value.match(/\d+/);
-  if (!match) return undefined;
-  const num = Number(match[0]);
-  if (Number.isNaN(num)) return undefined;
-  return Math.min(100, Math.max(0, num));
-};
-
 const extFromContentType = (ct: string | null): string => {
   if (!ct) return "jpg";
   const m = ct.split(";")[0].trim().toLowerCase();
@@ -316,7 +306,6 @@ const seedApps = async (payload: Payload) => {
         isFeatured: Boolean(entry.isLatest),
         publishDate: entry.publishDate,
         latestRelease: entry.latestRelease,
-        metadataQualityOverride: parseQuality(entry.metaDataQuality),
         publishInformation: entry.publishInformation,
         links: normalizeLinks(entry),
         contact: {

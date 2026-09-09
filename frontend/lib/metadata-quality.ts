@@ -1,4 +1,5 @@
 import type { AppDoc } from "./types";
+import { richTextToText } from "./rich-text";
 
 const FIELD_WEIGHTS: Array<[keyof AppDoc | string, number]> = [
   ["heroImage", 2],
@@ -39,14 +40,15 @@ function getPath(obj: Record<string, unknown>, path: string): unknown {
 }
 
 export function calculateQuality(app: AppDoc): number {
-  if (app.metadataQualityOverride != null) {
-    return Math.max(0, Math.min(100, app.metadataQualityOverride));
-  }
   let totalWeight = 0;
   let filledWeight = 0;
   for (const [path, weight] of FIELD_WEIGHTS) {
     totalWeight += weight;
-    if (hasValue(getPath(app as unknown as Record<string, unknown>, path as string))) {
+    const value = getPath(app as unknown as Record<string, unknown>, path as string);
+    const filled = path === "longDescription"
+      ? richTextToText(value, "").replace(/[\u200b\u200c\u200d\u2060\ufeff]/g, "").trim().length > 0
+      : hasValue(value);
+    if (filled) {
       filledWeight += weight;
     }
   }

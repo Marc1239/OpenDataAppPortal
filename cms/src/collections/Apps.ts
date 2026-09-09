@@ -95,15 +95,8 @@ export const Apps: CollectionConfig = {
     {
       type: "row",
       fields: [
-        { name: "publishDate", type: "text", admin: { width: "33%", description: "z. B. '2023' oder '14.08.2019'" } },
-        { name: "latestRelease", type: "text", admin: { width: "33%" } },
-        {
-          name: "metadataQualityOverride",
-          type: "number",
-          min: 0,
-          max: 100,
-          admin: { width: "33%", description: "Leer lassen für Auto-Berechnung." },
-        },
+        { name: "publishDate", type: "text", admin: { width: "50%", description: "z. B. '2023' oder '14.08.2019'" } },
+        { name: "latestRelease", type: "text", admin: { width: "50%" } },
       ],
     },
     { name: "publishInformation", type: "textarea" },

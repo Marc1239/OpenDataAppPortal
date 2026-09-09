@@ -35,11 +35,50 @@ describe("calculateQuality", () => {
     expect(q).toBeLessThan(100);
   });
 
-  it("honours the manual override and clamps to 0..100", () => {
-    expect(calculateQuality(makeApp({ metadataQualityOverride: 55 }))).toBe(55);
-    expect(calculateQuality(makeApp({ metadataQualityOverride: -20 }))).toBe(0);
-    expect(calculateQuality(makeApp({ metadataQualityOverride: 250 }))).toBe(
-      100,
+  it.each([0, 55, 90, -20, 250, NaN, Infinity])(
+    "ignores the legacy manual value %s so identical descriptions have identical scores",
+    (metadataQualityOverride) => {
+      const app = makeApp();
+      expect(calculateQuality({ ...app, metadataQualityOverride })).toBe(
+        calculateQuality(app),
+      );
+    },
+  );
+
+  it.each([
+    null,
+    " \n\t\u00a0 ",
+    "\u200b\u200c\u200d\u2060\ufeff",
+    {},
+    { root: { type: "root", children: [] } },
+    { root: { children: [{ type: "paragraph", children: [] }] } },
+    { root: { children: [{ children: [{ text: " \n\u00a0 " }] }] } },
+    { root: { children: [{ children: [{ text: "\u200b\u2060" }] }] } },
+    { root: { children: [{ type: "link", url: "https://example.org", children: [] }] } },
+    { root: { children: [{ type: "upload", value: { alt: "Bild" } }] } },
+    { text: "This object is not rendered as a description" },
+  ])("does not reward a long description without displayed text: %j", (longDescription) => {
+    const app = makeApp();
+    expect(calculateQuality({ ...app, longDescription })).toBe(
+      calculateQuality(app),
+    );
+  });
+
+  it("counts nested description text just like the same plain text", () => {
+    const text = "Eine nutzbare Beschreibung";
+    const longDescription = {
+      root: {
+        children: [{ type: "list", children: [{ type: "listitem", children: [
+          { type: "link", children: [{ type: "text", text }] },
+        ] }] }],
+      },
+    };
+    const app = makeApp();
+    expect(calculateQuality({ ...app, longDescription })).toBe(
+      calculateQuality({ ...app, longDescription: text }),
+    );
+    expect(calculateQuality({ ...app, longDescription })).toBeGreaterThan(
+      calculateQuality(app),
     );
   });
 
