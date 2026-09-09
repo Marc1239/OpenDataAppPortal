@@ -1,59 +1,28 @@
 import type { AppDoc } from "./types";
 import { richTextToText } from "./rich-text";
 
-const FIELD_WEIGHTS: Array<[keyof AppDoc | string, number]> = [
-  ["heroImage", 2],
-  ["shortDescription", 1],
-  ["longDescription", 1],
-  ["category", 1],
-  ["tags", 1],
-  ["city", 1],
-  ["publishDate", 1],
-  ["latestRelease", 1],
-  ["publishInformation", 1],
-  ["links.website", 1],
-  ["links.appleAppStore", 1],
-  ["links.googlePlay", 1],
-  ["links.github", 1],
-  ["links.api", 1],
-  ["contact.publisherMail", 1],
-  ["contact.supportMail", 1],
-];
-
-function hasValue(value: unknown): boolean {
-  if (value === null || value === undefined) return false;
-  if (typeof value === "string") return value.trim().length > 0;
-  if (Array.isArray(value)) return value.length > 0;
-  if (typeof value === "boolean") return true;
-  if (typeof value === "number") return true;
-  if (typeof value === "object") return Object.keys(value as object).length > 0;
-  return false;
+function hasText(value: unknown): boolean {
+  return typeof value === "string"
+    && value.replace(/[\u200b\u200c\u200d\u2060\ufeff]/g, "").trim().length > 0;
 }
 
-function getPath(obj: Record<string, unknown>, path: string): unknown {
-  return path.split(".").reduce<unknown>((acc, part) => {
-    if (acc && typeof acc === "object" && part in (acc as Record<string, unknown>)) {
-      return (acc as Record<string, unknown>)[part];
-    }
-    return undefined;
-  }, obj);
+function hasReference(value: unknown): boolean {
+  if (hasText(value)) return true;
+  return value !== null && typeof value === "object"
+    && "id" in value && hasText(value.id);
 }
 
 export function calculateQuality(app: AppDoc): number {
-  let totalWeight = 0;
-  let filledWeight = 0;
-  for (const [path, weight] of FIELD_WEIGHTS) {
-    totalWeight += weight;
-    const value = getPath(app as unknown as Record<string, unknown>, path as string);
-    const filled = path === "longDescription"
-      ? richTextToText(value, "").replace(/[\u200b\u200c\u200d\u2060\ufeff]/g, "").trim().length > 0
-      : hasValue(value);
-    if (filled) {
-      filledWeight += weight;
-    }
-  }
-  if (totalWeight === 0) return 0;
-  return Math.round((filledWeight / totalWeight) * 100);
+  // Five equally weighted description fields, applicable across app platforms.
+  // Optional resources and platform links do not change the denominator.
+  const occupied = [
+    hasText(app.title),
+    hasText(app.shortDescription),
+    hasText(richTextToText(app.longDescription, "")),
+    hasReference(app.category),
+    Array.isArray(app.tags) && app.tags.some(hasReference),
+  ];
+  return Math.round((occupied.filter(Boolean).length / occupied.length) * 100);
 }
 
 export function qualityLabel(percent: number): {

@@ -18,9 +18,7 @@ function makeApp(overrides: Partial<AppDoc> = {}): AppDoc {
 
 describe("calculateQuality", () => {
   it("returns 0 for an app with no quality-tracked fields populated", () => {
-    // title/slug/id aren't tracked by calculateQuality, so clearing city and
-    // shortDescription (the only tracked fields on the minimal fixture) yields 0.
-    const app = makeApp({ shortDescription: "", city: "" });
+    const app = makeApp({ title: "", shortDescription: "" });
     expect(calculateQuality(app)).toBe(0);
   });
 
@@ -30,9 +28,7 @@ describe("calculateQuality", () => {
       category: { id: "c1", name: "Mobilität", slug: "mobilitaet" },
       city: "Dresden",
     });
-    const q = calculateQuality(app);
-    expect(q).toBeGreaterThan(0);
-    expect(q).toBeLessThan(100);
+    expect(calculateQuality(app)).toBe(60);
   });
 
   it.each([0, 55, 90, -20, 250, NaN, Infinity])(
@@ -82,39 +78,83 @@ describe("calculateQuality", () => {
     );
   });
 
-  it("reads nested paths like links.github and contact.publisherMail", () => {
+  it("does not change the score for optional platform, release, image or contact fields", () => {
     const base = calculateQuality(makeApp({ shortDescription: "x" }));
     const withLinks = calculateQuality(
       makeApp({
         shortDescription: "x",
-        links: { website: "https://a", github: "https://b" },
-        contact: { publisherMail: "a@b.de" },
+        heroImage: { id: "m1", url: "/img.png" },
+        heroImageURL: "https://example.org/image.png",
+        screenshots: [{ image: "m2" }],
+        city: "Berlin",
+        publishDate: "2023",
+        latestRelease: "1.0",
+        publishInformation: "info",
+        barrierFree: true,
+        isFeatured: true,
+        links: {
+          website: "https://example.org",
+          appleAppStore: "https://apps.apple.com/example",
+          googlePlay: "https://play.google.com/example",
+          github: "https://github.com/example",
+          api: "https://example.org/api",
+          downloadLink: "https://example.org/download",
+          reportBug: "https://example.org/issues",
+        },
+        contact: { publisherMail: "a@b.de", supportMail: "c@d.de" },
       }),
     );
-    expect(withLinks).toBeGreaterThan(base);
+    expect(withLinks).toBe(base);
   });
 
-  it("hits 100 when all tracked fields are populated", () => {
+  it("hits 100 with only the five description fields, even without app store links", () => {
     const app = makeApp({
       shortDescription: "s",
       longDescription: "l",
-      heroImage: { id: "m1", url: "/img.png" },
       category: { id: "c1", name: "Kat", slug: "kat" },
       tags: [{ id: "t1", label: "x", slug: "x" }],
-      city: "Dresden",
-      publishDate: "2023",
-      latestRelease: "1.0",
-      publishInformation: "info",
-      links: {
-        website: "a",
-        appleAppStore: "b",
-        googlePlay: "c",
-        github: "d",
-        api: "e",
-      },
-      contact: { publisherMail: "a@b.de", supportMail: "c@d.de" },
+      city: "",
     });
     expect(calculateQuality(app)).toBe(100);
+  });
+
+  it.each(["title", "shortDescription", "longDescription", "category", "tags"] as const)(
+    "gives %s the same share as each other description field",
+    (field) => {
+      const full = makeApp({
+        longDescription: "Details",
+        category: "c1",
+        tags: ["t1"],
+      });
+      const empty = makeApp({ title: "", shortDescription: "" });
+      expect(calculateQuality({ ...empty, [field]: full[field] })).toBe(20);
+      expect(calculateQuality({ ...full, [field]: undefined })).toBe(80);
+    },
+  );
+
+  it("counts one or several tags as a single occupied field", () => {
+    expect(calculateQuality(makeApp({ tags: ["t1"] }))).toBe(
+      calculateQuality(makeApp({ tags: ["t1", "t2", "t3"] })),
+    );
+  });
+
+  it("treats relationship IDs and populated relationship objects equally", () => {
+    expect(calculateQuality(makeApp({ category: "c1", tags: ["t1"] }))).toBe(
+      calculateQuality(makeApp({
+        category: { id: "c1", name: "Mobilität", slug: "mobilitaet" },
+        tags: [{ id: "t1", label: "Verkehr", slug: "verkehr" }],
+      })),
+    );
+  });
+
+  it("does not count empty references or invisible text as occupied fields", () => {
+    const app = makeApp({
+      title: "\u200b ",
+      shortDescription: "\u2060",
+      category: { id: "", name: "", slug: "" },
+      tags: ["", "  ", { id: "", label: "", slug: "" }],
+    });
+    expect(calculateQuality(app)).toBe(0);
   });
 });
 
