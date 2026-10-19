@@ -485,6 +485,26 @@ img { max-width: 100%; display: block; }
   font-size: 13px;
   line-height: 1.55;
 }
+.description-help > summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  width: fit-content;
+  max-width: 100%;
+  cursor: pointer;
+  list-style: none;
+}
+.description-help > summary::-webkit-details-marker { display: none; }
+.description-help > summary:hover { color: var(--fg); }
+.description-help > summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.description-help > summary > span { display: inline-block; }
+.description-help[open] > summary > span { transform: rotate(180deg); }
+.description-help > p { margin: 6px 0 0; }
 .apps-table__description-heading { overflow-wrap: anywhere; hyphens: auto; }
 
 /* ---------------- Categories ---------------- */

@@ -269,9 +269,10 @@ export function AppsBrowser({
             </div>
           </div>
         </details>
-        <p className="description-help" id="description-help">
-          <strong>{DESCRIPTION_LABEL}: </strong>{DESCRIPTION_HELP}
-        </p>
+        <details className="description-help">
+          <summary>Wie wird der Wert berechnet? <span aria-hidden="true">▾</span></summary>
+          <p id="description-help">{DESCRIPTION_HELP}</p>
+        </details>
         <div className="apps-filters__meta" role="status" aria-live="polite">
           <strong>{filtered.length}</strong> von {apps.length} Anwendungen
           {hasActiveFilter && <span className="apps-filters__hint"> · Filter aktiv</span>}

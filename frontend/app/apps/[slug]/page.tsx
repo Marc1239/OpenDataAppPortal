@@ -236,7 +236,10 @@ export default async function AppDetailPage({ params }: Props) {
                 </dd>
               </div>
             </dl>
-            <p className="description-help">{DESCRIPTION_HELP}</p>
+            <details className="description-help">
+              <summary>Wie wird der Wert berechnet? <span aria-hidden="true">▾</span></summary>
+              <p>{DESCRIPTION_HELP}</p>
+            </details>
           </div>
 
           {tags.length > 0 && (
