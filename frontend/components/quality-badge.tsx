@@ -1,3 +1,5 @@
+import { DESCRIPTION_HELP, DESCRIPTION_LABEL } from "@/lib/description-info";
+
 export function QualityBadge({
   score,
   size = "sm",
@@ -7,7 +9,7 @@ export function QualityBadge({
 }) {
   if (score == null) return null;
   const tone = score >= 85 ? "good" : score >= 70 ? "ok" : "low";
-  const label = `Metadaten-Qualität ${score} von 100`;
+  const label = `${DESCRIPTION_LABEL}: ${score} von 100. ${DESCRIPTION_HELP}`;
   return (
     <span
       className={`qbadge qbadge--${tone} qbadge--${size}`}

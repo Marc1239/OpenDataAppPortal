@@ -7,6 +7,7 @@ import { richTextToText } from "@/lib/rich-text";
 import { Icon } from "@/components/icon";
 import { Pill } from "@/components/pill";
 import { QualityBadge } from "@/components/quality-badge";
+import { DESCRIPTION_HELP, DESCRIPTION_LABEL } from "@/lib/description-info";
 import { SectionLabel } from "@/components/section-label";
 import { HeroImage } from "@/components/hero-image";
 import { ShareBar } from "@/components/share-bar";
@@ -229,12 +230,13 @@ export default async function AppDetailPage({ params }: Props) {
                 <dd>{links.github ? "öffentlich" : "nicht öffentlich"}</dd>
               </div>
               <div>
-                <dt>Metadaten-Qualität</dt>
+                <dt>{DESCRIPTION_LABEL}</dt>
                 <dd>
                   <QualityBadge score={quality} />
                 </dd>
               </div>
             </dl>
+            <p className="description-help">{DESCRIPTION_HELP}</p>
           </div>
 
           {tags.length > 0 && (

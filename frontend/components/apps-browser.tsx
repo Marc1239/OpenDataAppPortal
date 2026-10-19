@@ -6,6 +6,7 @@ import { Icon } from "./icon";
 import { Pill } from "./pill";
 import { QualityBadge } from "./quality-badge";
 import { HeroImage } from "./hero-image";
+import { DESCRIPTION_HELP, DESCRIPTION_LABEL } from "@/lib/description-info";
 
 export type BrowserApp = {
   id: string;
@@ -232,7 +233,7 @@ export function AppsBrowser({
               { v: "featured", l: "Empfehlungen zuerst" },
               { v: "title", l: "Titel A → Z" },
               { v: "city", l: "Stadt A → Z" },
-              { v: "quality", l: "Datenqualität" },
+              { v: "quality", l: DESCRIPTION_LABEL },
             ]}
             onChange={setSort}
           />
@@ -251,21 +252,26 @@ export function AppsBrowser({
             <FilterSelect label="Tag" value={tag} options={tagOpts} onChange={setTag} />
             <FilterSelect label="Jahr" value={year} options={years} onChange={setYear} />
             <div className="filter-range">
-              <label>
-                Datenqualität ≥ <strong>{minQuality}</strong>
+              <label htmlFor="description-minimum">
+                {DESCRIPTION_LABEL} ≥ <strong>{minQuality}</strong>
               </label>
               <input
+                id="description-minimum"
                 type="range"
                 min={0}
                 max={100}
                 step={5}
                 value={minQuality}
                 onChange={(e) => setMinQuality(Number(e.target.value))}
-                aria-label="Mindest-Datenqualität"
+                aria-label="Mindestwert der Beschreibungsangaben"
+                aria-describedby="description-help"
               />
             </div>
           </div>
         </details>
+        <p className="description-help" id="description-help">
+          <strong>{DESCRIPTION_LABEL}: </strong>{DESCRIPTION_HELP}
+        </p>
         <div className="apps-filters__meta" role="status" aria-live="polite">
           <strong>{filtered.length}</strong> von {apps.length} Anwendungen
           {hasActiveFilter && <span className="apps-filters__hint"> · Filter aktiv</span>}
@@ -335,7 +341,7 @@ function AppsTable({ apps }: { apps: BrowserApp[] }) {
         <span>Kategorie</span>
         <span>Tags</span>
         <span>Release</span>
-        <span>Qualität</span>
+        <span className="apps-table__description-heading">{DESCRIPTION_LABEL}</span>
         <span></span>
       </div>
       {apps.map((a, i) => (

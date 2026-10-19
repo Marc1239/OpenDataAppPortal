@@ -479,6 +479,13 @@ img { max-width: 100%; display: block; }
 .qbadge--low .qbadge__dot { background: var(--quality-low); }
 .qbadge__num { color: var(--fg); font-weight: 500; }
 .qbadge__unit { color: var(--fg-mute); }
+.description-help {
+  margin: 10px 0 0;
+  color: var(--fg-dim);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.apps-table__description-heading { overflow-wrap: anywhere; hyphens: auto; }
 
 /* ---------------- Categories ---------------- */
 .cat-grid {
