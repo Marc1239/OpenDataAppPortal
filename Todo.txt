@@ -1,9 +1,0 @@
-- Description hinzufügen
-- Code of conduct hinzufügen
-- Contributing hinzufügen
-- License hinzufügen
-- Security Policy hinzufügen
-- Issue templates hinzufügen
-- Pull request template hinzufügen
-
-==> alle Community Standards erfüllen
